@@ -7,7 +7,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={ <Layout/> }/>
-        <Route index element={ <Main/> }/>
       </Routes>
     </BrowserRouter>
   );
