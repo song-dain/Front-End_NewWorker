@@ -1,0 +1,117 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.HeaderlistUl {
+    width: 250px;
+    height: 417px;
+    background: #BAE5FE;
+    overflow-x: hidden;
+    overflow-y: auto;
+    list-style: none;
+    position: relative;
+}
+
+img {
+    margin-top: 40px;
+    width: 250px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.HeaderlistUl h1 {
+    text-align: center;
+}
+
+.HeaderDiv1 {
+    display: flex;
+    width: 250px;
+    height: 250px;
+}
+
+.ProfileDiv {
+    text-align: center;
+}
+
+.HeaderProfile {
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    background-color: yellow;
+    border-radius: 300px;
+    
+}
+
+.HeaderHomebtn {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.LogoBtn {
+    border: none;
+    background: #BAE5FE;
+    font-size: x-large;
+}
+
+
+
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.divBox {
+    margin-left: 250px;
+    width: 200px;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    display: none;
+    list-style: none;
+    background: #FCFCFC;
+  }
+
+  
+
+  .sideIcon {
+    font-size: 3.5em;
+  }
+
+  .mui{
+    font-size: xx-large;
+    
+    margin-top: 30px;
+  }
+
+  .sideTitle1 {
+    margin-top: 100px;
+    font-size: xx-large;
+    color: #B40000;
+    margin-bottom: 20px;
+    
+  }
+
+  .sideTitle2 {
+    margin-top: 50px;
+    font-size: xx-large;
+    color: #B40000;
+    margin-bottom: 20px;
+  }
+
+  .smallTitle {
+    width:200px;
+    height:50px;
+    margin:0 auto;
+  }
+
+  .smallTitle:hover {
+    background-color: #D9D9D9;
+    cursor: pointer;
+}
+
+.smallBox{
+    margin-top: 150px;
+}
+
