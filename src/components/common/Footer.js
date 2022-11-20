@@ -1,32 +1,36 @@
-// import {  useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { callLogoutAPI } from '../../api/EmployeeAPICalls';
+import { decodeJwt } from '../../utils/tokenUtils';
 import FooterCSS from "./Footer.module.css";
 import LogoutIcon from '@mui/icons-material/Logout';
 import "../../fonts/Font.css";
-// import { decodeJwt } from '../../utils/tokenUtils';
-// import { useDispatch } from "react-redux";
-// import { callLogoutAPI } from "../../apis/MemberAPICalls";
 
 function Footer() {
 
-    /* localStorage에 저장된 토큰 정보가 있으면 로그인 한 상태이다. */
-    // const isLogin = window.localStorage.getItem('accessToken');
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
 
-    // const dispatch = useDispatch();
-    // const navigate = useNavigate();
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0];
+    //decoded = ROLE_ADMIN or ROLE_USER 등이 로그인 시 담기게 됨. 즉, 어느 권한을 가지고 있느냐를 판별하는 구간
+    }
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     /* 로그아웃 버튼 이벤트 */
     const onClickLogoutHandler = () => {
-        // window.localStorage.removeItem('accessToken');
-        // dispatch(callLogoutAPI());
-        // alert('로그아웃 후 메인으로 이동합니다.');
-        // navigate('/', { replace : true });
+        window.localStorage.removeItem('accessToken');
+        dispatch(callLogoutAPI());
+        alert('로그아웃되어 로그인 화면으로 이동합니다.');
+        navigate('/', { replace : true });
     }
 
     return (
         <div className={FooterCSS.FooterDiv}>
             <div className={FooterCSS.FooterlistUl}>
-
-                {/* 로그인했을때만 노출되도록 나중에 설정값 변경 */}
 
                 <button
                     className={FooterCSS.LogoutBtn}
