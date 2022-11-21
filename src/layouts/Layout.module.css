@@ -1,3 +1,4 @@
-.LayoutDiv{
-    height: 100%;
+.LayoutDiv {
+    display: flex;
+    flex: 1.5;
 }

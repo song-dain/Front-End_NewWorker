@@ -1,0 +1,125 @@
+.sidebar {
+    flex: 1;
+}
+
+img {
+    margin-top: 40px;
+    width: 250px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.HeaderProfile {
+    margin: auto;
+    width: 150px;
+    height: 150px;
+    background-color: yellow;
+    border-radius: 100px;
+}
+
+.HeaderlistUl h1 {
+    text-align: center;
+}
+
+.HeaderlistUl {
+    
+    background: #BAE5FE;
+    list-style: none;
+    
+}
+
+.ProfileDiv {
+    text-align: center;
+}
+
+.HeaderHomebtn {
+    /* margin-top: 20px; */
+    text-align: center;
+}
+
+.LogoBtn {
+    border: none;
+    background: #BAE5FE;
+    font-size: x-large;
+}
+
+.NavlistUl {
+    
+    background: #BAE5FE;
+    
+    list-style: none;
+    
+}
+
+.NavlistUl li {
+    line-height: 5;
+    height: auto;
+    border-bottom: 1px solid #3dabeb;
+    text-align: center;
+}
+
+.NavlistDiv{
+    
+    margin: 0 auto;
+}
+
+
+.NavlistUl li:hover {
+    background-color: #3dabeb;
+    cursor: pointer;
+    
+}
+
+.NavlistUl  a{
+    margin-left: 20px;
+}
+
+a {
+    text-decoration: none;    
+    color: black;
+    
+}
+
+a:hover, a:focus, a:active{
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+
+.FooterlistUl {
+
+    background: #BAE5FE;
+    list-style: none;
+    text-align: center;
+    
+}
+
+.FooterlistUl li {
+    height: auto;
+    margin-top: 50px;
+    
+}
+
+a {
+    text-decoration: none;    
+    color: black;
+}
+
+.LogoutBtn {
+    border: none;
+    background: #BAE5FE;
+    color: gray;
+    font-size: large;
+    margin-top: 76px;
+}
+
+.LogoutBtn:hover, .LogoutBtn:focus, .LogoutBtn:active {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footIcon{
+    
+    font-size: 20px;
+}
