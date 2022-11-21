@@ -5,6 +5,7 @@ import Test from "./pages/test/Test";
 import Home from "./pages/home/Home";
 import Copy from "./pages/copy/Copy";
 import Login from "./pages/employee/Login";
+
 import AppCSS from "./App.module.css";
 
 
@@ -14,15 +15,17 @@ function App() {
       <div className={AppCSS.container} >
 
         <Routes>
-          <Route path="/" element={<Login />} />
-            <Route path="/main" element={<Layout />}>
-              <Route index element={<Main />} />
-              <Route path="home/Home" element={<Home />} />
-              <Route path="copy/Copy" element={<Copy />} />
+          <Route path="/" element={ <Login />} />
+            <Route path="/main" element={ <Layout />} >
+              <Route index element={ <Main />} />
+              <Route path="Home" element={ <Home />} />
+              <Route path="Copy" element={ <Copy />} />
+              <Route path="Test" element={ <Test />} />
             </Route>
-            <Route path="test" element={ <Test />}>
 
-            </Route>
+            {/* <Route path="Notice" element={ <Notice /> }/> */}
+
+          
           
         </Routes>
       </div>
