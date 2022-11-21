@@ -1,6 +1,5 @@
-
-
 .main{
-    flex: 4;
+    width: 1500px;
+    height: 100%;
     background-color: wheat;
 }

@@ -1,9 +1,33 @@
 import SidebarCSS from "./Sidebar.module.css";
 import LanguageIcon from '@mui/icons-material/Language';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { callLogoutAPI } from '../../api/EmployeeAPICalls';
+import { decodeJwt } from '../../utils/tokenUtils';
+
 
 function Sidebar() {
+
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0];
+    //decoded = ROLE_ADMIN or ROLE_USER 등이 로그인 시 담기게 됨. 즉, 어느 권한을 가지고 있느냐를 판별하는 구간
+    }
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    /* 로그아웃 버튼 이벤트 */
+    const onClickLogoutHandler = () => {
+        window.localStorage.removeItem('accessToken');
+        dispatch(callLogoutAPI());
+        alert('로그아웃되어 로그인 화면으로 이동합니다.');
+        navigate('/', { replace : true });
+    }
 
     return (
 
@@ -64,20 +88,20 @@ function Sidebar() {
 
             </div>
 
-            <div className={SidebarCSS.FooterlistUl}>
+            <div className={SidebarCSS.FooterDiv}>
+                <div className={SidebarCSS.FooterlistUl}>
 
-                {/* 로그인했을때만 노출되도록 나중에 설정값 변경 */}
-
-                <button
-                    className={SidebarCSS.LogoutBtn}
-
-                >
-                    로그아웃
-                    <LogoutIcon className={SidebarCSS.footIcon} />
-                </button>
-
+                    <button
+                        className={SidebarCSS.LogoutBtn}
+                        onClick={onClickLogoutHandler}
+                    >
+                        로그아웃
+                        <LogoutIcon className={SidebarCSS.footIcon} />
+                    </button>
 
 
+
+                </div>
             </div>
 
         </div>

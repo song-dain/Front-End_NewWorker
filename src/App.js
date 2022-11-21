@@ -11,17 +11,25 @@ import AppCSS from "./App.module.css";
 function App() {
   return (
     <BrowserRouter>
-      <Route path="/" element={ <Login/>}/>
-      <div className={ AppCSS.container } >
+      <div className={AppCSS.container} >
 
-      <Layout />
-      <Routes>
-        <Route index element={ <Main/>} />
-        <Route path="test/Test" element={ <Test /> } />
-        <Route path="home/Home" element={ <Home /> } />
-        <Route path="copy/Copy" element={ <Copy /> } />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Login />} />
+            <Route path="/main" element={<Layout />}>
+              <Route index element={<Main />} />
+              <Route path="home/Home" element={<Home />} />
+              <Route path="copy/Copy" element={<Copy />} />
+            </Route>
+            <Route path="test" element={ <Test />}>
+
+            </Route>
+          
+        </Routes>
       </div>
+
+      
+
+
     </BrowserRouter>
   );
 }
