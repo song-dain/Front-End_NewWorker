@@ -191,11 +191,11 @@ function Header() {
                 <div className={HeaderCSS.smallBox}>
 
                     <ul>
-                        <li className={HeaderCSS.smallTitle}>새 메시지 작성</li>
-                        <li className={HeaderCSS.smallTitle}>받은 메시지함</li>
-                        <li className={HeaderCSS.smallTitle}>보낸 메시지함</li>
-                        <li className={HeaderCSS.smallTitle}>중요 메시지함</li>
-                        <li className={HeaderCSS.smallTitle}>휴지통</li>
+                        <li className={HeaderCSS.smallTitle}><NavLink to="/emp/message/write">새 메시지 작성</NavLink></li>
+                        <li className={HeaderCSS.smallTitle}><NavLink to="/emp/message/receive">받은 메시지함</NavLink></li>
+                        <li className={HeaderCSS.smallTitle}><NavLink to="/emp/message/send">보낸 메시지함</NavLink></li>
+                        <li className={HeaderCSS.smallTitle}><NavLink to="/emp/message/impo">중요 메시지함</NavLink></li>
+                        <li className={HeaderCSS.smallTitle}><NavLink to="/emp/message/bin">휴지통</NavLink></li>
                     </ul>
 
                 </div>
