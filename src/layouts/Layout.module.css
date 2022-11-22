@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 .LayoutDiv {
     display: flex;
     flex: 0.5;

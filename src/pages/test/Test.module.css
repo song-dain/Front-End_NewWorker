@@ -1,4 +1,50 @@
-.test{
-    flex: 4;
-    background-color: wheat;
+.test {
+    width: 1470px;
+    height: 100%;
+    
 }
+
+.text {
+    font-size: 60px;
+    border-bottom: 1px solid black;
+}
+
+.tableBox {
+    width: 1300px;
+    margin: 0 auto;
+    
+    margin-top: 30px;
+}
+
+.test1 {
+    width: 1300px;
+    margin: 0 auto;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-collapse: collapse;
+}
+
+.test1 tr{
+    height: 30px;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+.pagingBtn{
+    margin: 5px;
+    border-radius: 25px;
+    background-color: white;
+    font-weight: bold;
+}
+
+.pagingBtn:hover{
+    cursor: pointer;
+    background-color: burlywood;
+}
+
+.pagingDiv{
+    height: 50px
+}
+

@@ -19,7 +19,7 @@ function SubSidebar() {
             $("#divBox3").hide();
             $("#divBox4").hide();
             $("#divBox5").hide();
-            $("#divBox6").hide();
+            
         });
     });
 
@@ -31,7 +31,7 @@ function SubSidebar() {
             $("#divBox3").hide();
             $("#divBox4").hide();
             $("#divBox5").hide();
-            $("#divBox6").hide();
+            
         });
     });
 
@@ -43,7 +43,7 @@ function SubSidebar() {
             $("#divBox3").hide();
             $("#divBox4").hide();
             $("#divBox5").hide();
-            $("#divBox6").hide();
+            
         });
     });
 
@@ -55,7 +55,7 @@ function SubSidebar() {
             $("#divBox3").fadeToggle("fast");
             $("#divBox4").hide();
             $("#divBox5").hide();
-            $("#divBox6").hide();
+            
         });
     });
 
@@ -67,7 +67,7 @@ function SubSidebar() {
             $("#divBox3").hide();
             $("#divBox4").fadeToggle("fast");
             $("#divBox5").hide();
-            $("#divBox6").hide();
+            
         });
     });
 
@@ -79,21 +79,10 @@ function SubSidebar() {
             $("#divBox3").hide();
             $("#divBox4").hide();
             $("#divBox5").fadeToggle("fast");
-            $("#divBox6").hide();
+            
         });
     });
 
-    $(function () {
-        $("#slideToggleBtn6").on("click", function () {
-            $("#divBox").hide();
-            $("#divBox1").hide();
-            $("#divBox2").hide();
-            $("#divBox3").hide();
-            $("#divBox4").hide();
-            $("#divBox5").hide();
-            $("#divBox6").hide();
-        });
-    });
 
     return (
 
@@ -112,12 +101,12 @@ function SubSidebar() {
 
                     <ul>
                         <li className={SubSidebarCSS.sideTitle1}>ㅇ근태 관리</li>
-                        <li className={SubSidebarCSS.smallTitle}><NavLink to="/test">일일 근태 등록</NavLink></li>
-                        <li className={SubSidebarCSS.smallTitle}><NavLink to="/home/Home">월간 근태 현황</NavLink></li>
+                        <li className={SubSidebarCSS.smallTitle}><NavLink to="Test">일일 근태 등록</NavLink></li>
+                        <li className={SubSidebarCSS.smallTitle}><NavLink to="Home">월간 근태 현황</NavLink></li>
                     </ul>
                     <ul>
                         <li className={SubSidebarCSS.sideTitle2}>ㅇ휴가 관리</li>
-                        <li className={SubSidebarCSS.smallTitle}><NavLink to="/copy/Copy">연차 신청</NavLink></li>
+                        <li className={SubSidebarCSS.smallTitle}><NavLink to="Copy">연차 신청</NavLink></li>
                         <li className={SubSidebarCSS.smallTitle}>연차 조회</li>
                     </ul>
                 </div>
