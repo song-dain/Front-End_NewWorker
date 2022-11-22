@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import TestCSS from "./Test.module.css";
-import { Outlet } from "react-router-dom";
+import NoticeCSS from "./Notice.module.css";
+import { callNoticeAPI } from '../../api/NoticeAPICalls';
+
 
 import React from "react";
 
-function Test() {
-    // 테스트용
+function Notice() {
+    
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const params = useParams();
@@ -24,6 +25,16 @@ function Test() {
         }
     }
 
+    useEffect(
+        () => {
+            dispatch(callNoticeAPI({
+                notNo : params.notNo,
+                currentPage : currentPage
+            }));
+        } 
+        ,[currentPage]
+    )
+
     const onClickTableTr = (notNo) => {
         navigate(`/noticeDetail/${notNo}`, { replace : true });
     }
@@ -37,11 +48,11 @@ function Test() {
         //     <Outlet />
         // </main>
         // </div>
-        <div className={TestCSS.test}>
-            <h1 className={TestCSS.text}>전사 공지</h1>
-            <div className={TestCSS.tableBox}>
+        <div className={NoticeCSS.notice}>
+            <h1 className={NoticeCSS.text}>전사 공지</h1>
+            <div className={NoticeCSS.tableBox}>
 
-                <table className={TestCSS.test1}>
+                <table className={NoticeCSS.notice1}>
                     <colgroup>
                         <col width="10%" />
                         <col width="50%" />
@@ -50,28 +61,28 @@ function Test() {
                         <col width="10%" />
                     </colgroup>
                     <thead>
-                        <tr className={TestCSS.notice_tr}>
-                            <th className={TestCSS.notice_td2}>번호</th>
-                            <th className={TestCSS.notice_td2}>제목</th>
-                            <th className={TestCSS.notice_td3}>작성자</th>
-                            <th className={TestCSS.notice_td4}>작성일</th>
-                            <th className={TestCSS.notice_td5}>조회수</th>
+                        <tr className={NoticeCSS.notice_tr}>
+                            <th className={NoticeCSS.notice_td2}>번호</th>
+                            <th className={NoticeCSS.notice_td2}>제목</th>
+                            <th className={NoticeCSS.notice_td3}>작성자</th>
+                            <th className={NoticeCSS.notice_td4}>작성일</th>
+                            <th className={NoticeCSS.notice_td5}>조회수</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         {
                             Array.isArray(noticeList) && noticeList.map(
-                                (notice) => (
-                                    <tr className={TestCSS.notice_tr}
-                                        key={notice.notNo}
-                                        onClick={() => onClickTableTr(notice.notNo)}
+                                (noticeList) => (
+                                    <tr className={NoticeCSS.notice_tr}
+                                        key={noticeList.notNo}
+                                        onClick={() => onClickTableTr(noticeList.notNo)}
                                     >
-                                        <th>{notice.notNo}</th>
-                                        <th>{notice.notTitle}</th>
-                                        <th>{notice.employee}</th>
-                                        <th>{notice.notDate}</th>
-                                        <th>{notice.notCount}</th>
+                                        <th>{noticeList.notNo}</th>
+                                        <th>{noticeList.notTitle}</th>
+                                        <th>{noticeList.employeeNo}</th>
+                                        <th>{noticeList.notDate}</th>
+                                        <th>{noticeList.notCount}</th>
                                     </tr>
                                 )
                             )
@@ -89,7 +100,7 @@ function Test() {
                     <button
                         onClick={() => setCurrentPage(currentPage - 1)}
                         disabled={currentPage === 1}
-                        className={TestCSS.pagingBtn}
+                        className={NoticeCSS.pagingBtn}
                     >
                         &lt;
                     </button>
@@ -98,8 +109,8 @@ function Test() {
                     pageNumber.map((num) => (
                         <li key={num} onClick={() => setCurrentPage(num)}>
                             <button
-                                style={currentPage === num ? { backgroundColor: 'orange' } : null}
-                                className={TestCSS.pagingBtn}
+                                style={currentPage === num ? { backgroundColor: 'lightgray' } : null}
+                                className={NoticeCSS.pagingBtn1}
                             >
                                 {num}
                             </button>
@@ -111,7 +122,7 @@ function Test() {
                     <button
                         onClick={() => setCurrentPage(currentPage + 1)}
                         disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
-                        className={TestCSS.pagingBtn}
+                        className={NoticeCSS.pagingBtn}
                     >
                         &gt;
                     </button>
@@ -121,4 +132,4 @@ function Test() {
     );
 }
 
-export default Test;
+export default Notice;

@@ -19,7 +19,7 @@ function SubSidebar() {
             $("#divBox3").hide();
             $("#divBox4").hide();
             $("#divBox5").hide();
-            $("#divBox6").hide();
+            
         });
     });
 
@@ -31,7 +31,7 @@ function SubSidebar() {
             $("#divBox3").hide();
             $("#divBox4").hide();
             $("#divBox5").hide();
-            $("#divBox6").hide();
+            
         });
     });
 
@@ -43,7 +43,7 @@ function SubSidebar() {
             $("#divBox3").hide();
             $("#divBox4").hide();
             $("#divBox5").hide();
-            $("#divBox6").hide();
+            
         });
     });
 
@@ -55,7 +55,7 @@ function SubSidebar() {
             $("#divBox3").fadeToggle("fast");
             $("#divBox4").hide();
             $("#divBox5").hide();
-            $("#divBox6").hide();
+            
         });
     });
 
@@ -67,7 +67,7 @@ function SubSidebar() {
             $("#divBox3").hide();
             $("#divBox4").fadeToggle("fast");
             $("#divBox5").hide();
-            $("#divBox6").hide();
+            
         });
     });
 
@@ -79,21 +79,10 @@ function SubSidebar() {
             $("#divBox3").hide();
             $("#divBox4").hide();
             $("#divBox5").fadeToggle("fast");
-            $("#divBox6").hide();
+            
         });
     });
 
-    $(function () {
-        $("#slideToggleBtn6").on("click", function () {
-            $("#divBox").hide();
-            $("#divBox1").hide();
-            $("#divBox2").hide();
-            $("#divBox3").hide();
-            $("#divBox4").hide();
-            $("#divBox5").hide();
-            $("#divBox6").hide();
-        });
-    });
 
     return (
 

@@ -5,6 +5,7 @@ import Test from "./pages/test/Test";
 import Home from "./pages/home/Home";
 import Copy from "./pages/copy/Copy";
 import Login from "./pages/employee/Login";
+import Notice from "./pages/notice/Notice";
 import ReceiveMessageBox from "./pages/message/ReceiveMessageBox";
 import SendMessageBox from "./pages/message/SendMessageBox";
 import ImpoMessageBox from "./pages/message/ImpoMessageBox";
@@ -24,6 +25,7 @@ function App() {
               <Route path="Home" element={ <Home />} />
               <Route path="Copy" element={ <Copy />} />
               <Route path="Test" element={ <Test />} />
+             <Route path="Notice" element={<Notice />} />
               <Route path="message/receive" element={ <ReceiveMessageBox/> }/>
               <Route path="message/send" element={ <SendMessageBox/> }/>
               <Route path="message/impo" element={ <ImpoMessageBox/> }/>
@@ -32,12 +34,10 @@ function App() {
 
             {/* <Route path="Notice" element={ <Notice /> }/> */}
 
-          
-          
         </Routes>
       </div>
 
-      
+
 
 
     </BrowserRouter>

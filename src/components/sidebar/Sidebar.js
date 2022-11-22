@@ -7,6 +7,8 @@ import { callLogoutAPI } from '../../api/EmployeeAPICalls';
 import { decodeJwt } from '../../utils/tokenUtils';
 
 
+
+
 function Sidebar() {
 
     const isLogin = window.localStorage.getItem('accessToken');
@@ -77,6 +79,7 @@ function Sidebar() {
                     <li id="slideToggleBtn3">메세지</li>
                     <li id="slideToggleBtn4">캘린더</li>
                     <li id="slideToggleBtn6"><NavLink to="Notice">전사공지</NavLink></li>
+
                     <li id="slideToggleBtn5">설문조사</li>
 
                     {/* 관리자로 로그인 했을시 생성되는 네브 목록

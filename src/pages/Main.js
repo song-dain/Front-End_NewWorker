@@ -4,7 +4,7 @@ function Main() {
 
     return(
         <div className={MainCSS.main}>
-           Main
+           
         </div>
     );
 }
