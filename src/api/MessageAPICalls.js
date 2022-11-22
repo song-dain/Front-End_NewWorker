@@ -315,6 +315,9 @@ export const callRecipientManagementAPI = ({form}) => {
                 "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
             },
             body : JSON.stringify({
+                message : {
+                    messageNo : form.message.messageNo
+                },
                 receiveMessageCategory : form.receiveMessageCategory,
                 receiveMessageDelete : form.receiveMessageDelete
             })
@@ -342,6 +345,9 @@ export const callSenderManagementAPI = ({form, messageNo}) => {
                 "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
             },
             body : JSON.stringify({
+                message : {
+                    messageNo : form.message.messageNo
+                },
                 sendMessageDelete : form.sendMessageDelete
             })
         })
