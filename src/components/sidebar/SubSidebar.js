@@ -179,7 +179,7 @@ function SubSidebar() {
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="message/receive">받은 메시지함</NavLink></li>
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="message/send">보낸 메시지함</NavLink></li>
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="message/impo">중요 메시지함</NavLink></li>
-                        <li className={SubSidebarCSS.smallTitle}>휴지통</li>
+                        <li className={SubSidebarCSS.smallTitle}><NavLink to="message/bin/receive">휴지통</NavLink></li>
                     </ul>
 
                 </div>

@@ -75,7 +75,6 @@ export const callReceiveMessageListAPI = ({currentPage = 1}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[MessageAPICalls] callReceiveMessageListAPI result : ', result)
             dispatch({ type: GET_RECEIVE_MESSAGES, payload: result.data });
         }
     }
@@ -208,7 +207,7 @@ export const callImpoMessageListAPI = ({currentPage = 1}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[MessageAPICalls] callImpoMessageListAPI result : ', result)
+                        console.log('[MessageAPICalls] callReceiveMessageListAPI result : ', result)
             dispatch({ type: GET_IMPO_MESSAGES, payload: result.data });
         }
     }
@@ -302,9 +301,9 @@ export const callBinSendMessageAPI = ({currentPage = 1}) => {
     }
 }
 
-export const callRecipientManagementAPI = ({form, messageNo}) => {
+export const callRecipientManagementAPI = ({form}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/message/receive/${messageNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/message/receive`;
 
     return async (dispatch, getState) => {
 
@@ -323,6 +322,7 @@ export const callRecipientManagementAPI = ({form, messageNo}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
+            console.log('[MessageAPICalls] callRecipientManagementAPI result : ', result)
             dispatch({ type: PATCH_RECIPIENT_MANAGEMENT, payload: result.data });
         }
     }
