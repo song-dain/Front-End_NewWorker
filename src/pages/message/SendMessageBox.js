@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { callSendMessageListAPI } from "../../api/MessageAPICalls";
+import { callSendMessageListAPI, callSenderManagementAPI, callSearchSendMessageAPI } from "../../api/MessageAPICalls";
 import SendMessageBoxCSS from "../message/SendMessageBox.module.css";
 import impoicon from "../../img/impoicon.png";
 import binicon from "../../img/binicon.png";
@@ -12,18 +12,20 @@ function SendMessageBox(){
     const dispatch = useDispatch();
     const params = useParams();
     const [currentPage, setCurrentPage] = useState(1);
+    const [search, setSearch] = useState('');
+    const [searchResult, setSearchResult ] = useState('');
     const [ status, setStatus ] = useState('전송');
+    const [management, setManagement] = useState({
+        message : {
+            messageNo : 0
+        },
+        sendMessageDelete : ''
+    })
     const messages = useSelector(state => state.messageReducer);
     const messageList = messages.data;
     const pageInfo = messages.pageInfo;
 
-    /* 페이징 버튼 */
-    const pageNumber = [];
-    if(pageInfo) {
-        for(let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
-            pageNumber.push(i);
-        }
-    }
+
 
     useEffect(
         () => {
@@ -34,10 +36,72 @@ function SendMessageBox(){
         , [currentPage]
     )
 
+    /* 검색 값 상태 저장 */
+    const onSearchChangeHandler = (e) => {
+        setSearch(e.target.value);
+    }
+
+    /* Enter Key로 검색 */
+    const onEnterKeyHandler = (e) => {
+        if(e.key == 'Enter') {
+            dispatch(callSearchSendMessageAPI({
+                keyword : search,
+                currentPage : currentPage
+            }));
+            setSearchResult(`'${search}' 검색 결과입니다.`);
+        }
+    }
+
+    /* Button으로 검색 */
+    const onClickBtnHandler = () => {
+        dispatch(callSearchSendMessageAPI({
+            keyword : search,
+            currentPage :  currentPage
+        }));
+        setSearchResult(`키워드 '${search}' 검색 결과입니다.`);
+    }
+
+    /* 휴지통으로 이동 */
+    const moveToBinMessageBox = (num) => {
+        
+        setManagement({
+            message : {
+                messageNo : num
+            },
+            sendMessageDelete :'Y'
+        });
+
+        console.log(management);
+
+        dispatch(callSenderManagementAPI({
+            form : management
+        }));
+    }
+
+    /* 페이징 버튼 */
+    const pageNumber = [];
+    if(pageInfo) {
+        for(let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
+            pageNumber.push(i);
+        }
+    }
+
     return(
         <>
             <div className={SendMessageBoxCSS.box}>
                 <h1>보낸 메시지함</h1> 
+                <input
+                    type="text"
+                    placeholder="검색"
+                    value={ search }
+                    onChange={ onSearchChangeHandler }
+                    onKeyUp= { onEnterKeyHandler }
+                />
+                <button
+                    onClick={ onClickBtnHandler }
+                >
+                검색</button>
+                <div>{ searchResult }</div>
                 <table className={SendMessageBoxCSS.tabel}>
                     <thead>
                     <tr>
@@ -59,7 +123,10 @@ function SendMessageBox(){
                                         <td>{messages.sender.employeeName}</td>
                                         <td>{messages.messageContent}</td>
                                         <td>{messages.sendDate}</td>
-                                        <td><img src={binicon} alt="bin"/></td>
+                                        <td><img 
+                                                src={binicon} alt="bin"
+                                                onClick={ () => moveToBinMessageBox(messages.messageNo) }
+                                            /></td>
                                     </tr>
                                 )
                             )

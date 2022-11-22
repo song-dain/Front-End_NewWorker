@@ -14,17 +14,28 @@ function BinMessageBox(){
     const params = useParams();
     const [currentPage, setCurrentPage] = useState(1);
     const [ senderOrReceiver, setSenderOrReceiver ] = useState('발신자'); // 맨위 수신자발신자 변경
+
+    const [ textStrR, setTextStrR ] = useState({ color : "green" });
+    const [ textStrS, setTextStrS ] = useState({ color : "black" });
+
+    const [ formR, setFormR ] = useState({
+        message : {
+            messageNo : 0
+        },
+        receiveMessageCategory : '',
+        receiveMessageDelete : ''
+    });
+
+    const [ formS, setFormS ] = useState({
+        message : {
+            messageNo : 0
+        },
+        sendMessageDelete : ''
+    });
+
     const messages = useSelector(state => state.messageReducer);
     const messageList = messages.data;
     const pageInfo = messages.pageInfo;
-
-    /* 페이징 버튼 */
-    const pageNumber = [];
-    if(pageInfo) {
-        for(let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
-            pageNumber.push(i);
-        }
-    }
 
     useEffect(
         () => {
@@ -35,13 +46,14 @@ function BinMessageBox(){
         , [currentPage]
     )
 
-
     /* 받은 메시지 보기 */
     const onClickMoveToReceiveMessage = () => {
         dispatch(callBinReceiveMessageAPI({
             currentPage : currentPage
         }));
         setSenderOrReceiver('발신자');
+        setTextStrR({ color : "green" })
+        setTextStrS({ color : "black" })
     }
 
     /* 보낸 메시지 보기 */
@@ -52,19 +64,30 @@ function BinMessageBox(){
 
         }));
         setSenderOrReceiver('수신자');
+        setTextStrR({ color : "black" })
+        setTextStrS({ color : "skyblue" })
     }
 
+    /* 페이징 버튼 */
+    const pageNumber = [];
+    if(pageInfo) {
+        for(let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
+            pageNumber.push(i);
+        }
+    }
 
     return(
         <>
             <div className={BinMessageBoxCSS.box}>
                 <h1>휴지통</h1>
-                <b
+                <span
                     onClick={ onClickMoveToReceiveMessage }
-                >받은 메시지</b> | 
+                    style={ textStrR }
+                >받은 메시지 </span> | 
                 <span
                     onClick={ onClickMoveToSendMessage }
-                >보낸 메시지</span>
+                    style={ textStrS }
+                > 보낸 메시지</span>
                 <table className={BinMessageBoxCSS.tabel}>
                     <thead>
                     <tr>
