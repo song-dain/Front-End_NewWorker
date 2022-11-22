@@ -1,24 +1,17 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { callReceiveMessageListAPI, callRecipientManagementAPI } from "../../api/MessageAPICalls";
+import { callImpoMessageListAPI } from "../../api/MessageAPICalls";
 import ReceiveMessageBoxCSS from "../message/ReceiveMessageBox.module.css";
-import impoicon from "../../img/impoicon.png";
+import impocancelicon from "../../img/impocancelicon.png";
 import binicon from "../../img/binicon.png";
 
-function ReceiveMessageBox(){
+function ImpoMessageBox(){
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const params = useParams();
     const [currentPage, setCurrentPage] = useState(1);
-    const [form, setForm] = useState({
-        message : {
-            messageNo : ''
-        },
-        receiveMessageCategory : '',
-        receiveMessageDelete : ''
-    })
     const messages = useSelector(state => state.messageReducer);
     const messageList = messages.data;
     const pageInfo = messages.pageInfo;
@@ -33,30 +26,19 @@ function ReceiveMessageBox(){
 
     useEffect(
         () => {
-            dispatch(callReceiveMessageListAPI({
+            dispatch(callImpoMessageListAPI({
                 currentPage : currentPage
             }));
         }
         , [currentPage]
     )
 
-    /* 메시지 중요 메시지함으로 이동 */
-    const moveToImpoMessageBox = (num) => {
-        
-        setForm({
-            message : {
-                messageNo : num
-            },
-            receiveMessageCategory : 'impoMessageBox',
-            receiveMessageDelete : null
-        });
 
-    }
 
     return(
         <>
             <div className={ReceiveMessageBoxCSS.box}>
-                <h1>받은 메시지함</h1> 
+                <h1>중요 메시지함</h1> 
                 <table className={ReceiveMessageBoxCSS.tabel}>
                     <thead>
                     <tr>
@@ -74,10 +56,7 @@ function ReceiveMessageBox(){
                                     <tr
                                         key={ messages.messageNo }
                                     >
-                                        <td><img 
-                                                src={ impoicon }
-                                                onClick={ () => moveToImpoMessageBox(messages.messageNo) }
-                                            /></td>
+                                        <td><img src={impocancelicon} alt="impocancel"/></td>
                                         <td>{messages.sender.employeeName}</td>
                                         <td>{messages.messageContent}</td>
                                         <td>{messages.sendDate}</td>
@@ -129,4 +108,4 @@ function ReceiveMessageBox(){
     );
 }
 
-export default ReceiveMessageBox;
+export default ImpoMessageBox;

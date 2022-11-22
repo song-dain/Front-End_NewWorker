@@ -1,24 +1,18 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { callReceiveMessageListAPI, callRecipientManagementAPI } from "../../api/MessageAPICalls";
-import ReceiveMessageBoxCSS from "../message/ReceiveMessageBox.module.css";
+import { callSendMessageListAPI } from "../../api/MessageAPICalls";
+import SendMessageBoxCSS from "../message/SendMessageBox.module.css";
 import impoicon from "../../img/impoicon.png";
 import binicon from "../../img/binicon.png";
 
-function ReceiveMessageBox(){
+function SendMessageBox(){
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const params = useParams();
     const [currentPage, setCurrentPage] = useState(1);
-    const [form, setForm] = useState({
-        message : {
-            messageNo : ''
-        },
-        receiveMessageCategory : '',
-        receiveMessageDelete : ''
-    })
+    const [ status, setStatus ] = useState('전송');
     const messages = useSelector(state => state.messageReducer);
     const messageList = messages.data;
     const pageInfo = messages.pageInfo;
@@ -33,37 +27,24 @@ function ReceiveMessageBox(){
 
     useEffect(
         () => {
-            dispatch(callReceiveMessageListAPI({
+            dispatch(callSendMessageListAPI({
                 currentPage : currentPage
             }));
         }
         , [currentPage]
     )
 
-    /* 메시지 중요 메시지함으로 이동 */
-    const moveToImpoMessageBox = (num) => {
-        
-        setForm({
-            message : {
-                messageNo : num
-            },
-            receiveMessageCategory : 'impoMessageBox',
-            receiveMessageDelete : null
-        });
-
-    }
-
     return(
         <>
-            <div className={ReceiveMessageBoxCSS.box}>
-                <h1>받은 메시지함</h1> 
-                <table className={ReceiveMessageBoxCSS.tabel}>
+            <div className={SendMessageBoxCSS.box}>
+                <h1>보낸 메시지함</h1> 
+                <table className={SendMessageBoxCSS.tabel}>
                     <thead>
                     <tr>
-                        <td>중요</td>
-                        <td>발신자</td>
+                        <td>상태</td>
+                        <td>수신자</td>
                         <td>내용</td>
-                        <td>받은날짜</td>
+                        <td>보낸날짜</td>
                         <td>삭제</td>
                     </tr>
                     </thead>
@@ -74,10 +55,7 @@ function ReceiveMessageBox(){
                                     <tr
                                         key={ messages.messageNo }
                                     >
-                                        <td><img 
-                                                src={ impoicon }
-                                                onClick={ () => moveToImpoMessageBox(messages.messageNo) }
-                                            /></td>
+                                        <td>{ messages.messageStatus == 'send' ? '전송' : '읽음' }</td>
                                         <td>{messages.sender.employeeName}</td>
                                         <td>{messages.messageContent}</td>
                                         <td>{messages.sendDate}</td>
@@ -88,13 +66,13 @@ function ReceiveMessageBox(){
                         }
                     </tbody>
                 </table>
-                <div className={ReceiveMessageBoxCSS.page}> 
+                <div className={SendMessageBoxCSS.page}> 
                     {
                         Array.isArray(messageList) &&
                         <button
                             onClick={ () => setCurrentPage(currentPage - 1) }
                             disabled={ currentPage === 1 }
-                            className={ ReceiveMessageBoxCSS.pagingBtn }
+                            className={ SendMessageBoxCSS.pagingBtn }
                         >
                             &lt;
                         </button>
@@ -103,7 +81,7 @@ function ReceiveMessageBox(){
                         pageNumber.map((num) => (
                             <li 
                                 key={num} onClick={ () => setCurrentPage(num) }
-                                className={ ReceiveMessageBoxCSS.pageNum }
+                                className={ SendMessageBoxCSS.pageNum }
                             >
                                 <button
                                     style={ currentPage === num ? { backgroundColor : 'orange'} : null }
@@ -118,7 +96,7 @@ function ReceiveMessageBox(){
                         <button
                             onClick={ () => setCurrentPage(currentPage + 1) }
                             disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
-                            className={ ReceiveMessageBoxCSS.pagingBtn }
+                            className={ SendMessageBoxCSS.pagingBtn }
                         >
                             &gt;
                         </button>
@@ -129,4 +107,4 @@ function ReceiveMessageBox(){
     );
 }
 
-export default ReceiveMessageBox;
+export default SendMessageBox;
