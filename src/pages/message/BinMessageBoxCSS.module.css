@@ -1,0 +1,21 @@
+.box {
+    width: 1500px;
+    height: 50%;
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+}
+
+.pageNum {
+    list-style: none;
+}
+
+.pagingBtn{
+    margin: 5px;
+    border-radius: 25px;
+    background-color: white;
+    font-weight: bold;
+}
+

@@ -1,24 +1,19 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { callReceiveMessageListAPI, callRecipientManagementAPI } from "../../api/MessageAPICalls";
-import ReceiveMessageBoxCSS from "../message/ReceiveMessageBox.module.css";
-import impoicon from "../../img/impoicon.png";
+import { callBinReceiveMessageAPI, callBinSendMessageAPI } from "../../api/MessageAPICalls";
+import BinMessageBoxCSS from "../message/BinMessageBoxCSS.module.css";
+import backsquareR from "../../img/backsquareR.png";
+import backsquareS from "../../img/backsquareS.png";
 import binicon from "../../img/binicon.png";
 
-function ReceiveMessageBox(){
+function BinMessageBox(){
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const params = useParams();
     const [currentPage, setCurrentPage] = useState(1);
-    const [form, setForm] = useState({
-        message : {
-            messageNo : ''
-        },
-        receiveMessageCategory : '',
-        receiveMessageDelete : ''
-    })
+    const [ senderOrReceiver, setSenderOrReceiver ] = useState('발신자'); // 맨위 수신자발신자 변경
     const messages = useSelector(state => state.messageReducer);
     const messageList = messages.data;
     const pageInfo = messages.pageInfo;
@@ -33,38 +28,51 @@ function ReceiveMessageBox(){
 
     useEffect(
         () => {
-            dispatch(callReceiveMessageListAPI({
+            dispatch(callBinReceiveMessageAPI({
                 currentPage : currentPage
             }));
         }
         , [currentPage]
     )
 
-    /* 메시지 중요 메시지함으로 이동 */
-    const moveToImpoMessageBox = (num) => {
-        
-        setForm({
-            message : {
-                messageNo : num
-            },
-            receiveMessageCategory : 'impoMessageBox',
-            receiveMessageDelete : null
-        });
 
+    /* 받은 메시지 보기 */
+    const onClickMoveToReceiveMessage = () => {
+        dispatch(callBinReceiveMessageAPI({
+            currentPage : currentPage
+        }));
+        setSenderOrReceiver('발신자');
     }
+
+    /* 보낸 메시지 보기 */
+    const onClickMoveToSendMessage = () => {
+
+        dispatch(callBinSendMessageAPI({
+            currentPage : currentPage
+
+        }));
+        setSenderOrReceiver('수신자');
+    }
+
 
     return(
         <>
-            <div className={ReceiveMessageBoxCSS.box}>
-                <h1>받은 메시지함</h1> 
-                <table className={ReceiveMessageBoxCSS.tabel}>
+            <div className={BinMessageBoxCSS.box}>
+                <h1>휴지통</h1>
+                <b
+                    onClick={ onClickMoveToReceiveMessage }
+                >받은 메시지</b> | 
+                <span
+                    onClick={ onClickMoveToSendMessage }
+                >보낸 메시지</span>
+                <table className={BinMessageBoxCSS.tabel}>
                     <thead>
                     <tr>
-                        <td>중요</td>
-                        <td>발신자</td>
+                        <td>복구</td>
+                        <td>{ senderOrReceiver }</td>
                         <td>내용</td>
                         <td>받은날짜</td>
-                        <td>삭제</td>
+                        <td>영구삭제</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -74,10 +82,7 @@ function ReceiveMessageBox(){
                                     <tr
                                         key={ messages.messageNo }
                                     >
-                                        <td><img 
-                                                src={ impoicon }
-                                                onClick={ () => moveToImpoMessageBox(messages.messageNo) }
-                                            /></td>
+                                        <td><img src={ senderOrReceiver == '발신자' ? backsquareR : backsquareS } alt="impocancel"/></td>
                                         <td>{messages.sender.employeeName}</td>
                                         <td>{messages.messageContent}</td>
                                         <td>{messages.sendDate}</td>
@@ -88,13 +93,13 @@ function ReceiveMessageBox(){
                         }
                     </tbody>
                 </table>
-                <div className={ReceiveMessageBoxCSS.page}> 
+                <div className={BinMessageBoxCSS.page}> 
                     {
                         Array.isArray(messageList) &&
                         <button
                             onClick={ () => setCurrentPage(currentPage - 1) }
                             disabled={ currentPage === 1 }
-                            className={ ReceiveMessageBoxCSS.pagingBtn }
+                            className={ BinMessageBoxCSS.pagingBtn }
                         >
                             &lt;
                         </button>
@@ -103,7 +108,7 @@ function ReceiveMessageBox(){
                         pageNumber.map((num) => (
                             <li 
                                 key={num} onClick={ () => setCurrentPage(num) }
-                                className={ ReceiveMessageBoxCSS.pageNum }
+                                className={ BinMessageBoxCSS.pageNum }
                             >
                                 <button
                                     style={ currentPage === num ? { backgroundColor : 'orange'} : null }
@@ -118,7 +123,7 @@ function ReceiveMessageBox(){
                         <button
                             onClick={ () => setCurrentPage(currentPage + 1) }
                             disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
-                            className={ ReceiveMessageBoxCSS.pagingBtn }
+                            className={ BinMessageBoxCSS.pagingBtn }
                         >
                             &gt;
                         </button>
@@ -129,4 +134,4 @@ function ReceiveMessageBox(){
     );
 }
 
-export default ReceiveMessageBox;
+export default BinMessageBox;

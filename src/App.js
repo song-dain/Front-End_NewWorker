@@ -8,6 +8,7 @@ import Login from "./pages/employee/Login";
 import ReceiveMessageBox from "./pages/message/ReceiveMessageBox";
 import SendMessageBox from "./pages/message/SendMessageBox";
 import ImpoMessageBox from "./pages/message/ImpoMessageBox";
+import BinMessageBox from "./pages/message/BinMessageBox";
 import AppCSS from "./App.module.css";
 
 
@@ -26,6 +27,7 @@ function App() {
               <Route path="message/receive" element={ <ReceiveMessageBox/> }/>
               <Route path="message/send" element={ <SendMessageBox/> }/>
               <Route path="message/impo" element={ <ImpoMessageBox/> }/>
+              <Route path="message/bin/receive" element={ <BinMessageBox/> }/>
             </Route>
 
             {/* <Route path="Notice" element={ <Notice /> }/> */}

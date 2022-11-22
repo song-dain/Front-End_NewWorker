@@ -44,7 +44,7 @@ function SendMessageBox(){
                         <td>상태</td>
                         <td>수신자</td>
                         <td>내용</td>
-                        <td>받은날짜</td>
+                        <td>보낸날짜</td>
                         <td>삭제</td>
                     </tr>
                     </thead>
