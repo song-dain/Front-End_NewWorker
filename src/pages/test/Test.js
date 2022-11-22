@@ -69,7 +69,7 @@ function Test() {
                                     >
                                         <th>{notice.notNo}</th>
                                         <th>{notice.notTitle}</th>
-                                        <th>{notice.notNo}</th>
+                                        <th>{notice.employee}</th>
                                         <th>{notice.notDate}</th>
                                         <th>{notice.notCount}</th>
                                     </tr>

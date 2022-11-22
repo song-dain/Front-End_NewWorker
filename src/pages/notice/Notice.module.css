@@ -1,43 +1,67 @@
-.reviewTableDiv {
+.notice {
     width: 1470px;
     height: 100%;
+    
 }
 
+.text {
+    font-size: 60px;
+    border-bottom: 1px solid black;
+}
 
-.reviewTableCss{
-    width: 80%;
+.tableBox {
+    width: 1300px;
+    margin: 0 auto;
+    
+    margin-top: 30px;
+}
+
+.notice1 {
+    width: 1300px;
+    margin: 0 auto;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
     border-collapse: collapse;
-    table-layout: fixed;
 }
 
-.reviewTableCss th, td {
-    padding: 10px;
-    height: 10px;
+.notice1 tr{
+    height: 30px;
     text-align: center;
-    word-break:break-all;
-    table-layout:fixed;
-}
-
-.reviewTableCss tr:hover { 
-    background-color: #F5F5F5; 
-}
-
-.reviewTableCss tr {
-    cursor: pointer;
-}
-
-.pagingDiv{
-    height: 50px
+    border-bottom: 1px solid black;
 }
 
 .pagingBtn{
     margin: 5px;
-    border-radius: 25px;
+    border-radius: 50px;
     background-color: white;
     font-weight: bold;
+}
+
+.pagingBtn1{
+    margin: 5px;
+    width: 25px;
+    height: 25px;
+    border-radius: 7px;
+    background-color: lightgray;
+    font-weight: bold;
+}
+
+.pagingBtn1:hover{
+    cursor: pointer;
+    background-color: burlywood;
+    color: white;
 }
 
 .pagingBtn:hover{
     cursor: pointer;
     background-color: burlywood;
 }
+
+.pagingDiv{
+    height: 50px;
+    width: 50px;
+    
+}
+
