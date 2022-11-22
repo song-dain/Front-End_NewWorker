@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { callReceiveMessageListAPI } from "../../api/MessageAPICalls";
+import { callImpoMessageListAPI } from "../../api/MessageAPICalls";
 import ReceiveMessageBoxCSS from "../message/ReceiveMessageBox.module.css";
-import impoicon from "../../img/impoicon.png";
+import impocancelicon from "../../img/impocancelicon.png";
 import binicon from "../../img/binicon.png";
 
-function ReceiveMessageBox(){
+function ImpoMessageBox(){
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -26,7 +26,7 @@ function ReceiveMessageBox(){
 
     useEffect(
         () => {
-            dispatch(callReceiveMessageListAPI({
+            dispatch(callImpoMessageListAPI({
                 currentPage : currentPage
             }));
         }
@@ -38,7 +38,7 @@ function ReceiveMessageBox(){
     return(
         <>
             <div className={ReceiveMessageBoxCSS.box}>
-                <h1>받은 메시지함</h1> 
+                <h1>중요 메시지함</h1> 
                 <table className={ReceiveMessageBoxCSS.tabel}>
                     <thead>
                     <tr>
@@ -56,7 +56,7 @@ function ReceiveMessageBox(){
                                     <tr
                                         key={ messages.messageNo }
                                     >
-                                        <td><img src={impoicon} alt="impo"/></td>
+                                        <td><img src={impocancelicon} alt="impocancel"/></td>
                                         <td>{messages.sender.employeeName}</td>
                                         <td>{messages.messageContent}</td>
                                         <td>{messages.sendDate}</td>
@@ -108,4 +108,4 @@ function ReceiveMessageBox(){
     );
 }
 
-export default ReceiveMessageBox;
+export default ImpoMessageBox;

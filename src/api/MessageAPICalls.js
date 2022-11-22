@@ -75,6 +75,7 @@ export const callReceiveMessageListAPI = ({currentPage = 1}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
+            console.log('[MessageAPICalls] callReceiveMessageListAPI result : ', result)
             dispatch({ type: GET_RECEIVE_MESSAGES, payload: result.data });
         }
     }
@@ -207,6 +208,7 @@ export const callImpoMessageListAPI = ({currentPage = 1}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
+            console.log('[MessageAPICalls] callImpoMessageListAPI result : ', result)
             dispatch({ type: GET_IMPO_MESSAGES, payload: result.data });
         }
     }

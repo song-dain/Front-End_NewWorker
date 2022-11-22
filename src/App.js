@@ -5,7 +5,9 @@ import Test from "./pages/test/Test";
 import Home from "./pages/home/Home";
 import Copy from "./pages/copy/Copy";
 import Login from "./pages/employee/Login";
-
+import ReceiveMessageBox from "./pages/message/ReceiveMessageBox";
+import SendMessageBox from "./pages/message/SendMessageBox";
+import ImpoMessageBox from "./pages/message/ImpoMessageBox";
 import AppCSS from "./App.module.css";
 
 
@@ -21,6 +23,9 @@ function App() {
               <Route path="Home" element={ <Home />} />
               <Route path="Copy" element={ <Copy />} />
               <Route path="Test" element={ <Test />} />
+              <Route path="message/receive" element={ <ReceiveMessageBox/> }/>
+              <Route path="message/send" element={ <SendMessageBox/> }/>
+              <Route path="message/impo" element={ <ImpoMessageBox/> }/>
             </Route>
 
             {/* <Route path="Notice" element={ <Notice /> }/> */}
