@@ -3,32 +3,33 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { decodeJwt } from '../../utils/tokenUtils';
-import{
+import {
     callNoticeDetailAPI,
     callNoticeUpdateAPI
-} from '../../apis/NoticeAPICalls'
+} from '../../api/NoticeAPICalls';
 
 function NoticeDetail() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const params = useParams();
-    const notice  = useSelector(state => state.noticeReducer);  
-    const noticeDetail = notice.data
-    const token = decodeJwt(window.localStorage.getItem("accessToken"));   
+    const notices = useSelector(state => state.noticeReducer);
+    const noticeDetail = notices.data
+    const token = decodeJwt(window.localStorage.getItem("accessToken"));
 
-    const [modifyMode, setModifyMode] = useState(false);    
+    const [modifyMode, setModifyMode] = useState(false);
     const [form, setForm] = useState({});
 
-    useEffect(        
-        () => {
-            console.log('[NoticeDetail] NotNo : ', params.notNo);
 
-            dispatch(callNoticeDetailAPI({	
+    useEffect(
+        () => {
+            console.log('[NoticeDetail] notNo : ', params.notNo);
+
+            dispatch(callNoticeDetailAPI({
                 notNo: params.notNo
-            }));            
+            }));
         }
-        ,[]
+        , []
     );
 
     const onChangeHandler = (e) => {
@@ -47,117 +48,107 @@ function NoticeDetail() {
         });
     }
 
-    const onClickNoticeUpdateHandler = () => {        
+    const onClickNoticeUpdateHandler = () => {
 
-        dispatch(callNoticeUpdateAPI({	
+        dispatch(callNoticeUpdateAPI({
             form: form
-        }));         
+        }));
 
-        navigate(`/employee/${noticeDetail.employee.employee}`, { replace: true});
+        navigate(`/notices/${noticeDetail.notice.notNo}`, { replace: true });
         window.location.reload();
-    }    
+    }
+
 
 
     return (
-        <>
-            { noticeDetail &&
-            <div className={ NoticeDetailCSS.reviewDetailtableDiv }>
-                <table className={ NoticeDetailCSS.reviewDetailtableCss }>
-                <colgroup>
-                        <col width="20%" />
-                        <col width="80%" />
-                    </colgroup>
-                    <tbody>            
-                        <tr>
-                            <th>제목</th>
-                            <td>
-                                <input 
-                                    className={ NoticeDetailCSS.ReviewDetailInput }
+        <div className={NoticeDetailCSS.noticeDetail}>
+            <h1 className={NoticeDetailCSS.text}>전사 공지</h1>
+            {noticeDetail &&
+                <div className={NoticeDetailCSS.tableBox}>
+                    <table className={NoticeDetailCSS.detailTable}>
+                        <thead className={NoticeDetailCSS.detailThead}>
+                            <tr>
+                                <th><input
+                                    className={NoticeDetailCSS.noticeTitle}
                                     name='notTitle'
                                     placeholder='제목'
                                     readOnly={modifyMode ? false : true}
-                                    style={ !modifyMode ? { backgroundColor: 'gray'} : null}
-                                    onChange={ onChangeHandler }
-                                    value={ (!modifyMode ? noticeDetail.noticeTitle : form.notTitle) || ''}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>작성자</th>
-                            <td>
-                                <input 
-                                    className={ NoticeDetailCSS.ReviewDetailInput }
+                                    style={!modifyMode ? { backgroundColor: 'white' } : null}
+                                    onChange={onChangeHandler}
+                                    value={(!modifyMode ? noticeDetail.notTitle : form.notTitle) || ''}
+                                    disabled
+                                /></th>
+                                <th><input
+                                    className={NoticeDetailCSS.noticeEmpNo}
                                     placeholder='작성자'
                                     readOnly={true}
-                                    style={ { backgroundColor: 'gray'} }
-                                    value={ noticeDetail && noticeDetail.reviewer?.memberName || ''}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>작성일</th>
-                            <td>
-                                <input 
-                                    className={ NoticeDetailCSS.ReviewDetailInput }
+                                    style={ { backgroundColor: 'white'} }
+                                    value={noticeDetail && noticeDetail.employee?.employeeNo || ''}
+                                    disabled
+                                /></th>
+                                <th><input
+                                    className={NoticeDetailCSS.noticeDate}
                                     placeholder='작성일'
                                     readOnly={true}
-                                    style={ { backgroundColor: 'gray'} }
-                                    value={ noticeDetail && noticeDetail.reviewCreateDate || ''}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colSpan={2}>
-                                <textarea
-                                    name='reviewContent'
-                                    className={ NoticeDetailCSS.contentTextArea }
-                                    readOnly={modifyMode ? false : true}
-                                    style={ !modifyMode ? { backgroundColor: 'gray'} : null}
-                                    onChange={ onChangeHandler }
-                                    value={ (!modifyMode ? noticeDetail.notContent : form.notContent) || ''}
-                                >                                    
-                                </textarea>
-                            </td>
-                        </tr>
-                    </tbody>                    
-                </table>            
-            </div>
+                                    style={ { backgroundColor: 'white'} }
+                                    value={noticeDetail && noticeDetail.notDate || ''}
+                                    disabled
+                                /></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <textarea
+                                        className={NoticeDetailCSS.noticeContent}
+                                        name='notContent'
+                                        readOnly={modifyMode ? false : true}
+                                        style={!modifyMode ? { backgroundColor: 'white' } : null}
+                                        onChange={onChangeHandler}
+                                        value={(!modifyMode ? noticeDetail.notContent : form.notContent) || ''}
+                                        disabled
+                                    >
+                                    </textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             }
-            { noticeDetail && 
-                <div className={ NoticeDetailCSS.buttonDivCss }>
+            {noticeDetail &&
+                <div className={NoticeDetailCSS.backBtnBox}>
                     <button
-                        className={ NoticeDetailCSS.backBtn }
-                        onClick={ () => navigate(-1) }
+                        className={NoticeDetailCSS.backBtn}
+                        onClick={() => navigate(-1)}
                     >
-                        돌아가기
+                        목록으로
                     </button>
-                    
-                    { token &&
-                        (token.sub === noticeDetail.reviewer?.memberId) 
-                        ?                 
-                            <div>{!modifyMode &&
-                                <button       
-                                    className={ NoticeDetailCSS.backBtn }
-                                    onClick={ onClickModifyModeHandler }             
-                                >
-                                    수정모드
-                                </button>
-                            }
+
+                    {token &&
+                        (token.sub === noticeDetail.employee?.employeeNo)
+                        ?
+                        <div>{!modifyMode &&
+                            <button
+                                onClick={onClickModifyModeHandler}
+                            >
+                                수정모드
+                            </button>
+                        }
                             {modifyMode &&
-                                <button       
-                                    className={ NoticeDetailCSS.backBtn }
-                                    onClick={ onClickNoticeUpdateHandler }             
+                                <button
+                                    onClick={onClickNoticeUpdateHandler}
                                 >
-                                    공지 수정 저장하기
+                                    리뷰 수정 저장하기
                                 </button>
                             }
-                            </div>
+                        </div>
                         : null
                     }
 
                 </div>
             }
-        </>
+        </div>
     );
 }
 

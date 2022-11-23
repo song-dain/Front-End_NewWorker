@@ -1,42 +1,100 @@
-.reviewDetailtableDiv {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: center;
-    width: 850px;
-    margin: 10px;
+.noticeDetail {
+    width: 1470px;
+    height: 100%;
+
 }
 
-.reviewDetailtableCss{
-    width: 80%;
+.text {
+    font-size: 60px;
+    border-bottom: 1px solid black;
+}
+
+.detailTable {
+    width: 1300px;
+    margin: 0 auto;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
     border-collapse: collapse;
-    table-layout: fixed;
+    
+    /* float: left; */
 }
 
-.reviewDetailtableCss th, td {
-    padding: 10px;
-    height: 10px;
+.detailTable tr {
+    height: 30px;
+}
+
+
+.noticeTitle {
+    width: 700px;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    border-top: none;
+}
+
+.noticeEmpNo {
+    width: 200px;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    border-top: none;
     text-align: center;
-    word-break:break-all;
-    table-layout:fixed;
 }
 
-.contentTextArea{
-    width: 90%;
-    height: 250px;
+.noticeDate {
+    width: 300px;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    border-top: none;
+    text-align: center;
+}
+
+.detailThead {
+    border-bottom: 1px solid black;
+}
+
+.noticeContent{
+    width: 1300px;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    border-top: none;
     resize: none;
+    /* float: left; */
+    height: 600px;
 }
 
-.ReviewDetailInput{
-    width: 87%;
+
+.tableBox {
+    width: 1300px;
+    margin: 0 auto;
+    margin-top: 30px;
 }
+
+
+.backBtnBox{
+    width: 1300px;
+    margin: 0 auto;
+}
+
 
 .backBtn {
     margin-top: 5px;
     margin-bottom: 5px;
     height: 30px;
     width: 250px;
-    border-radius: 25px;
-    background-color: white;
-    font-weight: bold;
+    background-color: lightgray;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    float: right;
+}
+
+.backBtn:hover{
+    cursor: pointer;
+    color: white;
 }
