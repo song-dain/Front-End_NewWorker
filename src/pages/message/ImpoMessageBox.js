@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { callImpoMessageListAPI, callRecipientManagementAPI, callSearchImpoMessageAPI } from "../../api/MessageAPICalls";
+import { callImpoMessageListAPI, callRecipientManagementAPI, callSearchImpoMessageAPI, callReceiveMessageReadAPI } from "../../api/MessageAPICalls";
 import ReceiveMessageBoxCSS from "../message/ReceiveMessageBox.module.css";
 import impocancelicon from "../../img/impocancelicon.png";
 import binicon from "../../img/binicon.png";
+import ReceiveMessageMoadl from "../../components/message/ReceiveMessageModal";
 
 function ImpoMessageBox(){
 
@@ -11,6 +12,10 @@ function ImpoMessageBox(){
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState('');
     const [searchResult, setSearchResult ] = useState('');
+    const [selectMContent, setSelectMContent] = useState('');
+    const [selectMSender, setSelectMSender] = useState('');
+    const [selectMsendDate, setSelectMSendDate] = useState('');
+    const [messageModal, setMessageModal] = useState(false);
     const messages = useSelector(state => state.messageReducer);
     const messageList = messages.data;
     const pageInfo = messages.pageInfo;
@@ -21,7 +26,7 @@ function ImpoMessageBox(){
                 currentPage : currentPage
             }));
         }
-        , [currentPage]
+        , [currentPage, messageModal]
     )
 
     /* 검색 값 상태 저장 */
@@ -47,6 +52,21 @@ function ImpoMessageBox(){
             currentPage :  currentPage
         }));
         setSearchResult(`키워드 '${search}' 검색 결과입니다.`);
+    }
+
+    /* 메시지 조회 */
+    const onClickMessageContent = (message) => {
+
+        dispatch(callReceiveMessageReadAPI({
+            messageNo : message.messageNo
+        }));
+
+        setSelectMSender(message.sender.employeeName);
+        setSelectMContent(message.messageContent);
+        setSelectMSendDate(message.sendDate);
+
+        setMessageModal(true);
+
     }
 
     /* 받은 메시지함 이동 */
@@ -91,6 +111,13 @@ function ImpoMessageBox(){
 
     return(
         <>
+            { messageModal ? 
+                <ReceiveMessageMoadl
+                    selectMSender={selectMSender}
+                    selectMContent={selectMContent}
+                    selectMsendDate={selectMsendDate}
+                    setMessageModal={setMessageModal}
+                /> : null }
             <div className={ReceiveMessageBoxCSS.box}>
                 <h1>중요 메시지함</h1> 
                 <input
@@ -127,7 +154,9 @@ function ImpoMessageBox(){
                                                 onClick={ () => moveToReceiveMessageBox(messages.messageNo) }
                                             /></td>
                                         <td>{messages.sender.employeeName}</td>
-                                        <td>{messages.messageContent}</td>
+                                        <td
+                                            onClick={ () => onClickMessageContent(messages) }
+                                        >{messages.messageContent}</td>
                                         <td>{messages.sendDate}</td>
                                         <td><img 
                                                 src={binicon} alt="bin"

@@ -9,9 +9,13 @@ import binicon from "../../img/binicon.png";
 
 function BinMessageBox(){
 
+
+    const navigate = useNavigate();
+    const param = useParams();
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
     const [ senderOrReceiver, setSenderOrReceiver ] = useState('발신자'); // 맨위 수신자발신자 변경
+
 
     const [ textStrR, setTextStrR ] = useState({ color : "green" });
     const [ textStrS, setTextStrS ] = useState({ color : "black" });
@@ -21,17 +25,20 @@ function BinMessageBox(){
 
     useEffect(
         () => {
+
             dispatch(callBinReceiveMessageAPI({
                 currentPage : currentPage
             }));
+
         }
         , [currentPage]
     )
 
     /* 받은 메시지 보기 */
     const onClickMoveToReceiveMessage = () => {
+
         dispatch(callBinReceiveMessageAPI({
-            currentPage : currentPage
+            currentPage : 1
         }));
         setSenderOrReceiver('발신자');
         setTextStrR({ color : "green" })
@@ -42,8 +49,7 @@ function BinMessageBox(){
     const onClickMoveToSendMessage = () => {
 
         dispatch(callBinSendMessageAPI({
-            currentPage : currentPage
-
+            currentPage : 1
         }));
         setSenderOrReceiver('수신자');
         setTextStrR({ color : "black" })
@@ -90,6 +96,7 @@ function BinMessageBox(){
                     receiveMessageDelete :'PD'
                 }
             }));
+
         } else {
             dispatch(callSenderManagementAPI({
                 form : {
@@ -99,7 +106,12 @@ function BinMessageBox(){
                     sendMessageDelete :'PD'
                 }
             }));
+
+            alert("메시지가 영구 삭제되었습니다.");
+            window.location.reload();
         }
+
+
     }
 
     /* 페이징 버튼 */
@@ -148,7 +160,7 @@ function BinMessageBox(){
                                         <td>{messages.sendDate}</td>
                                         <td><img 
                                                 src={binicon} alt="bin"
-                                                onClick={ () => DeleteMessage(messages.messageNo) }
+                                               onClick={ () => DeleteMessage(messages.messageNo) }
                                             /></td>
                                     </tr>
                                 )
