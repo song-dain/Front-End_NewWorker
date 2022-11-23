@@ -11,6 +11,8 @@ import SendMessageBox from "./pages/message/SendMessageBox";
 import ImpoMessageBox from "./pages/message/ImpoMessageBox";
 import BinMessageBox from "./pages/message/BinMessageBox";
 import AppCSS from "./App.module.css";
+import IdInquiry from "./pages/employee/IdInquiry";
+import IdInquiryResult from "./pages/employee/IdInquiryResult";
 
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
 
         <Routes>
           <Route path="/" element={ <Login />} />
+            <Route path="/idInquiry" element={ <IdInquiry />}/>
+            <Route path="/idInquiryResult" element={ <IdInquiryResult />}/>
             <Route path="/main" element={ <Layout />} >
               <Route index element={ <Main />} />
               <Route path="Home" element={ <Home />} />
