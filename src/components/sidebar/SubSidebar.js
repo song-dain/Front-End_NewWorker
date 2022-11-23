@@ -101,7 +101,7 @@ function SubSidebar() {
 
                     <ul>
                         <li className={SubSidebarCSS.sideTitle1}>ㅇ근태 관리</li>
-                        <li className={SubSidebarCSS.smallTitle}><NavLink to="Test">일일 근태 등록</NavLink></li>
+                        <li className={SubSidebarCSS.smallTitle}><NavLink to="att/start">일일 근태 등록</NavLink></li>
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="Home">월간 근태 현황</NavLink></li>
                     </ul>
                     <ul>

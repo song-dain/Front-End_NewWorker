@@ -11,6 +11,7 @@ import SendMessageBox from "./pages/message/SendMessageBox";
 import ImpoMessageBox from "./pages/message/ImpoMessageBox";
 import BinMessageBox from "./pages/message/BinMessageBox";
 import AppCSS from "./App.module.css";
+import AttStart from "./pages/att/Start";
 
 
 function App() {
@@ -25,11 +26,12 @@ function App() {
               <Route path="Home" element={ <Home />} />
               <Route path="Copy" element={ <Copy />} />
               <Route path="Test" element={ <Test />} />
-             <Route path="Notice" element={<Notice />} />
+              <Route path="Notice" element={<Notice />} />
               <Route path="message/receive" element={ <ReceiveMessageBox/> }/>
               <Route path="message/send" element={ <SendMessageBox/> }/>
               <Route path="message/impo" element={ <ImpoMessageBox/> }/>
               <Route path="message/bin/receive" element={ <BinMessageBox/> }/>
+              <Route path="att/start" element={ <AttStart/> }/>
             </Route>
 
             {/* <Route path="Notice" element={ <Notice /> }/> */}
