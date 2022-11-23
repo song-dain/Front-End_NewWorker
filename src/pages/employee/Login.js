@@ -33,6 +33,9 @@ function Login() {
         });
     }
 
+    const onClickIdInquiryHandler = () => {
+        navigate("/idInquiry", {replace:true});
+    }
     const onClickHandler = () => {
         dispatch(callLoginAPI({
             form : form
@@ -40,12 +43,19 @@ function Login() {
     }
 
     return (
-        <div className={ LoginCSS.backgroundDiv }>
+        <div>
             <div className={ LoginCSS.loginDiv }>
-                <h1>로그인</h1>
-                <input type="text" name="employeeId" placeholder="아이디" autoComplete='off' onChange={ onChangeHandler }/>
-                <input type="password" name="employeePwd" placeholder="패스워드" autoComplete='off' onChange={ onChangeHandler }/>
-                <button onClick={ onClickHandler }>로그인</button>
+                <div className={ LoginCSS.icon }>
+                    <img src="img/nwiconbig.png"/>
+                </div>
+                <input type="text" className={ LoginCSS.idinput } name="employeeId" placeholder="아이디" autoComplete='off' onChange={ onChangeHandler }/>
+                <input type="password" className={ LoginCSS.pwdinput } name="employeePwd" placeholder="패스워드" autoComplete='off' onChange={ onChangeHandler }/>
+                <button className={ LoginCSS.loginbtn } onClick={ onClickHandler }>로그인</button>
+                <table className={ LoginCSS.quiryText }>
+                    <td onClick={ onClickIdInquiryHandler }>아이디 찾기 | </td>
+                    <td>  비밀번호 찾기 |</td>
+                    <td> 비밀번호 변경 </td>
+                    </table>
             </div>
         </div>
     );

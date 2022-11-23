@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { callBinReceiveMessageAPI, callBinSendMessageAPI } from "../../api/MessageAPICalls";
+import { callBinReceiveMessageAPI, callBinSendMessageAPI, callRecipientManagementAPI, callSenderManagementAPI } from "../../api/MessageAPICalls";
 import BinMessageBoxCSS from "../message/BinMessageBoxCSS.module.css";
 import backsquareR from "../../img/backsquareR.png";
 import backsquareS from "../../img/backsquareS.png";
@@ -9,14 +9,110 @@ import binicon from "../../img/binicon.png";
 
 function BinMessageBox(){
 
+
     const navigate = useNavigate();
+    const param = useParams();
     const dispatch = useDispatch();
-    const params = useParams();
     const [currentPage, setCurrentPage] = useState(1);
     const [ senderOrReceiver, setSenderOrReceiver ] = useState('발신자'); // 맨위 수신자발신자 변경
+
+
+    const [ textStrR, setTextStrR ] = useState({ color : "green" });
+    const [ textStrS, setTextStrS ] = useState({ color : "black" });
     const messages = useSelector(state => state.messageReducer);
     const messageList = messages.data;
     const pageInfo = messages.pageInfo;
+
+    useEffect(
+        () => {
+
+            dispatch(callBinReceiveMessageAPI({
+                currentPage : currentPage
+            }));
+
+        }
+        , [currentPage]
+    )
+
+    /* 받은 메시지 보기 */
+    const onClickMoveToReceiveMessage = () => {
+
+        dispatch(callBinReceiveMessageAPI({
+            currentPage : 1
+        }));
+        setSenderOrReceiver('발신자');
+        setTextStrR({ color : "green" })
+        setTextStrS({ color : "black" })
+    }
+
+    /* 보낸 메시지 보기 */
+    const onClickMoveToSendMessage = () => {
+
+        dispatch(callBinSendMessageAPI({
+            currentPage : 1
+        }));
+        setSenderOrReceiver('수신자');
+        setTextStrR({ color : "black" })
+        setTextStrS({ color : "skyblue" })
+    }
+
+    /* 메시지 복구 */
+    const restoreMessage = (num) => {
+
+        if(senderOrReceiver == '발신자') {
+            dispatch(callRecipientManagementAPI({
+                form : {
+                    message : {
+                        messageNo : num
+                    },
+                    receiveMessageDelete :'N'
+                }
+            }));
+
+        } else {
+            dispatch(callSenderManagementAPI({
+                form : {
+                    message : {
+                        messageNo : num
+                    },
+                    sendMessageDelete :'N'
+                }
+            }));
+        }
+
+        alert("메시지가 이전 메시지함으로 이동되었습니다.");
+        window.location.reload();
+    }
+
+    /* 메시지 영구 삭제 */
+    const DeleteMessage = (num) => {
+
+        if(senderOrReceiver == '발신자') {
+            dispatch(callRecipientManagementAPI({
+                form : {
+                    message : {
+                        messageNo : num
+                    },
+                    receiveMessageDelete :'PD'
+                }
+            }));
+
+        } else {
+            dispatch(callSenderManagementAPI({
+                form : {
+                    message : {
+                        messageNo : num
+                    },
+                    sendMessageDelete :'PD'
+                }
+            }));
+
+            alert("메시지가 영구 삭제되었습니다.");
+            window.location.reload();
+        }
+
+
+    }
 
     /* 페이징 버튼 */
     const pageNumber = [];
@@ -26,45 +122,18 @@ function BinMessageBox(){
         }
     }
 
-    useEffect(
-        () => {
-            dispatch(callBinReceiveMessageAPI({
-                currentPage : currentPage
-            }));
-        }
-        , [currentPage]
-    )
-
-
-    /* 받은 메시지 보기 */
-    const onClickMoveToReceiveMessage = () => {
-        dispatch(callBinReceiveMessageAPI({
-            currentPage : currentPage
-        }));
-        setSenderOrReceiver('발신자');
-    }
-
-    /* 보낸 메시지 보기 */
-    const onClickMoveToSendMessage = () => {
-
-        dispatch(callBinSendMessageAPI({
-            currentPage : currentPage
-
-        }));
-        setSenderOrReceiver('수신자');
-    }
-
-
     return(
         <>
             <div className={BinMessageBoxCSS.box}>
                 <h1>휴지통</h1>
-                <b
+                <span
                     onClick={ onClickMoveToReceiveMessage }
-                >받은 메시지</b> | 
+                    style={ textStrR }
+                >받은 메시지 </span> | 
                 <span
                     onClick={ onClickMoveToSendMessage }
-                >보낸 메시지</span>
+                    style={ textStrS }
+                > 보낸 메시지</span>
                 <table className={BinMessageBoxCSS.tabel}>
                     <thead>
                     <tr>
@@ -82,11 +151,17 @@ function BinMessageBox(){
                                     <tr
                                         key={ messages.messageNo }
                                     >
-                                        <td><img src={ senderOrReceiver == '발신자' ? backsquareR : backsquareS } alt="impocancel"/></td>
+                                        <td><img 
+                                                src={ senderOrReceiver == '발신자' ? backsquareR : backsquareS }
+                                                onClick={ () => restoreMessage(messages.messageNo) }
+                                            /></td>
                                         <td>{messages.sender.employeeName}</td>
                                         <td>{messages.messageContent}</td>
                                         <td>{messages.sendDate}</td>
-                                        <td><img src={binicon} alt="bin"/></td>
+                                        <td><img 
+                                                src={binicon} alt="bin"
+                                               onClick={ () => DeleteMessage(messages.messageNo) }
+                                            /></td>
                                     </tr>
                                 )
                             )

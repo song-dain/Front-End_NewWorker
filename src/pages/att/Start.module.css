@@ -1,0 +1,56 @@
+/* 전체 Div */
+.backgroundDiv {
+    width: 300%;
+    height: 100%;
+    background-color: antiquewhite;
+}
+
+/* 내용 Wrapper Div */
+.attStartWrapperDiv {
+    
+}
+
+/* 일일 근태 등록 헤드메세지 Div */
+.headMessageDiv {}
+
+/* 현재시간, 근무일자 Wrapper Div */
+.inputBoxDiv {
+
+    width: 12%;
+}
+
+/* 시간 관련 Wrapper Div */
+.clockAndDayBox {}
+
+/* 현재 시간 불러오기 */
+.clockBox {}
+
+/* 현재 날짜 불러오기 */
+.dayBox {}
+
+/* 출퇴근 입력 Div */
+.startEndAndNoBox {}
+
+/* 출퇴근 버튼 Div */
+.startAndEndBox {}
+
+/* 출근 Div */
+.startBox {}
+
+/* 퇴근 Div */
+.EndBox {}
+
+/* 회원 정보로 검색 Wrapper Div */
+.empNoAndSearchbarAndSearchButtonBox {}
+
+/* 검색창 Div */
+.empNoAndSearchbar {}
+
+/* 검색 버튼 */
+.searchButton {}
+
+/* 오늘 입력한 접속자의 근태 정보 Wrapper Div */
+.todayAttBox {}
+
+/* 오늘 입력한 접속자의 근태 정보 table */
+.todayAttTable {}
