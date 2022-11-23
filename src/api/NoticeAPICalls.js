@@ -24,59 +24,59 @@ export const callNoticeAPI = ({notNo, currentPage}) => {
 
 }
 
-// export const callNoticeDetailAPI = ({notNo}) => {
+export const callNoticeDetailAPI = ({notNo}) => {
 
-//     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/notice/notice/${notNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/notice/noticeDetail/${notNo}`;
 
-//     return async (dispatch, getState) => {
+    return async (dispatch, getState) => {
 
-//         const result = await fetch(requestURL, {
-//             method : "GET",
-//             headers : {
-//                 "Content-Type" : "application/json",
-//                 "Accept": "*/*"
-//             }
-//         })
-//         .then(response => response.json());
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept": "*/*"
+            }
+        })
+        .then(response => response.json());
 
-//         if(result.status === 200) {
-//             console.log('[ReviewAPICalls] callNoticeDetailAPI result : ', result);
+        if(result.status === 200) {
+            console.log('[NoticeAPICalls] callNoticeDetailAPI result : ', result);
 
-//             dispatch({ type: GET_NOTICE, payload: result });
-//         }
-//     }
+            dispatch({ type: GET_NOTICE, payload: result });
+        }
+    }
 
-// }
+}
 
-// export const callNoticeUpdateAPI = ({form}) => {
+export const callNoticeUpdateAPI = ({form}) => {
 
-//     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/notices`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/notice/notices/register`;
 
-//     return async (dispatch, getState) => {
+    return async (dispatch, getState) => {
 
-//         const result = await fetch(requestURL, {
-//             method : "PUT",
-//             headers : {
-//                 "Content-Type" : "application/json",
-//                 "Accept": "*/*",
-//                 "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
-//             }, 
-//             body : JSON.stringify({
-//                 notNo : form.notNo,
-//                 notTitle : form.notTitle,
-//                 notContent : form.notContent
-//             })
-//         })
-//         .then(response => response.json());
+        const result = await fetch(requestURL, {
+            method : "PUT",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            }, 
+            body : JSON.stringify({
+                notNo : form.notNo,
+                notTitle : form.notTitle,
+                notContent : form.notContent
+            })
+        })
+        .then(response => response.json());
 
-//         if(result.status === 200) {
-//             console.log('[NoticeAPICalls] callNoticeUpdateAPI result : ', result);
+        if(result.status === 200) {
+            console.log('[NoticeAPICalls] callNoticeUpdateAPI result : ', result);
 
-//             dispatch({ type: PUT_NOTICE, payload: result });
-//         }
-//     }
+            dispatch({ type: PUT_NOTICE, payload: result });
+        }
+    }
 
-// }
+}
 
 // export const callNoticeWriteAPI = ({form}) => {
 
