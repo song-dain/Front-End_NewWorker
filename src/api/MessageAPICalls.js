@@ -5,9 +5,9 @@ import { GET_EMPLOYEE, POST_SEND_MESSAGE,
         GET_RECEIVE_BIN_MESSAGES, GET_SEND_BIN_MESSAGES,
         PATCH_RECIPIENT_MANAGEMENT, PATCH_SENDER_MANAGEMENT } from '../modules/MessageModule';
 
-export const callEmpListAPI = ({form}) => {
+export const callEmpListAPI = ({depNo}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/message/send/findEmp`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/message/send/findEmp/${depNo}`;
 
     return async (dispatch, getState) => {
 
@@ -17,10 +17,7 @@ export const callEmpListAPI = ({form}) => {
                 "Content-Type" : "application/json",
                 "Accept" : "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
-            },
-            body : JSON.stringify({
-                depNo : form.depNo
-            })
+            }
         })
         .then(response => response.json());
 
@@ -280,7 +277,6 @@ export const callRecipientManagementAPI = ({form}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[MessageAPICalls] callRecipientManagementAPI result : ', result)
             dispatch({ type: PATCH_RECIPIENT_MANAGEMENT, payload: result.data });
         }
     }
