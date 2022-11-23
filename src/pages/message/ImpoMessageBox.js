@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
 import { callImpoMessageListAPI, callRecipientManagementAPI, callSearchImpoMessageAPI } from "../../api/MessageAPICalls";
 import ReceiveMessageBoxCSS from "../message/ReceiveMessageBox.module.css";
 import impocancelicon from "../../img/impocancelicon.png";
@@ -8,19 +7,10 @@ import binicon from "../../img/binicon.png";
 
 function ImpoMessageBox(){
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const params = useParams();
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState('');
     const [searchResult, setSearchResult ] = useState('');
-    const [management, setManagement] = useState({
-        message : {
-            messageNo : 0
-        },
-        receiveMessageCategory : '',
-        receiveMessageDelete : ''
-    })
     const messages = useSelector(state => state.messageReducer);
     const messageList = messages.data;
     const pageInfo = messages.pageInfo;
@@ -61,32 +51,34 @@ function ImpoMessageBox(){
 
     /* 받은 메시지함 이동 */
     const moveToReceiveMessageBox = (num) => {
-        
-        setManagement({
-            message : {
-                messageNo : num
-            },
-            receiveMessageCategory : 'receiveMessageBox'
-        });
 
         dispatch(callRecipientManagementAPI({
-            form : management
+            form : {
+                message : {
+                    messageNo : num
+                },
+                receiveMessageCategory : 'receiveMessageBox'
+            }
         }));
+
+        alert("메시지가 이전 메시지함으로 이동되었습니다.");
+        window.location.reload();
     }
 
     /* 휴지통 이동 */
     const moveToBinMessageBox = (num) => {
-        
-        setManagement({
-            message : {
-                messageNo : num
-            },
-            receiveMessageDelete :'Y'
-        });
 
         dispatch(callRecipientManagementAPI({
-            form : management
+            form : {
+                message : {
+                    messageNo : num
+                },
+                receiveMessageDelete :'Y' 
+            }
         }));
+
+        alert("메시지가 휴지통으로 이동되었습니다.");
+        window.location.reload();
     }
 
     /* 페이징 버튼 */

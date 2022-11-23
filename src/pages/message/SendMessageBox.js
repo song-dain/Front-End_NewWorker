@@ -1,31 +1,18 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
 import { callSendMessageListAPI, callSenderManagementAPI, callSearchSendMessageAPI } from "../../api/MessageAPICalls";
 import SendMessageBoxCSS from "../message/SendMessageBox.module.css";
-import impoicon from "../../img/impoicon.png";
 import binicon from "../../img/binicon.png";
 
 function SendMessageBox(){
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const params = useParams();
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState('');
     const [searchResult, setSearchResult ] = useState('');
-    const [ status, setStatus ] = useState('전송');
-    const [management, setManagement] = useState({
-        message : {
-            messageNo : 0
-        },
-        sendMessageDelete : ''
-    })
     const messages = useSelector(state => state.messageReducer);
     const messageList = messages.data;
     const pageInfo = messages.pageInfo;
-
-
 
     useEffect(
         () => {
@@ -63,19 +50,18 @@ function SendMessageBox(){
 
     /* 휴지통으로 이동 */
     const moveToBinMessageBox = (num) => {
-        
-        setManagement({
-            message : {
-                messageNo : num
-            },
-            sendMessageDelete :'Y'
-        });
-
-        console.log(management);
 
         dispatch(callSenderManagementAPI({
-            form : management
+            form : {
+                message : {
+                    messageNo : num
+                },
+                sendMessageDelete :'Y'
+            }
         }));
+
+        alert("메시지가 휴지통으로 이동되었습니다.");
+        window.location.reload();
     }
 
     /* 페이징 버튼 */

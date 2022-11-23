@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
 import { callReceiveMessageListAPI, callRecipientManagementAPI, callSearchReceiveMessageAPI } from "../../api/MessageAPICalls";
 import ReceiveMessageBoxCSS from "../message/ReceiveMessageBox.module.css";
 import impoicon from "../../img/impoicon.png";
@@ -8,21 +7,10 @@ import binicon from "../../img/binicon.png";
 
 function ReceiveMessageBox(){
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const params = useParams();
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState('');
     const [searchResult, setSearchResult ] = useState('');
-    const [ listChange, setListChange ] = useState('');
-    const [management, setManagement] = useState({
-        message : {
-            messageNo : 0
-        },
-        receiveMessageCategory : '',
-        receiveMessageDelete : ''
-    })
-
     const messages = useSelector(state => state.messageReducer);
     const messageList = messages.data;
     const pageInfo = messages.pageInfo;
@@ -33,7 +21,7 @@ function ReceiveMessageBox(){
                 currentPage : currentPage
             }));
         }
-        , [currentPage, listChange]
+        , [currentPage]
     )
 
     /* 검색 값 상태 저장 */
@@ -48,7 +36,7 @@ function ReceiveMessageBox(){
                 keyword : search,
                 currentPage : currentPage
             }));
-            setSearchResult(`'${search}' 검색 결과입니다.`);
+            setSearchResult(`키워드'${search}' 검색 결과입니다.`);
         }
     }
 
@@ -64,38 +52,36 @@ function ReceiveMessageBox(){
     /* 중요 메시지함으로 이동 */
     const moveToImpoMessageBox = (num) => {
         
-        setManagement({
-            message : {
-                messageNo : num
-            },
-            receiveMessageCategory : 'impoMessageBox'
-        });
-
-        console.log(management);
 
         dispatch(callRecipientManagementAPI({
-            form : management
+            form : {
+                message : {
+                    messageNo : num
+                },
+                receiveMessageCategory : 'impoMessageBox'
+            }
         }));
 
-        setListChange(num);
+        alert("메시지가 중요 메시지함으로 이동되었습니다.");
+        window.location.reload();
 
     }
 
     /* 휴지통으로 이동 */
     const moveToBinMessageBox = (num) => {
-        
-        setManagement({
-            message : {
-                messageNo : num
-            },
-            receiveMessageDelete :'Y'
-        });
-
-        console.log(management);
 
         dispatch(callRecipientManagementAPI({
-            form : management
+            form : {
+                message : {
+                    messageNo : num
+                },
+                receiveMessageDelete :'Y'
+            }
         }));
+
+        alert('메시지가 휴지통으로 이동되었습니다.')
+        window.location.reload();
+
     }
 
     /* 페이징 버튼 */
