@@ -16,6 +16,7 @@ import AppCSS from "./App.module.css";
 import AttStart from "./pages/att/Start";
 import IdInquiry from "./pages/employee/IdInquiry";
 import IdInquiryResult from "./pages/employee/IdInquiryResult";
+import Calendar from "./pages/calendar/calendar";
 
 
 function App() {
@@ -40,12 +41,14 @@ function App() {
               <Route path="Notice" element={<Notice />} />
               <Route path="noticeDetail/:notNo" element={<NoticeDetail />} />
               
-             <Route path="message/write" element={ <SendMessage/> }/>
+              <Route path="message/write" element={ <SendMessage/> }/>
               <Route path="message/receive" element={ <ReceiveMessageBox/> }/>
               <Route path="message/send" element={ <SendMessageBox/> }/>
               <Route path="message/impo" element={ <ImpoMessageBox/> }/>
               <Route path="message/bin/receive" element={ <BinMessageBox/> }/>
               
+              <Route path="calendar" element={ <Calendar/> }/>
+
               <Route path="att/start" element={ <AttStart/> }/>
             </Route>
 

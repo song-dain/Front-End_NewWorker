@@ -187,7 +187,7 @@ function SubSidebar() {
 
                     <ul>
                         <li className={SubSidebarCSS.smallTitle}>새 일정 추가</li>
-                        <li className={SubSidebarCSS.smallTitle}>내 캘린더</li>
+                        <li className={SubSidebarCSS.smallTitle}><NavLink to="calendar">내 캘린더</NavLink></li>
 
                     </ul>
 
