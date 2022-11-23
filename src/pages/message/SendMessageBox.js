@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { callSendMessageListAPI, callSenderManagementAPI, callSearchSendMessageAPI } from "../../api/MessageAPICalls";
 import SendMessageBoxCSS from "../message/SendMessageBox.module.css";
 import binicon from "../../img/binicon.png";
+import SendMessageMoadl from "../../components/message/SendMessageModal";
 
 function SendMessageBox(){
 
@@ -10,6 +11,10 @@ function SendMessageBox(){
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState('');
     const [searchResult, setSearchResult ] = useState('');
+    const [selectMContent, setSelectMContent] = useState('');
+    const [selectMRecipient, setSelectMRecipient] = useState('');
+    const [selectMsendDate, setSelectMSendDate] = useState('');
+    const [messageModal, setMessageModal] = useState(false);
     const messages = useSelector(state => state.messageReducer);
     const messageList = messages.data;
     const pageInfo = messages.pageInfo;
@@ -72,8 +77,27 @@ function SendMessageBox(){
         }
     }
 
+    /* 메시지 조회 */
+    const onClickMessageContent = (message) => {
+
+        setSelectMRecipient(message.recipient.employeeName);
+        setSelectMContent(message.messageContent);
+        setSelectMSendDate(message.sendDate);
+
+        setMessageModal(true);
+
+    }
+
+
     return(
         <>
+            { messageModal ? 
+                <SendMessageMoadl
+                    selectMRecipient={selectMRecipient}
+                    selectMContent={selectMContent}
+                    selectMsendDate={selectMsendDate}
+                    setMessageModal={setMessageModal}
+                /> : null }
             <div className={SendMessageBoxCSS.box}>
                 <h1>보낸 메시지함</h1> 
                 <input
@@ -107,7 +131,9 @@ function SendMessageBox(){
                                     >
                                         <td>{ messages.messageStatus == 'send' ? '전송' : '읽음' }</td>
                                         <td>{messages.sender.employeeName}</td>
-                                        <td>{messages.messageContent}</td>
+                                        <td
+                                            onClick={ () => onClickMessageContent(messages) }
+                                        >{messages.messageContent}</td>
                                         <td>{messages.sendDate}</td>
                                         <td><img 
                                                 src={binicon} alt="bin"
