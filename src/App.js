@@ -12,8 +12,10 @@ import SendMessageBox from "./pages/message/SendMessageBox";
 import ImpoMessageBox from "./pages/message/ImpoMessageBox";
 import BinMessageBox from "./pages/message/BinMessageBox";
 import AppCSS from "./App.module.css";
+import AttStart from "./pages/att/Start";
 import IdInquiry from "./pages/employee/IdInquiry";
 import IdInquiryResult from "./pages/employee/IdInquiryResult";
+
 
 function App() {
 
@@ -36,6 +38,7 @@ function App() {
               <Route path="message/send" element={ <SendMessageBox/> }/>
               <Route path="message/impo" element={ <ImpoMessageBox/> }/>
               <Route path="message/bin/receive" element={ <BinMessageBox/> }/>
+              <Route path="att/start" element={ <AttStart/> }/>
             </Route>
 
             {/* <Route path="Notice" element={ <Notice /> }/> */}
