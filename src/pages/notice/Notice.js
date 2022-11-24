@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import NoticeCSS from "./Notice.module.css";
 import { callNoticeAPI } from '../../api/NoticeAPICalls';
+import { decodeJwt } from '../../utils/tokenUtils';
 
 
 import React from "react";
 
 function Notice() {
-    
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const params = useParams();
@@ -28,15 +29,28 @@ function Notice() {
     useEffect(
         () => {
             dispatch(callNoticeAPI({
-                notNo : params.notNo,
-                currentPage : currentPage
+                notNo: params.notNo,
+                currentPage: currentPage
             }));
-        } 
-        ,[currentPage]
+        }
+        , [currentPage]
     )
 
+    const onClickNoticeInsert = () => {
+        console.log('[notice] onClickNoticeInsert');
+        navigate("/notice-registration", { replace: false })
+    }
+
     const onClickTableTr = (notNo) => {
-        navigate(`/noticeDetail/${notNo}`, { replace : true });
+        navigate(`/noticeDetail/${notNo}`, { replace: true });
+    }
+
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0];
     }
 
     return (
@@ -50,8 +64,15 @@ function Notice() {
         // </div>
         <div className={NoticeCSS.notice}>
             <h1 className={NoticeCSS.text}>전사 공지</h1>
-            <div className={NoticeCSS.tableBox}>
 
+            <div className={NoticeCSS.tableBox}>
+                <div className={NoticeCSS.buttonDiv}>
+                    {decoded === "ROLE_ADMIN" && <button
+                        onClick={onClickNoticeInsert}
+                    >
+                        공지 등록
+                    </button>}
+                </div>
                 <table className={NoticeCSS.notice1}>
                     <colgroup>
                         <col width="10%" />
@@ -80,7 +101,7 @@ function Notice() {
                                     >
                                         <th>{noticeList.notNo}</th>
                                         <th>{noticeList.notTitle}</th>
-                                        <th>{noticeList.employeeNo}</th>
+                                        <th>{noticeList.employee.employeeName}</th>
                                         <th>{noticeList.notDate}</th>
                                         <th>{noticeList.notCount}</th>
                                     </tr>
@@ -91,6 +112,7 @@ function Notice() {
                     </tbody>
 
                 </table>
+
             </div>
 
             {/* 페이징버튼 */}

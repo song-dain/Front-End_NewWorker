@@ -60,6 +60,7 @@ function Sidebar() {
 
                         <button
                             className={SidebarCSS.LogoBtn}
+                            onClick={() => navigate(`/`)}
                         >
                             <LanguageIcon color="primary" fontSize="small" />HOME
                         </button>

@@ -75,6 +75,40 @@
 	padding:3px 110px;
 }
 
+.pwdInquirybtn {
+    background-color:#5ec0fd;
+	border-radius:5px;
+	border:1px solid #5ec0fd;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:3px 102px;
+}
+
+.pwdInquirybtn:active {
+	position:relative;
+	top:1px;
+}
+
+.ecodebtn {
+	background-color:#5ec0fd;
+	border-radius:5px;
+	border:1px solid #5ec0fd;
+	display:flex;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	padding:3px 10px;
+}
+
+.ecodebtn:active {
+	position:relative;
+	top:1px;
+}
+
 .backbtn {
     background-color:#F5F5F5;
 	border-radius:5px;

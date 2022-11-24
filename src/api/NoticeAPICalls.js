@@ -78,34 +78,28 @@ export const callNoticeUpdateAPI = ({form}) => {
 
 }
 
-// export const callNoticeWriteAPI = ({form}) => {
+export const callNoticeRegistAPI = ({form}) => {
 
-//     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/notices`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/notice/notices/register`;
 
-//     return async (dispatch, getState) => {
+    return async (dispatch, getState) => {
+        console.log(`폼 객체 :`, form);
+        const result = await fetch(requestURL, {
+            method : "POST",
+            headers : {
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            },
+            body : form
+        })
+        .then(response => response.json());
 
-//         const result = await fetch(requestURL, {
-//             method : "POST",
-//             headers : {
-//                 "Content-Type" : "application/json",
-//                 "Accept": "*/*",
-//                 "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
-//             }, 
-//             body : JSON.stringify({
-//                 notice : {
-//                     notNo : form.notNo
-//                 },
-//                 notTitle : form.notTitle,
-//                 notContent : form.notContent
-//             })
-//         })
-//         .then(response => response.json());
+        if(result.status === 200) {
+            console.log('[NoticeAPICalls] callNoticeRegistAPI result : ', result);
+            dispatch({ type: POST_NOTICE, payload: result.data });
+        }
+    }
 
-//         if(result.status === 200) {
-//             console.log('[NoticeAPICalls] callNoticeWriteAPI result : ', result);
+}
 
-//             dispatch({ type: POST_NOTICE, payload: result });
-//         }
-//     }
 
-// }
