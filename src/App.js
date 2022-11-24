@@ -1,12 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import Main from "./pages/Main";
-import Test from "./pages/test/Test";
-import Home from "./pages/home/Home";
-import Copy from "./pages/copy/Copy";
 import Login from "./pages/employee/Login";
 import Notice from "./pages/notice/Notice";
 import NoticeDetail from "./pages/notice/NoticeDetail";
+import NoticeRegistration from "./pages/admin/NoticeRegistration";
 import SendMessage from "./pages/message/SendMessage";
 import ReceiveMessageBox from "./pages/message/ReceiveMessageBox";
 import SendMessageBox from "./pages/message/SendMessageBox";
@@ -43,7 +41,7 @@ function App() {
 
             <Route path="Notice" element={<Notice />} />
             <Route path="noticeDetail/:notNo" element={<NoticeDetail />} />
-
+            <Route path="notice-registration" element={<NoticeRegistration />} />
 
             <Route path="message/write" element={<SendMessage />} />
             <Route path="message/receive" element={<ReceiveMessageBox />} />
@@ -56,12 +54,10 @@ function App() {
             <Route path="att/start" element={<AttStart />} />
           </Route>
 
-
           <Route path="/login" element={<Login />} />
           <Route path="/idInquiry" element={<IdInquiry />} />
           <Route path="/idInquiryResult" element={<IdInquiryResult />} />
           <Route path="/pwdInquiry" element={<PwdInquiry />} />
-
 
         </Routes>
       </div>

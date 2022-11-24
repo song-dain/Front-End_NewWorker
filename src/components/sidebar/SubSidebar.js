@@ -102,11 +102,11 @@ function SubSidebar() {
                     <ul>
                         <li className={SubSidebarCSS.sideTitle1}>ㅇ근태 관리</li>
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="att/start">일일 근태 등록</NavLink></li>
-                        <li className={SubSidebarCSS.smallTitle}><NavLink to="Home">월간 근태 현황</NavLink></li>
+                        <li className={SubSidebarCSS.smallTitle}>월간 근태 현황</li>
                     </ul>
                     <ul>
                         <li className={SubSidebarCSS.sideTitle2}>ㅇ휴가 관리</li>
-                        <li className={SubSidebarCSS.smallTitle}><NavLink to="Copy">연차 신청</NavLink></li>
+                        <li className={SubSidebarCSS.smallTitle}>연차 신청</li>
                         <li className={SubSidebarCSS.smallTitle}>연차 조회</li>
                     </ul>
                 </div>

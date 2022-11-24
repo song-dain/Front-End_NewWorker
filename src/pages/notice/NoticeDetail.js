@@ -42,9 +42,9 @@ function NoticeDetail() {
     const onClickModifyModeHandler = () => {
         setModifyMode(true);
         setForm({
-            notNo: noticeDetail.notNo,
             notTitle: noticeDetail.notTitle,
-            notContent: noticeDetail.notContent
+            notContent: noticeDetail.notContent,
+            notStatus: noticeDetail.notStatus
         });
     }
 
@@ -57,6 +57,8 @@ function NoticeDetail() {
         navigate(`/notices/${noticeDetail.notice.notNo}`, { replace: true });
         window.location.reload();
     }
+
+
 
 
 
@@ -82,15 +84,15 @@ function NoticeDetail() {
                                     className={NoticeDetailCSS.noticeEmpNo}
                                     placeholder='작성자'
                                     readOnly={true}
-                                    style={ { backgroundColor: 'white'} }
-                                    value={noticeDetail && noticeDetail.employee?.employeeNo || ''}
+                                    style={{ backgroundColor: 'white' }}
+                                    value={noticeDetail && noticeDetail.employee?.employeeName || ''}
                                     disabled
                                 /></th>
                                 <th><input
                                     className={NoticeDetailCSS.noticeDate}
                                     placeholder='작성일'
                                     readOnly={true}
-                                    style={ { backgroundColor: 'white'} }
+                                    style={{ backgroundColor: 'white' }}
                                     value={noticeDetail && noticeDetail.notDate || ''}
                                     disabled
                                 /></th>
@@ -100,6 +102,7 @@ function NoticeDetail() {
                         <tbody>
                             <tr>
                                 <td>
+                                    <img src={notices.noticeImageUrl} alt="테스트" />
                                     <textarea
                                         className={NoticeDetailCSS.noticeContent}
                                         name='notContent'
@@ -120,7 +123,7 @@ function NoticeDetail() {
                 <div className={NoticeDetailCSS.backBtnBox}>
                     <button
                         className={NoticeDetailCSS.backBtn}
-                        onClick={() => navigate(-1)}
+                        onClick={() => navigate(`/Notice`)}
                     >
                         목록으로
                     </button>
