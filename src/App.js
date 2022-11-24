@@ -19,6 +19,7 @@ import IdInquiryResult from "./pages/employee/IdInquiryResult";
 import PwdInquiry from "./pages/employee/PwdInquiry";
 import EmployeeRegist from "./pages/employee/EmployeeRegist";
 import ApprovalRegist from "./pages/approval/ApprovalRegist";
+import Calendar from "./pages/calendar/calendar";
 
 
 function App() {
@@ -28,7 +29,6 @@ function App() {
       <div className={AppCSS.container} >
 
         <Routes>
-
 
           <Route path="/" element={<Layout />} >
 
@@ -51,6 +51,8 @@ function App() {
             <Route path="message/impo" element={<ImpoMessageBox />} />
             <Route path="message/bin/receive" element={<BinMessageBox />} />
 
+            <Route path="calendar" element={ <Calendar/> }/>
+            
             <Route path="att/start" element={<AttStart />} />
           </Route>
 
@@ -59,6 +61,7 @@ function App() {
           <Route path="/idInquiry" element={<IdInquiry />} />
           <Route path="/idInquiryResult" element={<IdInquiryResult />} />
           <Route path="/pwdInquiry" element={<PwdInquiry />} />
+
 
         </Routes>
       </div>
