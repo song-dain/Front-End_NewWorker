@@ -17,6 +17,9 @@ import AttStart from "./pages/att/Start";
 import IdInquiry from "./pages/employee/IdInquiry";
 import IdInquiryResult from "./pages/employee/IdInquiryResult";
 import Calendar from "./pages/calendar/calendar";
+import EmployeeList from "./pages/employee/EmployeeList";
+import EmployeeDetail from "./pages/employee/EmployeeDetail";
+import RestRegist from "./pages/rest/RestRegist";
 
 
 function App() {
@@ -46,10 +49,15 @@ function App() {
               <Route path="message/send" element={ <SendMessageBox/> }/>
               <Route path="message/impo" element={ <ImpoMessageBox/> }/>
               <Route path="message/bin/receive" element={ <BinMessageBox/> }/>
+
+              <Route path="emp/employeeList" element={ <EmployeeList/> }/>
+              <Route path="emp/employeeList/detail-management/:employeeNo" element={ <EmployeeDetail/> }/>
               
               <Route path="calendar" element={ <Calendar/> }/>
 
               <Route path="att/start" element={ <AttStart/> }/>
+
+              {/* <Route path="rest/regist" element={ <RestRegist/> }/> */}
             </Route>
 
             
