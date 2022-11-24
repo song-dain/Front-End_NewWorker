@@ -20,12 +20,12 @@ function IdInquiryResult() {
         }
     }, []);
 
-
+    
     const onClickBackHandler = () => {
-        navigate("/", {replace:true});
+        navigate("/login");
     }
 
-    
+
     return (
         <div className={ LoginCSS.loginDiv }>
             <div className={ LoginCSS.icon }>

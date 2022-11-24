@@ -13,7 +13,7 @@ function Login() {
     const login = useSelector(state => state.employeeReducer);
 
     useEffect(() => {
-            if(login.status === 200) {
+            if(window.localStorage.getItem('accessToken') !== null) {
                 console.log("[Login] 로그인 성공 {}", login);
                 navigate("/", { replace : true })
             }
@@ -36,6 +36,12 @@ function Login() {
     const onClickIdInquiryHandler = () => {
         navigate("/idInquiry", {replace:true});
     }
+
+    const onClickPwdInquiryHandler = () => {
+        navigate("/pwdInquiry", {replace:true});
+    }
+
+
     const onClickHandler = () => {
         dispatch(callLoginAPI({
             form : form
@@ -53,7 +59,7 @@ function Login() {
                 <button className={ LoginCSS.loginbtn } onClick={ onClickHandler }>로그인</button>
                 <table className={ LoginCSS.quiryText }>
                     <td onClick={ onClickIdInquiryHandler }>아이디 찾기 | </td>
-                    <td>  비밀번호 찾기 |</td>
+                    <td onClick={ onClickPwdInquiryHandler }>  비밀번호 찾기 |</td>
                     <td> 비밀번호 변경 </td>
                     </table>
             </div>

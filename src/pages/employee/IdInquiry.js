@@ -30,7 +30,7 @@ function IdInquiry() {
     }
 
     const onClickBackHandler = () => {
-        navigate("/", {replace:true});
+        navigate("/login", {replace:true});
     }
 
 
