@@ -1,0 +1,56 @@
+
+.RegistDiv {
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+}
+
+
+
+.employeeInfoInput {
+	background-color:#f5f5f5;
+	border-radius:7px;
+	border:1px solid #5ec0fd;
+	display:inline-block;
+	font-family:Arial;
+    display: flex;
+	font-size:10px;
+	padding:9px 90px;
+}
+
+.Registbtn {
+    background-color:#5ec0fd;
+	border-radius:7px;
+	border:1px solid #5ec0fd;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:8px 170px;
+}
+
+.Registbtn:active {
+	position:relative;
+	top:1px;
+}
+
+
+.Backbtn {
+    background-color:#F5F5F5;
+	border-radius:5px;
+	border:1px solid #5ec0fd;
+	display:inline-block;
+	cursor:pointer;
+	color:#9D9D9D;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 173px;
+    margin-top:10px;
+}
+
+.Backbtn:active {
+	position:relative;
+	top:1px;
+}

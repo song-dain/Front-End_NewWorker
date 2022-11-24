@@ -124,7 +124,7 @@ function SubSidebar() {
                 <div className={SubSidebarCSS.smallBox}>
 
                     <ul>
-                        <li className={SubSidebarCSS.smallTitle}>결재 작성</li>
+                        <li className={SubSidebarCSS.smallTitle}><NavLink to="approval/regist">결재 작성</NavLink></li>
                         <li className={SubSidebarCSS.smallTitle}>상신함</li>
                         <li className={SubSidebarCSS.smallTitle}>수신함</li>
                     </ul>
@@ -146,7 +146,7 @@ function SubSidebar() {
                     <ul>
                         <li className={SubSidebarCSS.smallTitle}>직원 조회</li>
                         {/* 관리자로 로그인시 보이게끔 작업할 것 */}
-                        <li className={SubSidebarCSS.smallTitle}>직원 등록</li>
+                        <li className={SubSidebarCSS.smallTitle}><NavLink to="employee/regist">직원 등록</NavLink></li>
 
                     </ul>
 
@@ -187,7 +187,7 @@ function SubSidebar() {
 
                     <ul>
                         <li className={SubSidebarCSS.smallTitle}>새 일정 추가</li>
-                        <li className={SubSidebarCSS.smallTitle}>내 캘린더</li>
+                        <li className={SubSidebarCSS.smallTitle}><NavLink to="calendar">내 캘린더</NavLink></li>
 
                     </ul>
 

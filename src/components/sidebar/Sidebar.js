@@ -77,8 +77,8 @@ function Sidebar() {
                     <li id="slideToggleBtn">근태관리</li>
                     <li id="slideToggleBtn1">전자결재</li>
                     <li id="slideToggleBtn2">직원조회</li>
-                    <li id="slideToggleBtn3">메세지</li>
-                    <li id="slideToggleBtn4">캘린더</li>
+                    <li id="slideToggleBtn3"><NavLink to="message/receive">메시지</NavLink></li>
+                    <li id="slideToggleBtn4"><NavLink to="calendar">내 캘린더</NavLink></li>
                     <li id="slideToggleBtn6"><NavLink to="Notice">전사공지</NavLink></li>
 
                     <li id="slideToggleBtn5">설문조사</li>
