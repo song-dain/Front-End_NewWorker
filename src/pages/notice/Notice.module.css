@@ -12,7 +12,7 @@
 .tableBox {
     width: 1300px;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .notice1 {
@@ -45,7 +45,7 @@
     height: 25px;
     border-radius: 7px;
     background-color: lightgray;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .pagingBtn1:hover{
@@ -56,12 +56,30 @@
 
 .pagingBtn:hover{
     cursor: pointer;
-    background-color: burlywood;
+    
 }
 
 .pagingDiv{
     height: 50px;
     width: 50px;
     
+}
+
+.buttonDiv button{
+    
+    margin-bottom: 5px;
+    height: 30px;
+    width: 100px;
+    background-color: lightgray;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    float: right;
+}
+
+.buttonDiv button:hover{
+    cursor: pointer;
+    color: white;
 }
 

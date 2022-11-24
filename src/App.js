@@ -1,12 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import Main from "./pages/Main";
-import Test from "./pages/test/Test";
-import Home from "./pages/home/Home";
-import Copy from "./pages/copy/Copy";
 import Login from "./pages/employee/Login";
 import Notice from "./pages/notice/Notice";
 import NoticeDetail from "./pages/notice/NoticeDetail";
+import NoticeRegistration from "./pages/admin/NoticeRegistration";
 import SendMessage from "./pages/message/SendMessage";
 import ReceiveMessageBox from "./pages/message/ReceiveMessageBox";
 import SendMessageBox from "./pages/message/SendMessageBox";
@@ -26,30 +24,28 @@ function App() {
 
         <Routes>
 
-          <Route path="/login" element={ <Login />} />
-            <Route path="/idInquiry" element={ <IdInquiry />} />
-            <Route path="/idInquiryResult" element={ <IdInquiryResult />} />
-            
-          <Route path="/" element={ <Layout />} >
+          <Route path="/login" element={<Login />} />
+          <Route path="/idInquiry" element={<IdInquiry />} />
+          <Route path="/idInquiryResult" element={<IdInquiryResult />} />
 
-              <Route index element={ <Main />} />
-              <Route path="Home" element={ <Home />} />
-              <Route path="Copy" element={ <Copy />} />
-              <Route path="Test" element={ <Test />} />
+          <Route path="/" element={<Layout />} >
 
-              <Route path="Notice" element={<Notice />} />
-              <Route path="noticeDetail/:notNo" element={<NoticeDetail />} />
-              
-             <Route path="message/write" element={ <SendMessage/> }/>
-              <Route path="message/receive" element={ <ReceiveMessageBox/> }/>
-              <Route path="message/send" element={ <SendMessageBox/> }/>
-              <Route path="message/impo" element={ <ImpoMessageBox/> }/>
-              <Route path="message/bin/receive" element={ <BinMessageBox/> }/>
-              
-              <Route path="att/start" element={ <AttStart/> }/>
-            </Route>
+            <Route index element={<Main />} />
 
-            
+
+            <Route path="Notice" element={<Notice />} />
+            <Route path="noticeDetail/:notNo" element={<NoticeDetail />} />
+            <Route path="notice-registration" element={<NoticeRegistration />} />
+            <Route path="message/write" element={<SendMessage />} />
+            <Route path="message/receive" element={<ReceiveMessageBox />} />
+            <Route path="message/send" element={<SendMessageBox />} />
+            <Route path="message/impo" element={<ImpoMessageBox />} />
+            <Route path="message/bin/receive" element={<BinMessageBox />} />
+
+            <Route path="att/start" element={<AttStart />} />
+          </Route>
+
+
 
         </Routes>
       </div>
