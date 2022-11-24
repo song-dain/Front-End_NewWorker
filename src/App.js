@@ -18,6 +18,9 @@ import PwdInquiry from "./pages/employee/PwdInquiry";
 import EmployeeRegist from "./pages/employee/EmployeeRegist";
 import ApprovalRegist from "./pages/approval/ApprovalRegist";
 import Calendar from "./pages/calendar/calendar";
+import EmployeeList from "./pages/employee/EmployeeList";
+import EmployeeDetail from "./pages/employee/EmployeeDetail";
+import RestRegist from "./pages/rest/RestRegist";
 
 
 function App() {
@@ -27,7 +30,6 @@ function App() {
       <div className={AppCSS.container} >
 
         <Routes>
-
           <Route path="/" element={<Layout />} >
 
             <Route index element={<Main />} />
@@ -36,8 +38,10 @@ function App() {
             <Route path="Test" element={<Test />} />
 
             <Route path="employee/regist" element={<EmployeeRegist />} />
-
             <Route path="approval/regist" element={<ApprovalRegist/>} />
+            
+            <Route path="emp/employeeList" element={ <EmployeeList/> }/>
+            <Route path="emp/employeeList/detail-management/:employeeNo" element={ <EmployeeDetail/> }/>
 
             <Route path="Notice" element={<Notice />} />
             <Route path="noticeDetail/:notNo" element={<NoticeDetail />} />
@@ -61,10 +65,6 @@ function App() {
 
         </Routes>
       </div>
-
-
-
-
     </BrowserRouter>
   );
 }
