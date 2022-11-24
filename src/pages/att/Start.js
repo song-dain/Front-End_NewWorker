@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import StartCSS from './Start.module.css';
 import { decodeJwt } from '../../utils/tokenUtils';
-import { callStartAPI, callEndAPI } from '../../api/AttAPICalls'
+import { callStartAPI, callEndAPI } from '../../api/AttAPICalls';
+import Clock from './Clock';
+import { Container } from '@mui/system';
 
 
 
@@ -13,23 +15,45 @@ function AttStart() {
     const dispatch = useDispatch();
     const params = useParams();
     const att = useSelector(state => state.attReducer);
-    const employeeNo = params.employeeNo;
+    const attNo = params.attNo;
+    //const result = result.data;
 
-    const [form, setForm] = useState({});
+    const [form, setForm] = useState({
+        attNo : att.attNo,
+        attStart : att.attStart,
+        attEnd : null,
+        attDate : null,
+        attTypeNo : att.attTypeNo,
+        employee : att.employee,
+        attWorkTime : null,
+        attMonth : null,
+        attWtms : null
+    });
+
+    // const [end, setEnd] = useState({
+    //     attNo : result.data.att.attNo,
+    //     attStart : result.data.att.attStart,
+    //     attEnd : null,
+    //     attDate : null,
+    //     attTypeNo : result.data.att.attTypeNo,
+    //     employee : result.data.att.employee,
+    //     attWorkTime : null,
+    //     attMonth : null,
+    //     attWtms : null
+    // })
 
     useEffect( () => {
             if(att.status === 200) {
                 console.log("[attStart] 출근 등록 {}", params.attNo);
             }
+            
         }, []
     )
 
     const onClickStartHandler =()=> {
 
-        dispatch(callStartAPI({	
-            form: form
-        })); 
-        window.location.reload();
+        dispatch(callStartAPI()); 
+        //window.location.reload();
     }
 
     const onChangeHandler =(e)=> {
@@ -39,17 +63,16 @@ function AttStart() {
         });
     };
 
-    const onClickEndUpdateHandler =()=> {
 
-        const formData = new FormData();
+    
 
-        formData.append("attNo", form.attNo);
-        formData.append("attEnd", form.attEnd);
-
+    const onClickEndUpdateHandler =(e)=> {
+        const { result } = e.target;
         dispatch(callEndAPI({	
-            form: formData
+            // attNo : att.attNo,
+            // attStart : att.attStart
         })); 
-        window.location.reload();
+        //window.location.reload();
     }
 
     const onClickDaySearchHandler =()=> {}
@@ -65,44 +88,52 @@ function AttStart() {
                         <div className={ StartCSS.clockBox }>
                             <h3>현재시간 : </h3>
                             <div className="clock">
-                                
+                                <Clock/>
                             </div>
                         </div>
                         <div className={ StartCSS.dayBox }>
                             <h3>근무일자 : </h3>
                         </div>
                     </div>
-                    <div className={ StartCSS.startEndAndNoBox }>
+                    <container className={ StartCSS.startEndAndNoBoxContainer }>
                         <div className={ StartCSS.startAndEndBox }>
                             <div className={ StartCSS.startBox }>
                                 <button
-                                    className={ StartCSS.startInputButton } 
+                                    className={ StartCSS.startBtn } 
                                     onClick={ onClickStartHandler }
                                 >
                                     출근
                                 </button>
                             </div>
                             <div className={ StartCSS.EndBox}>
-                                <input
+                                {/* <input
                                     className={ StartCSS.EndAttNoBox } 
                                     name='attNo'
-                                    placeholder='퇴근하려면 근태번호를 입력하세요'
+                                    placeholder='근태번호'
                                     onChange={ onChangeHandler }
                                 >
                                 </input>
+                                <input
+                                    className={ StartCSS.EndAttNoBox } 
+                                    name='attStart'
+                                    placeholder='출근시간'
+                                    onChange={ onChangeHandler }
+                                >
+                                </input> */}
                                 <button
                                     className={ StartCSS.endBtn }
                                     onClick={ onClickEndUpdateHandler }
                                 >
-                                    탈출
+                                    퇴근
                                 </button>
                             </div>
                         </div>
                         <div className={ StartCSS.empNoAndSearchbarAndSearchButtonBox }>
                             <div className={ StartCSS.empNoAndSearchbar }>
-                                <h3>사원번호 : </h3>
+                                <p>관리자용</p>
+                                <h3>근태번호 : </h3>
                                 <input
-                                    name={ att.employeeNo }
+                                    name={ att.attNo }
                                 />
                             </div>
                             <div className={ StartCSS.searchButton }>
@@ -113,12 +144,13 @@ function AttStart() {
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </container>
                 </div>
                 <div className={ StartCSS.todayAttBox }>
-                    <table className={ StartCSS.todayAttTable } border='0.1'>
+                    <table className={ StartCSS.todayAttTable } border='1'>
                         <tbody>
                             <tr>
+                                <td>근태번호</td>
                                 <td>사원아이디</td>
                                 <td>사원 이름</td>
                                 <td>출근시간</td>
@@ -126,6 +158,7 @@ function AttStart() {
                                 <td>근무시간</td>
                             </tr>
                             <tr>
+                                <td>{ att.attNo }</td>
                                 <td>{ att.employeeNo || '' }</td>
                                 <td>{ att.employeeName || '' }</td>
                                 <td>{ att.attStart || '' }</td>

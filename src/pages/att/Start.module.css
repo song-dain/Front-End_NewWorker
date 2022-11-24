@@ -1,13 +1,13 @@
 /* 전체 Div */
 .backgroundDiv {
-    width: 300%;
+    width: 250%;
     height: 100%;
     background-color: antiquewhite;
 }
 
 /* 내용 Wrapper Div */
 .attStartWrapperDiv {
-    
+   
 }
 
 /* 일일 근태 등록 헤드메세지 Div */
@@ -29,19 +29,33 @@
 .dayBox {}
 
 /* 출퇴근 입력 Div */
-.startEndAndNoBox {}
+.startEndAndNoBoxContainer {
+    display: flex;
+}
 
 /* 출퇴근 버튼 Div */
 .startAndEndBox {}
 
 /* 출근 Div */
-.startBox {}
+.startBox {
+}
+
+.startBtn {
+    width: 70px;
+}
+
+.endBtn {
+    width: 70px;
+}
 
 /* 퇴근 Div */
-.EndBox {}
+.EndBox {
+}
 
 /* 회원 정보로 검색 Wrapper Div */
-.empNoAndSearchbarAndSearchButtonBox {}
+.empNoAndSearchbarAndSearchButtonBox {
+    margin-left: 50px;
+}
 
 /* 검색창 Div */
 .empNoAndSearchbar {}
