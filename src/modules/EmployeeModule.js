@@ -18,7 +18,7 @@ const actions = createActions({
     [POST_FINDID]: () => {},
 
     [GET_EMPLOYEELIST]: () => {},
-    [PUT_EMPLOYEE]: () => {}
+    [PUT_EMPLOYEE]: () => {},
 
     [MAIL_CONFIRM]: () => {},
     [POST_EMPLOYEE]: () => {}
