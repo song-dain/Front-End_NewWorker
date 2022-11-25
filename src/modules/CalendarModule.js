@@ -2,15 +2,15 @@ import { createActions, handleActions } from "redux-actions";
 
 const initialState = [];
 
-export const GET_SCHEDULE = 'calendar/GET_SCHEDULE';
-export const POST_SCHEDULE = 'calendar/POST_SCHEDULE';
+export const POST_SCHEDULE = 'calendar/GET_SCHEDULE';
+export const POST_ADD_SCHEDULE = 'calendar/POST_SCHEDULE';
 export const PATCH_UPDATE_SCHEDULE = 'calendar/PATCH_UPDATE_SCHEDULE';
 export const PATCH_DELETE_SCHEDULE = 'calendar/PATCH_DELETE_SCHEDULE';
 
 const actions = createActions({
 
-    [GET_SCHEDULE]: () => {},
     [POST_SCHEDULE]: () => {},
+    [POST_ADD_SCHEDULE]: () => {},
     [PATCH_UPDATE_SCHEDULE]: () => {},
     [PATCH_DELETE_SCHEDULE]: () => {}
 
@@ -18,10 +18,10 @@ const actions = createActions({
 
 const calendarReducer = handleActions({
 
-    [GET_SCHEDULE] : (state, { payload }) => {
+    [POST_SCHEDULE] : (state, { payload }) => {
         return payload;
     },
-    [POST_SCHEDULE] : (state, { payload }) => {
+    [POST_ADD_SCHEDULE] : (state, { payload }) => {
         return payload;
     },
 

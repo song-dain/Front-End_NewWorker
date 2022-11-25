@@ -1,13 +1,13 @@
-import { GET_SCHEDULE, POST_SCHEDULE, PATCH_UPDATE_SCHEDULE, PATCH_DELETE_SCHEDULE } from '../modules/CalendarModule';
+import { POST_SCHEDULE, POST_ADD_SCHEDULE, PATCH_UPDATE_SCHEDULE, PATCH_DELETE_SCHEDULE } from '../modules/CalendarModule';
 
 export const callSelectOfficeCalendarAPI = ({form}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/emp/calendar/schedule`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/calendar/schedule`;
 
     return async (dispatch, getState) => {
 
         const result = await fetch(requestURL, {
-            method : "GET",
+            method : "POST",
             headers : {
                 "Content-Type" : "application/json",
                 "Accept" : "*/*",
@@ -23,7 +23,8 @@ export const callSelectOfficeCalendarAPI = ({form}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
-            dispatch({ type: GET_SCHEDULE, payload: result.data });
+            console.log('[callSelectOfficeCalendarAPI] callSelectOfficeCalendarAPI RESULT : ', result);
+            dispatch({ type: POST_SCHEDULE, payload: result.data });
         }
     }
 }
@@ -56,7 +57,7 @@ export const callAddScheduleAPI = ({form}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
-            dispatch({ type: POST_SCHEDULE, payload: result.data });
+            dispatch({ type: POST_ADD_SCHEDULE, payload: result.data });
         }
     }
 }
