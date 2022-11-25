@@ -19,7 +19,7 @@ class EmpCalendar extends Component {
                 {
                   title: 'test event', 
                   start: '2022-11-24',
-                  end: '2022-11-26'
+                  end: '2022-11-24'
                 }
               ]}
               eventClick={ onClickTest }

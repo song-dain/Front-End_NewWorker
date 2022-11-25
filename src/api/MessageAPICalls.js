@@ -4,7 +4,7 @@ import { GET_EMPLOYEE, POST_SEND_MESSAGE,
         GET_IMPO_MESSAGES, GET_SEARCH_IMPO_MESSAGE,
         GET_RECEIVE_BIN_MESSAGES, GET_SEND_BIN_MESSAGES,
         PATCH_RECIPIENT_MANAGEMENT, PATCH_SENDER_MANAGEMENT } from '../modules/MessageModule';
-
+ 
 export const callEmpListAPI = ({depNo}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/message/send/findEmp/${depNo}`;

@@ -33,9 +33,6 @@ function App() {
           <Route path="/" element={<Layout />} >
 
             <Route index element={<Main />} />
-            <Route path="Home" element={<Home />} />
-            <Route path="Copy" element={<Copy />} />
-            <Route path="Test" element={<Test />} />
 
             <Route path="employee/regist" element={<EmployeeRegist />} />
             <Route path="approval/regist" element={<ApprovalRegist/>} />
