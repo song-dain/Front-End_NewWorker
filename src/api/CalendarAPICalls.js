@@ -23,7 +23,6 @@ export const callSelectOfficeCalendarAPI = ({form}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[callSelectOfficeCalendarAPI] callSelectOfficeCalendarAPI RESULT : ', result);
             dispatch({ type: POST_SCHEDULE, payload: result.data });
         }
     }
@@ -46,7 +45,6 @@ export const callScheduleDetailAPI = ({scheduleNo}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[callScheduleDetailAPI] callScheduleDetailAPI RESULT : ', result);
             dispatch({ type: GET_SCHEDULE, payload: result.data });
         }
     }
