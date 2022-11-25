@@ -7,6 +7,7 @@ function ScheduleDetailModal({clickEventId, setScheduleDetailModal}){
 
     const dispatch = useDispatch();
     const calendarEvent = useSelector(state => state.calendarReducer);
+    const [modifyMode, setModifyMode] = useState(false);
 
     useEffect(
         () => {
@@ -17,6 +18,12 @@ function ScheduleDetailModal({clickEventId, setScheduleDetailModal}){
         , []
     )
 
+    /* 일정 수정 */
+    const onClickUpdateBtnHandler = () => {
+        setModifyMode(true);
+    }
+
+    /* 일정 삭제 */
     const onClickDeleteBtnHandler = () => {
 
         dispatch(callDeleteScheduleAPI({ calendarNo : clickEventId }));
@@ -29,12 +36,29 @@ function ScheduleDetailModal({clickEventId, setScheduleDetailModal}){
             <button
                 onClick={ () => setScheduleDetailModal(false) }
             >X</button>
-                <input value={calendarEvent.scheduleTitle || ''}/>
-                <input value={calendarEvent.startDate || ''}/>
-                <input value={calendarEvent.endDate || ''}/>
-                <input value={calendarEvent.scheduleLocation || ''}/>
-                <input value={calendarEvent.scheduleContent || ''}/>
-            <button>수정</button>
+                <input 
+                    value={ calendarEvent.scheduleTitle || ''}
+                    disabled={ !modifyMode }
+                />
+                <input 
+                    value={calendarEvent.startDate || ''}
+                    disabled={ !modifyMode }
+                />
+                <input 
+                    value={calendarEvent.endDate || ''}
+                    disabled={ !modifyMode }
+                />
+                <input 
+                    value={calendarEvent.scheduleLocation || ''}
+                    disabled={ !modifyMode }
+                />
+                <input 
+                    value={calendarEvent.scheduleContent || ''}
+                    disabled={ !modifyMode }
+                />
+            <button
+                onClick={ () => onClickUpdateBtnHandler() }
+            >수정</button>
             <button 
                 onClick={ () => onClickDeleteBtnHandler() }
             >삭제</button>

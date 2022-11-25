@@ -21,6 +21,7 @@ import Calendar from "./pages/calendar/calendar";
 import EmployeeList from "./pages/employee/EmployeeList";
 import EmployeeDetail from "./pages/employee/EmployeeDetail";
 import RestRegist from "./pages/rest/RestRegist";
+import NewSchedule from "./pages/calendar/NewSchedule";
 
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
             <Route path="emp/employeeList/detail-management/:employeeNo" element={ <EmployeeDetail/> }/>
 
             <Route path="Notice" element={<Notice />} />
-            <Route path="noticeDetail/:notNo" element={<NoticeDetail />} />
+            <Route path="noticeDetail/:notNo" element={<NoticeDetail/>} />
             <Route path="notice-registration" element={<NoticeRegistration />} />
 
             <Route path="message/write" element={<SendMessage />} />
@@ -51,6 +52,7 @@ function App() {
             <Route path="message/bin/receive" element={<BinMessageBox />} />
 
             <Route path="calendar" element={ <Calendar/> }/>
+            <Route path="calendar/add" element={ <NewSchedule/> }/>
             
             <Route path="att/start" element={<AttStart />} />
           </Route>
