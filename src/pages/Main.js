@@ -1,10 +1,14 @@
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import MainCSS from "./Main.module.css";
+import { callUnreadMessageAPI } from "../api/MessageAPICalls";
 
 function Main() {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const unread = useSelector(state => state.messageReducer);
 
     useEffect(() => {
         const isLogin = window.localStorage.getItem('accessToken');
@@ -13,11 +17,22 @@ function Main() {
         if(!isLogin) {
             navigate('login', { replace : true });
         }
-    });
+
+        dispatch(callUnreadMessageAPI());
+
+        
+    }, []
+    );
+
+    const onClickUnreadMessage = () => {
+        navigate('/message/receive', { replace : true });
+    }
 
     return(
         <div className={MainCSS.main}>
-           
+           <div
+                onClick={ () => onClickUnreadMessage() }
+           >읽지 않은 메시지가 <span>{unread.unreadMessage}</span> 건 있습니다!</div>
         </div>
     );
 }
