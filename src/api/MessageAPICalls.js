@@ -3,7 +3,7 @@ import { GET_EMPLOYEE, POST_SEND_MESSAGE,
         GET_SEND_MESSAGES, GET_SEARCH_SEND_MESSAGES,
         GET_IMPO_MESSAGES, GET_SEARCH_IMPO_MESSAGE,
         GET_RECEIVE_BIN_MESSAGES, GET_SEND_BIN_MESSAGES,
-        PATCH_RECIPIENT_MANAGEMENT, PATCH_SENDER_MANAGEMENT } from '../modules/MessageModule';
+        PATCH_RECIPIENT_MANAGEMENT, PATCH_SENDER_MANAGEMENT, GET_UNREAD_MESSAGE } from '../modules/MessageModule';
  
 export const callEmpListAPI = ({depNo}) => {
 
@@ -306,6 +306,28 @@ export const callSenderManagementAPI = ({form, messageNo}) => {
 
         if(result.status === 200) {
             dispatch({ type: PATCH_SENDER_MANAGEMENT, payload: result.data });
+        }
+    }
+}
+
+export const callUnreadMessageAPI = () => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/message/unread`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            },
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            dispatch({ type: GET_UNREAD_MESSAGE, payload: result.data });
         }
     }
 }
