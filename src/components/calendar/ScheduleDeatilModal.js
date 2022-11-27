@@ -18,16 +18,20 @@ function ScheduleDetailModal({clickEventId, setScheduleDetailModal}){
         , []
     )
 
-    /* 일정 수정 */
+    /* 일정 수정 모드로 변경 */
     const onClickUpdateBtnHandler = () => {
         setModifyMode(true);
+    }
+
+    /* 수정 일정 입력 */
+    const onChangeHandler = () => {
+        console.log('수정 모드');
     }
 
     /* 일정 삭제 */
     const onClickDeleteBtnHandler = () => {
 
         dispatch(callDeleteScheduleAPI({ calendarNo : clickEventId }));
-        window.location.reload();
     }
 
     return(
@@ -38,7 +42,10 @@ function ScheduleDetailModal({clickEventId, setScheduleDetailModal}){
             >X</button>
                 <input 
                     value={ calendarEvent.scheduleTitle || ''}
-                    disabled={ !modifyMode }
+                    readOnly={ modifyMode ? false : true }
+                    placeholder='일정 타이틀'
+                    onChange={ onChangeHandler() }
+
                 />
                 <input 
                     value={calendarEvent.startDate || ''}
