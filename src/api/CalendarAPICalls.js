@@ -52,7 +52,7 @@ export const callScheduleDetailAPI = ({scheduleNo}) => {
 
 export const callAddScheduleAPI = ({form}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/emp/calendar/schedule/add`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/calendar/schedule/add`;
 
     return async (dispatch, getState) => {
 
@@ -65,8 +65,7 @@ export const callAddScheduleAPI = ({form}) => {
             },
             body : JSON.stringify({
                 calendarCategory : {
-                    calendarCategoryNo : form.calendarCategoryNo,
-                    calendarCategoryName : form.calendarCategoryName
+                    calendarCategoryName : '내 일정'
                 },
                 scheduleTitle : form.scheduleTitle,
                 startDate : form.startDate,
@@ -85,12 +84,12 @@ export const callAddScheduleAPI = ({form}) => {
 
 export const callUpdateScheduleAPI = ({form, scheduleNo}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/emp/calendar/schedule/update/${scheduleNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/calendar/schedule/update/${scheduleNo}`;
 
     return async (dispatch, getState) => {
 
         const result = await fetch(requestURL, {
-            method : "PATCH",
+            method : "PUT",
             headers : {
                 "Content-Type" : "application/json",
                 "Accept" : "*/*",
@@ -98,8 +97,7 @@ export const callUpdateScheduleAPI = ({form, scheduleNo}) => {
             },
             body : JSON.stringify({
                 calendarCategory : {
-                    calendarCategoryNo : form.calendarCategoryNo,
-                    calendarCategoryName : form.calendarCategoryName
+                    calendarCategoryName : '내 일정'
                 },
                 scheduleTitle : form.scheduleTitle,
                 startDate : form.startDate,
@@ -118,7 +116,7 @@ export const callUpdateScheduleAPI = ({form, scheduleNo}) => {
 
 export const callDeleteScheduleAPI = ({scheduleNo}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/message/impo?page=${scheduleNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/calendar/schedule/delete/${scheduleNo}`;
 
     return async (dispatch, getState) => {
 

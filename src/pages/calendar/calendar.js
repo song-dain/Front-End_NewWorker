@@ -36,10 +36,10 @@ function Calendar(){
         || Array.isArray(dayOffEvents) && dayOffEvents;
 
     const filterList = [
-        { id: 0, value: "내 일정", name: "mySchedule" },
-        { id: 1, value: "연차", name: "dayOff" },
-        { id: 2, value: "부서 일정", name: "deptSchedule" },
-        { id: 3, value: "전사 일정", name: "comSchedule" }
+        { id: 0, name: "mySchedule", value: "내 일정" },
+        { id: 1, name: "dayOff", value: "연차" },
+        { id: 2, name: "deptSchedule", value: "부서 일정" },
+        { id: 3, name: "comSchedule", value: "전사 일정" }
     ];
 
     const [ filter, setFilter ] = useState({
@@ -64,7 +64,7 @@ function Calendar(){
         if(e.target.checked){
             setFilter({
                 ...filter,
-                [e.target.name] : e.target.name
+                [e.target.name] : e.target.value
             });
         } else {
             setFilter({
@@ -77,7 +77,6 @@ function Calendar(){
     const onClickScheduleHandler = (e) => {
 
         console.log('클릭 이벤트 동작 체크');
-        console.log(e);
 
         if(e.event._def.title != "연차" || "공가" || "병가" || "오전반차" || "오후반차"){
             setScheduleDetailModal(true);
@@ -102,6 +101,7 @@ function Calendar(){
                                     key={item.id}
                                     type="checkbox"
                                     name={item.name}
+                                    value={item.value}
                                     onChange=
                                         { e => 
                                             { checkedItemHandler(e) }
