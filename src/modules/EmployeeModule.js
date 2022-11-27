@@ -10,6 +10,7 @@ export const POST_FINDID = 'employee/POST_FINDID';
 export const PUT_EMPLOYEE = 'employee/PUT_EMPLOYEE';
 export const MAIL_CONFIRM = 'employee/MAIL_CONFIRM';
 export const POST_EMPLOYEE = 'employee/POST_EMPLOYEE';
+export const GET_EMPLOYEEL_INFO = 'employee/GET_EMPLOYEEL_INFO';
 
 
 const actions = createActions({
@@ -21,7 +22,9 @@ const actions = createActions({
     [PUT_EMPLOYEE]: () => {},
 
     [MAIL_CONFIRM]: () => {},
-    [POST_EMPLOYEE]: () => {}
+    [POST_EMPLOYEE]: () => {},
+
+    [GET_EMPLOYEEL_INFO]: () => {}
 
 });
 
@@ -48,6 +51,9 @@ const employeeReducer = handleActions({
         return payload;
     },
     [POST_EMPLOYEE] : (state, { payload }) => {
+        return payload;
+    },
+    [GET_EMPLOYEEL_INFO] : (state, { payload }) => {
         return payload;
     },
 

@@ -39,7 +39,7 @@ function Calendar(){
         { id: 0, name: "mySchedule", value: "내 일정" },
         { id: 1, name: "dayOff", value: "연차" },
         { id: 2, name: "deptSchedule", value: "부서 일정" },
-        { id: 3, name: "comSchedult", value: "전사 일정" }
+        { id: 3, name: "comSchedule", value: "전사 일정" }
     ];
 
     const [ filter, setFilter ] = useState({
@@ -60,8 +60,6 @@ function Calendar(){
 
 
     const checkedItemHandler = (e) => {
-
-        console.log(e.target.name);
         
         if(e.target.checked){
             setFilter({
@@ -76,12 +74,9 @@ function Calendar(){
         }
     }
 
-    console.log(filter);
-
     const onClickScheduleHandler = (e) => {
 
         console.log('클릭 이벤트 동작 체크');
-        console.log(e);
 
         if(e.event._def.title != "연차" || "공가" || "병가" || "오전반차" || "오후반차"){
             setScheduleDetailModal(true);

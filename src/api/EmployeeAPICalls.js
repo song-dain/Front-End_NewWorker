@@ -1,4 +1,4 @@
-import { POST_LOGIN, POST_FINDID, GET_EMPLOYEE, GET_EMPLOYEELIST, PUT_EMPLOYEE, MAIL_CONFIRM, POST_EMPLOYEE } from "../modules/EmployeeModule";
+import { POST_LOGIN, POST_FINDID, GET_EMPLOYEE, GET_EMPLOYEELIST, PUT_EMPLOYEE, MAIL_CONFIRM, POST_EMPLOYEE, GET_EMPLOYEEL_INFO } from "../modules/EmployeeModule";
 
 
 
@@ -181,7 +181,6 @@ export const callEmployeeListAPI = ({currentPage = 1}) => {
             dispatch({ type: GET_EMPLOYEELIST, payload: result.data });
         }
     }
-
 }
 
 // 직원상세조회(관리자영역)
@@ -231,6 +230,29 @@ export const callEmployeeUpdateAPI = ({form}) => {
         if(result.status === 200) {
             console.log('[EmployeeAPICalls] callEmployeeUpdateAPI RESULT : ', result);
             dispatch({ type: PUT_EMPLOYEE, payload : result.data });
+        }
+    }
+}
+
+// [캘린더] 본인 정보 가져오기
+export const callEmployeeInfoAPI = () => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/employee/empInfo`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            }
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[EmployeeAPICalls] callEmployeeInfoAPI RESULT : ', result);
+            dispatch({ type: GET_EMPLOYEEL_INFO, payload : result.data });
         }
     }
 }
