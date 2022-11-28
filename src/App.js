@@ -23,6 +23,7 @@ import EmployeeList from "./pages/employee/EmployeeList";
 import EmployeeDetail from "./pages/employee/EmployeeDetail";
 import RestRegist from "./pages/rest/RestRegist";
 import NewSchedule from "./pages/calendar/NewSchedule";
+import Survey from "./pages/survey/Survey";
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
             <Route path="emp/employeeList" element={ <EmployeeList/> }/>
             <Route path="emp/employeeList/detail-management/:employeeNo" element={ <EmployeeDetail/> }/>
 
+            {/* 전사공지부분 */}
             <Route path="Notice" element={<Notice />} />
             <Route path="noticeDetail/:notNo" element={<NoticeDetail/>} />
             <Route path="notice-registration" element={<NoticeRegistration />} />
@@ -57,6 +59,9 @@ function App() {
             <Route path="calendar/add" element={ <NewSchedule/> }/>
             
             <Route path="att/start" element={<AttStart />} />
+
+            {/* 설문조사부분 */}
+            <Route path="Survey" element={<Survey />} />
           </Route>
 
           <Route path="/login" element={<Login />} />
