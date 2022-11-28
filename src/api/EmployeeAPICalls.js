@@ -1,4 +1,4 @@
-import { POST_LOGIN, POST_FINDID, GET_EMPLOYEE, GET_EMPLOYEELIST, PUT_EMPLOYEE, MAIL_CONFIRM, POST_EMPLOYEE, GET_EMPLOYEEL_INFO } from "../modules/EmployeeModule";
+import { POST_LOGIN, POST_FINDID, POST_FINDPWD, POST_UPDATEPWD, GET_EMPLOYEE, GET_EMPLOYEELIST, PUT_EMPLOYEE, MAIL_CONFIRM, POST_EMPLOYEE, GET_EMPLOYEEL_INFO } from "../modules/EmployeeModule";
 
 
 
@@ -102,7 +102,7 @@ export const callMailConfirmAPI = ({form}) => {
 /* 비밀번호 찾기 */
 export const callFindPwdAPI = ({form}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/auth/PwdInquiry`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/auth/pwdInquiry`;
 
     return async (dispatch, getState) => {
 
@@ -113,19 +113,54 @@ export const callFindPwdAPI = ({form}) => {
                 "Accept" : "*/*"
             },
             body : JSON.stringify({
+                employeeId : form.employeeId,
                 employeeName : form.employeeName,
-                employeeEmail : form.employeeEmail
+                employeeEmail : form.employeeEmail,
+                code : form.code
             })
         })
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[EmployeeAPICalls] callFindIdAPI result : ', result);
-            dispatch({ type: POST_FINDID, payload : result });
+            console.log('[EmployeeAPICalls] callFindPwdAPI result : ', result);
+            dispatch({ type: POST_FINDPWD, payload : result });
         }
     }
 
 }
+
+
+/* 비밀번호 변경 */
+export const callUpdatePwdAPI = ({form}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/auth/pwdUpdate`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "POST",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*"
+            },
+            body : JSON.stringify({
+                employeeId : form.employeeId,
+                employeeName : form.employeeName,
+                employeeEmail : form.employeeEmail,
+                code : form.code,
+                employeePwd : form.employeePwd
+            })
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[EmployeeAPICalls] callUpdatePwdAPI result : ', result);
+            dispatch({ type: POST_UPDATEPWD, payload : result });
+        }
+    }
+
+}
+
 
 /* 직원 등록 */
 export const callEmployeeRegistAPI = ({form}) => {

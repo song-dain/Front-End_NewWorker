@@ -41,6 +41,10 @@ function Login() {
         navigate("/pwdInquiry", {replace:true});
     }
 
+    const onClickPwdUpdateHandler = () => {
+        navigate("/pwdUpdate", {replace:true});
+    }
+
 
     const onClickHandler = () => {
         dispatch(callLoginAPI({
@@ -60,7 +64,7 @@ function Login() {
                 <table className={ LoginCSS.quiryText }>
                     <td onClick={ onClickIdInquiryHandler }>아이디 찾기 | </td>
                     <td onClick={ onClickPwdInquiryHandler }>  비밀번호 찾기 |</td>
-                    <td> 비밀번호 변경 </td>
+                    <td onClick={ onClickPwdUpdateHandler }> 비밀번호 변경 </td>
                     </table>
             </div>
         </div>
