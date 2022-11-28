@@ -23,6 +23,7 @@ export const callSelectOfficeCalendarAPI = ({form}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
+            console.log(result);
             dispatch({ type: POST_SCHEDULE, payload: result.data });
         }
     }
@@ -45,6 +46,7 @@ export const callScheduleDetailAPI = ({scheduleNo}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
+            console.log(result);
             dispatch({ type: GET_SCHEDULE, payload: result.data });
         }
     }
@@ -65,11 +67,12 @@ export const callAddScheduleAPI = ({form}) => {
             },
             body : JSON.stringify({
                 calendarCategory : {
-                    calendarCategoryName : '내 일정'
+                    calendarCategoryName : form.calendarCategory.calendarCategoryName
                 },
                 scheduleTitle : form.scheduleTitle,
                 startDate : form.startDate,
                 endDate : form.endDate,
+                startTime : form.startTime,
                 scheduleLocation : form.scheduleLocation,
                 scheduleContent : form.scheduleContent
             })
@@ -97,11 +100,12 @@ export const callUpdateScheduleAPI = ({form, scheduleNo}) => {
             },
             body : JSON.stringify({
                 calendarCategory : {
-                    calendarCategoryName : '내 일정'
+                    calendarCategoryName : form.calendarCategory.calendarCategoryName
                 },
                 scheduleTitle : form.scheduleTitle,
                 startDate : form.startDate,
                 endDate : form.endDate,
+                startTime : form.startTime,
                 scheduleLocation : form.scheduleLocation,
                 scheduleContent : form.scheduleContent
             })

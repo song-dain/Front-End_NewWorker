@@ -139,6 +139,7 @@ export const callSendMessageListAPI = ({currentPage = 1}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
+            console.log(result);
             dispatch({ type: GET_SEND_MESSAGES, payload: result.data });
         }
     }
@@ -183,6 +184,7 @@ export const callImpoMessageListAPI = ({currentPage = 1}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
+            console.log(result);
             dispatch({ type: GET_IMPO_MESSAGES, payload: result.data });
         }
     }
@@ -227,6 +229,7 @@ export const callBinReceiveMessageAPI = ({currentPage = 1}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
+            console.log(result);
             dispatch({ type: GET_RECEIVE_BIN_MESSAGES, payload: result.data });
         }
     }
@@ -249,6 +252,7 @@ export const callBinSendMessageAPI = ({currentPage = 1}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
+            console.log(result);
             dispatch({ type: GET_SEND_BIN_MESSAGES, payload: result.data });
         }
     }

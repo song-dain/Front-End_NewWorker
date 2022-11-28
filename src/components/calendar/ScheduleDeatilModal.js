@@ -1,4 +1,5 @@
 import { callScheduleDetailAPI, callUpdateScheduleAPI, callDeleteScheduleAPI } from "../../api/CalendarAPICalls";
+import { callEmployeeInfoAPI } from "../../api/EmployeeAPICalls";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { decodeJwt } from '../../utils/tokenUtils';
@@ -14,7 +15,8 @@ function ScheduleDetailModal({clickEventId, setScheduleDetailModal}){
     }
 
     const dispatch = useDispatch();
-    const calendarEvent = useSelector(state => state.calendarReducer);
+    const calendarEvent = useSelector(state => state.calendarReducer); // 일정 정보
+    const loginEmp = useSelector(state => state.employeeReducer); // 로그인한 사원 정보
     const [modifyMode, setModifyMode] = useState(false);
     const [update, setUpdate] = useState({});
 
@@ -23,6 +25,8 @@ function ScheduleDetailModal({clickEventId, setScheduleDetailModal}){
             dispatch(callScheduleDetailAPI({
                 scheduleNo : clickEventId
             }));
+
+            dispatch(callEmployeeInfoAPI());
         }
         , []
     )
@@ -37,11 +41,12 @@ function ScheduleDetailModal({clickEventId, setScheduleDetailModal}){
             scheduleTitle : calendarEvent.scheduleTitle,
             startDate : calendarEvent.startDate,
             endDate : calendarEvent.endDate,
+            startTime : calendarEvent.startTime,
             scheduleLocation : calendarEvent.scheduleLocation,
             scheduleContent : calendarEvent.scheduleContent
         });
 
-        console.log(calendarEvent.employee.position.positionNo); // 여기는 읽히는디...? 왜 저랭~...
+        console.log(update);
     }
 
     /* 수정 일정 입력 */
@@ -49,6 +54,16 @@ function ScheduleDetailModal({clickEventId, setScheduleDetailModal}){
         setUpdate({
             ...update,
             [e.target.name] : e.target.value
+        });
+    }
+
+    /* slect 수정 */
+    const onSelectChangeHandler = (e) => {
+        setUpdate({
+            ...update,
+            calendarCategory : {
+                calendarCategoryName : e.target.value
+            }
         });
     }
 
@@ -61,20 +76,20 @@ function ScheduleDetailModal({clickEventId, setScheduleDetailModal}){
             scheduleNo : clickEventId
         }));
 
+        window.alert('일정이 수정되었습니다.');
         window.location.reload();
     }
 
     /* 일정 삭제 */
     const onClickDeleteBtnHandler = () => {
 
-        console.log(clickEventId);
-
         dispatch(callDeleteScheduleAPI({ scheduleNo : clickEventId }));
 
+        window.alert('일정이 삭제되었습니다.');
         window.location.reload();
     }
 
-    console.log(clickEventId);
+    console.log(update);
 
     return(
         <>
@@ -82,12 +97,19 @@ function ScheduleDetailModal({clickEventId, setScheduleDetailModal}){
                 onClick={ () => setScheduleDetailModal(false) }
             >X</button>
             <div key={clickEventId}>
-                <select>
-                    <option>내 일정</option>
-                    <option>부서 일정</option>
-                    { decoded == "ROLE_ADMIN" && <>
-                        <option>전사 일정</option>
-                    </> }
+                <select onChange={ e => onSelectChangeHandler(e) }>
+                    { modifyMode && <>
+                        <option>{calendarEvent.calendarCategory.calendarCategoryName}</option>
+                        <option>내 일정</option>
+                        { loginEmp.position.positionNo > 211 /* 사원 이상부터 부서일정 추가/수정 가능 */ && <> 
+                            <option>부서 일정</option>
+                                { decoded == "ROLE_ADMIN" /* 관리자만 전사 일정 추가/수정 가능 */ && <>
+                                    <option>전사 일정</option>
+                                </> }
+                        </>}
+                    </> || calendarEvent.calendarCategory && <option>{calendarEvent.calendarCategory.calendarCategoryName}</option> }
+                
+
                 </select>
                 <input 
                     name='scheduleTitle'
@@ -111,6 +133,13 @@ function ScheduleDetailModal({clickEventId, setScheduleDetailModal}){
                     onChange={ e => onChangeHandler(e) }
                 />
                 <input 
+                    type='time'
+                    name='startTime'
+                    value={ (!modifyMode ? calendarEvent.startTime : update.startTime) || '' }
+                    readOnly={ modifyMode ? false : true }
+                    onChange={ e => onChangeHandler(e) }
+                />
+                <input
                     name='scheduleLocation'
                     value={ (!modifyMode ? calendarEvent.scheduleLocation : update.scheduleLocation) || '' }
                     readOnly={ modifyMode ? false : true }
