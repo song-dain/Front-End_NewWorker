@@ -15,6 +15,7 @@ function ReceiveMessageBox(){
     const [selectMContent, setSelectMContent] = useState('');
     const [selectMSender, setSelectMSender] = useState('');
     const [selectMsendDate, setSelectMSendDate] = useState('');
+    const [senderNo, setSenderNo] = useState(0);
     const [messageModal, setMessageModal] = useState(false);
     const messages = useSelector(state => state.messageReducer);
     const messageList = messages.data;
@@ -61,6 +62,7 @@ function ReceiveMessageBox(){
             messageNo : message.messageNo
         }));
 
+        setSenderNo(message.sender.employeeNo);
         setSelectMSender(message.sender.employeeName);
         setSelectMContent(message.messageContent);
         setSelectMSendDate(message.sendDate);
@@ -116,6 +118,7 @@ function ReceiveMessageBox(){
         <>
             { messageModal ? 
                 <ReceiveMessageMoadl
+                    selectMSenderNo={senderNo}
                     selectMSender={selectMSender}
                     selectMContent={selectMContent}
                     selectMsendDate={selectMsendDate}

@@ -34,7 +34,7 @@ function SendMessage(){
     const SendMessage = () => {
         dispatch(callSendMessageAPI({ form : message }));
         window.alert('메시지가 전송되었습니다.');
-        navigate(-1);
+        navigate('/message/send', { replace : false });
     }
 
     return(
