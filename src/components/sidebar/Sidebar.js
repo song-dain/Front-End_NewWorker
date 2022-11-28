@@ -81,7 +81,7 @@ function Sidebar() {
                     <li id="slideToggleBtn4"><NavLink to="calendar">내 캘린더</NavLink></li>
                     <li id="slideToggleBtn6"><NavLink to="Notice">전사공지</NavLink></li>
 
-                    <li id="slideToggleBtn5">설문조사</li>
+                    <li id="slideToggleBtn5"><NavLink to="Survey">설문조사</NavLink></li>
 
                     {/* 관리자로 로그인 했을시 생성되는 네브 목록
                     <li id="slideToggleBtn7">직원관리</li> */}

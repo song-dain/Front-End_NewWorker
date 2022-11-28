@@ -204,6 +204,9 @@ function SubSidebar() {
                     </li>
                     <li>설문조사</li>
                 </div>
+                <div className={SubSidebarCSS.midleTitle}>
+                    <li><NavLink to="">설문등록</NavLink></li>
+                </div>
                 <div>
                     <ul>
                         <li className={SubSidebarCSS.sideTitle1}> ㅇ설문</li>
