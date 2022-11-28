@@ -157,7 +157,7 @@ function BinMessageBox(){
                                             /></td>
                                         <td>{messages.sender.employeeName}</td>
                                         <td>{messages.messageContent}</td>
-                                        <td>{messages.sendDate}</td>
+                                        <td>{(messages.today > messages.sendDate.substring(0, 10) ? messages.sendDate.substring(0, 10) : messages.sendDate.substring(11, 16) )}</td>
                                         <td><img 
                                                 src={binicon} alt="bin"
                                                onClick={ () => DeleteMessage(messages.messageNo) }

@@ -72,6 +72,7 @@ export const callReceiveMessageListAPI = ({currentPage = 1}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
+            console.log(result);
             dispatch({ type: GET_RECEIVE_MESSAGES, payload: result.data });
         }
     }
