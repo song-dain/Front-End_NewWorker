@@ -5,6 +5,7 @@ import Login from "./pages/employee/Login";
 import Notice from "./pages/notice/Notice";
 import NoticeDetail from "./pages/notice/NoticeDetail";
 import NoticeRegistration from "./pages/admin/NoticeRegistration";
+import NoticeUpdate from "./pages/admin/NoticeUpdate";
 import SendMessage from "./pages/message/SendMessage";
 import ReceiveMessageBox from "./pages/message/ReceiveMessageBox";
 import SendMessageBox from "./pages/message/SendMessageBox";
@@ -43,6 +44,7 @@ function App() {
             <Route path="Notice" element={<Notice />} />
             <Route path="noticeDetail/:notNo" element={<NoticeDetail />} />
             <Route path="notice-registration" element={<NoticeRegistration />} />
+            <Route path="notice-update/:notNo" element={<NoticeUpdate />} />
 
             <Route path="message/write" element={<SendMessage />} />
             <Route path="message/receive" element={<ReceiveMessageBox />} />

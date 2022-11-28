@@ -1,0 +1,141 @@
+.noticeRegistration{
+    width: 1470px;
+    height: 100%;
+}
+
+.text {
+    font-size: 60px;
+    border-bottom: 1px solid black;
+}
+
+
+.registrationTable{
+    width: 1300px;
+    margin: 0 auto;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}
+
+.registrationThead{
+    width: 1300px;
+    margin: 0 auto;
+}
+
+.tableBox{
+    width: 1300px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+
+.noticeTitle {
+    width: 1300px;
+    margin: 0 auto;
+    height: 30px;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid black;
+    border-top: none;
+}
+
+.registrationTbody{
+    width: 1300px;
+    margin: 0 auto;
+}
+
+
+.noticeImageDiv{
+    width: 1300px;
+    margin-top : 10px;
+    border-bottom: 1px solid black;
+}
+
+
+.noticeContent{
+    width: 670px;
+    resize: none;
+    float: right;
+    height: 630px;
+    margin-top : 10px;
+    margin-bottom: 10px;
+}
+
+.noticeImage{
+    margin-top: 5px;
+    width: 600px;
+    height: 630px;  
+    float: left;
+    margin-top : 10px;
+    margin-bottom: 10px;
+}
+
+.noticeStatusBox{
+    border-bottom: 1px solid black;
+    height: 30px;
+}
+
+
+
+
+
+.fileBox{
+    width: 1300px;
+    border-bottom: 1px solid black;
+}
+
+
+
+
+.noticeImageButton{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 150px;
+    background-color: lightgray;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    float: right;
+}
+
+.noticeImageButton:hover{
+    cursor: pointer;
+    color: white;
+}
+
+.noticeButtonDiv{
+    display: flex;
+    justify-content: flex-end;
+}
+.noticeButtonDiv1{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 100px;
+    background-color: lightgray;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    margin-right: 10px;
+}
+
+.noticeButtonDiv2{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 100px;
+    background-color: lightgray;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.noticeButtonDiv button:hover {
+    cursor: pointer;
+    color: white;
+}
