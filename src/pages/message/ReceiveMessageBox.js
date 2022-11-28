@@ -18,7 +18,7 @@ function ReceiveMessageBox(){
     const [messageModal, setMessageModal] = useState(false);
     const messages = useSelector(state => state.messageReducer);
     const messageList = messages.data;
-    const pageInfo = messages.pageInfo;
+    const pageInfo = messages.pageInfo;;
 
     useEffect(
         () => {
@@ -160,7 +160,7 @@ function ReceiveMessageBox(){
                                         <td
                                             onClick={ () => onClickMessageContent(messages) }
                                         >{messages.messageContent}</td>
-                                        <td>{messages.sendDate}</td>
+                                        <td>{(messages.today > messages.sendDate.substring(0, 10) ? messages.sendDate.substring(0, 10) : messages.sendDate.substring(11, 16) )}</td>
                                         <td><img 
                                                 src={binicon} alt="bin"
                                                 onClick={ () => moveToBinMessageBox(messages.messageNo) }
