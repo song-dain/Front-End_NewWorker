@@ -1,18 +1,46 @@
 import SurveyCSS from "./Survey.module.css";
 import $ from 'jquery';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { callSurveyAPI } from '../../api/SurveyAPICalls';
 
 
 import React from "react";
 
 function Survey() {
 
+    const surveys = useSelector(state => state.surveyReducer);
+    const surveyList = surveys.data;
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const params = useParams();
+    const [currentPage, setCurrentPage] = useState(1);
 
+    const onClickTableTr = (surNo) => {
+        navigate(`/surveyDetail/${surNo}`, { replace: true });
+    }
+
+    useEffect(
+        () => {
+            dispatch(callSurveyAPI({
+                notNo: params.notNo,
+                currentPage: currentPage
+            }));
+        }
+        , [currentPage]
+    )
+
+
+
+
+    // 슬라이드 배너 코드
     let interval;
     let activeIndex = 1;
 
     $(document).ready(function () {
         interval = setInterval(changeActiveIndex, 2500);
-        $('.list-button-item').on('click', function () {
+        $('.listButtonItem').on('click', function () {
             // list button의 색상 변경
             const index = $(this).index();
             activeIndex = index;
@@ -39,8 +67,8 @@ function Survey() {
         activeIndex += 1;
     }
     function changeActiveBtn() {
-        $('.list-button-item').removeClass('active');
-        $(`.list-button span:eq(${activeIndex})`).addClass('active');
+        $('.listButtonItem').removeClass('active');
+        $(`.listbutton span:eq(${activeIndex})`).addClass('active');
     }
 
 
@@ -71,14 +99,15 @@ function Survey() {
                                 <img src="static/images/logo.png" alt="로고" />
                             </a></div>
                         </div >
-                        <div class="list-button">
-                            <span class="list-button-item active"></span>
-                            <span class="list-button-item"></span>
-                            <span class="list-button-item"></span>
-                            <span class="list-button-item"></span>
+                        <div className={SurveyCSS.listbutton}>
+                            <span className={SurveyCSS.listButtonItem}></span>
+                            <span className={SurveyCSS.listButtonItem}></span>
+                            <span className={SurveyCSS.listButtonItem}></span>
+                            <span className={SurveyCSS.listButtonItem}></span>
                         </div>
                     </div>
                 </div>
+
                 <div className={SurveyCSS.surMain}>
 
                     <div className={SurveyCSS.surMainBox}>
@@ -87,7 +116,53 @@ function Survey() {
                         </button>
                     </div>
                     <div className={SurveyCSS.surSubBox}>
+                        <div className={SurveyCSS.surFlexBox}>
+                            {/* <table className={SurveyCSS.surBox}>
+                                <thead>
+                                    <button className={SurveyCSS.surIngBox}>진행중</button>
+                                </thead>
+                                <tbody>
+                                    {
+                                        Array.isArray(surveyList) && surveyList.map(
+                                            (surveyList) => (
+                                                <tr
+                                                    key={surveyList.surNo}
+                                                    onClick={() => onClickTableTr(surveyList.surNo)}
+                                                >
+                                                    <th >{surveyList.surTitle}</th>
+                                                    <th >{surveyList.surStartDate} ~ {surveyList.surEndDate}</th>
+                                                    <th >{surveyList.dep.depName}</th>
+                                                    <img src={surveyList.surveyImageUrl} alt="썸네일" />
+                                                </tr>
+                                            )
+                                        )
+                                    }
+                                </tbody>
+                            </table> */}
+                            <table>
 
+                                <thead className={SurveyCSS.surFlexBox1}>
+                                    {
+                                        Array.isArray(surveyList) && surveyList.map(
+                                            (surveyList) => (
+                                                <tr
+                                                    key={surveyList.surNo}
+                                                    onClick={() => onClickTableTr(surveyList.surNo)}
+                                                >
+                                                    <td className={SurveyCSS.surIngBox}>진행중</td>
+                                                    <td className={SurveyCSS.surTitle}>{surveyList.surTitle}</td>
+                                                    <th >{surveyList.surStartDate} ~ {surveyList.surEndDate}</th>
+                                                    <th>{surveyList.dep.depName}</th>
+                                                    <td>
+                                                        <img src={surveyList.surveyImageUrl} alt="썸네일" />
+                                                    </td>
+                                                </tr>
+                                            )
+                                        )
+                                    }
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
 

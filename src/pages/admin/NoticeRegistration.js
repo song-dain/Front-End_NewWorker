@@ -55,7 +55,7 @@ function NoticeRegistration() {
 
     }
 
-    /* 상품 등록 버튼 클릭 이벤트 */
+    /* 공지 등록 버튼 클릭 이벤트 */
     const onClickNoticeRegistrationHandler = () => {
 
         const formData = new FormData();
