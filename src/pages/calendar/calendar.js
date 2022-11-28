@@ -76,13 +76,15 @@ function Calendar(){
 
     const onClickScheduleHandler = (e) => {
 
-        console.log('클릭 이벤트 동작 체크');
+        console.log(e.event._def.title);
 
-        if(e.event._def.title != "연차" || "공가" || "병가" || "오전반차" || "오후반차"){
+        if(e.event._def.title !== "연차" || e.event._def.title !== "공가" 
+        || e.event._def.title !== "병가" || e.event._def.title !== "오전반차" || e.event._def.title !== "오후반차"){
             setScheduleDetailModal(true);
             setClickEventId(e.event._def.publicId);
+        } else {
+            setScheduleDetailModal(false);
         }
-
     }
 
     return(
