@@ -2,7 +2,7 @@ import NoticeDetailCSS from './NoticeDetail.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { decodeJwt } from '../../utils/tokenUtils';
+
 import {
     callNoticeDetailAPI,
     callNoticeUpdateAPI
@@ -15,9 +15,9 @@ function NoticeDetail() {
     const params = useParams();
     const notices = useSelector(state => state.noticeReducer);
     const noticeDetail = notices.data
-    const token = decodeJwt(window.localStorage.getItem("accessToken"));
 
-    const [modifyMode, setModifyMode] = useState(false);
+
+    // const [modifyMode, setModifyMode] = useState(false);
     const [form, setForm] = useState({});
 
 
@@ -39,28 +39,9 @@ function NoticeDetail() {
         });
     };
 
-    const onClickModifyModeHandler = () => {
-        setModifyMode(true);
-        setForm({
-            notTitle: noticeDetail.notTitle,
-            notContent: noticeDetail.notContent,
-            notStatus: noticeDetail.notStatus
-        });
+    const onClickUpdate = (notNo) => {
+        navigate(`/notice-update/${notNo}`, { replace: false });
     }
-
-    const onClickNoticeUpdateHandler = () => {
-
-        dispatch(callNoticeUpdateAPI({
-            form: form
-        }));
-
-        navigate(`/notices/${noticeDetail.notice.notNo}`, { replace: true });
-        window.location.reload();
-    }
-
-
-
-
 
     return (
         <div className={NoticeDetailCSS.noticeDetail}>
@@ -74,10 +55,10 @@ function NoticeDetail() {
                                     className={NoticeDetailCSS.noticeTitle}
                                     name='notTitle'
                                     placeholder='제목'
-                                    readOnly={modifyMode ? false : true}
-                                    style={!modifyMode ? { backgroundColor: 'white' } : null}
+                                    // readOnly={modifyMode ? false : true}
+                                    style={{ backgroundColor: 'white' }}
                                     onChange={onChangeHandler}
-                                    value={(!modifyMode ? noticeDetail.notTitle : form.notTitle) || ''}
+                                    value={noticeDetail.notTitle || ''}
                                     disabled
                                 /></th>
                                 <th><input
@@ -106,10 +87,10 @@ function NoticeDetail() {
                                     <textarea
                                         className={NoticeDetailCSS.noticeContent}
                                         name='notContent'
-                                        readOnly={modifyMode ? false : true}
-                                        style={!modifyMode ? { backgroundColor: 'white' } : null}
+                                        // readOnly={modifyMode ? false : true}
+                                        style={{ backgroundColor: 'white' }}
                                         onChange={onChangeHandler}
-                                        value={(!modifyMode ? noticeDetail.notContent : form.notContent) || ''}
+                                        value={noticeDetail.notContent || ''}
                                         disabled
                                     >
                                     </textarea>
@@ -119,38 +100,29 @@ function NoticeDetail() {
                     </table>
                 </div>
             }
-            {noticeDetail &&
-                <div className={NoticeDetailCSS.backBtnBox}>
-                    <button
-                        className={NoticeDetailCSS.backBtn}
-                        onClick={() => navigate(`/Notice`)}
-                    >
-                        목록으로
-                    </button>
 
-                    {token &&
-                        (token.sub === noticeDetail.employee?.employeeNo)
-                        ?
-                        <div>{!modifyMode &&
-                            <button
-                                onClick={onClickModifyModeHandler}
-                            >
-                                수정모드
-                            </button>
-                        }
-                            {modifyMode &&
-                                <button
-                                    onClick={onClickNoticeUpdateHandler}
-                                >
-                                    리뷰 수정 저장하기
-                                </button>
-                            }
-                        </div>
-                        : null
-                    }
+            <div className={NoticeDetailCSS.backBtnBox}>
+                <button
+                    className={NoticeDetailCSS.backBtn}
+                    onClick={() => navigate(`/Notice`)}
+                >
+                    목록으로
+                </button>
+                
+                
+                <button
+                    className={NoticeDetailCSS.backBtn}
+                    onClick={() => navigate(`/notice-update/${noticeDetail.notNo}`, { replace: false })}
+                >
+                    수정하기
+                </button>
+                
 
-                </div>
-            }
+
+
+
+            </div>
+
         </div>
     );
 }

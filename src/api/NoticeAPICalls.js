@@ -48,6 +48,7 @@ export const callNoticeDetailAPI = ({notNo}) => {
 
 }
 
+//수정하기
 export const callNoticeUpdateAPI = ({form}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/notice/notices/register`;
@@ -78,6 +79,7 @@ export const callNoticeUpdateAPI = ({form}) => {
 
 }
 
+//등록하기
 export const callNoticeRegistAPI = ({form}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/notice/notices/register`;
@@ -103,3 +105,25 @@ export const callNoticeRegistAPI = ({form}) => {
 }
 
 
+export const callNoticeDetailForAdminAPI = ({notNo}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/notice/notices/noticeList/${notNo}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            }
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[NoticeAPICalls] callNoticeDetailForAdminAPI RESULT : ', result);
+            dispatch({ type: GET_NOTICE, payload : result.data });
+        }
+    }
+}
