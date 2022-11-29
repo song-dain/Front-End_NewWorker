@@ -149,13 +149,23 @@ function Survey() {
                                                     key={surveyList.surNo}
                                                     onClick={() => onClickTableTr(surveyList.surNo)}
                                                 >
-                                                    <td className={SurveyCSS.surIngBox}>진행중</td>
-                                                    <td className={SurveyCSS.surTitle}>{surveyList.surTitle}</td>
-                                                    <th >{surveyList.surStartDate} ~ {surveyList.surEndDate}</th>
-                                                    <th>{surveyList.dep.depName}</th>
-                                                    <td>
-                                                        <img src={surveyList.surveyImageUrl} alt="썸네일" />
-                                                    </td>
+                                                    
+                                                    <tbody>
+
+                                                    
+                                                    <div className={SurveyCSS.surBox}>
+
+                                                        <td className={SurveyCSS.surIngBox}>진행중</td>
+                                                        <tr className={SurveyCSS.surTitle}>{surveyList.surTitle}</tr>
+                                                        <tr >{surveyList.surStartDate} ~ {surveyList.surEndDate}</tr>
+                                                        <tr>{surveyList.dep.depName}</tr>
+                                                        <td>
+
+                                                            <img src={surveyList.surveyImageUrl} alt="썸네일" />
+                                                        </td>
+                                                        
+                                                    </div>
+                                                    </tbody>
                                                 </tr>
                                             )
                                         )
