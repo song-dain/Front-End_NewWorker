@@ -80,30 +80,30 @@ export const callSurveyDetailAPI = ({surNo}) => {
 
 // }
 
-// //등록하기
-// export const callNoticeRegistAPI = ({form}) => {
+//등록하기
+export const callSurveyRegistAPI = ({form}) => {
 
-//     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/notice/notices/register`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/survey/survey/register`;
 
-//     return async (dispatch, getState) => {
-//         console.log(`폼 객체 :`, form);
-//         const result = await fetch(requestURL, {
-//             method : "POST",
-//             headers : {
-//                 "Accept": "*/*",
-//                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-//             },
-//             body : form
-//         })
-//         .then(response => response.json());
+    return async (dispatch, getState) => {
+        console.log(`폼 객체 :`, form);
+        const result = await fetch(requestURL, {
+            method : "POST",
+            headers : {
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            },
+            body : form
+        })
+        .then(response => response.json());
 
-//         if(result.status === 200) {
-//             console.log('[NoticeAPICalls] callNoticeRegistAPI result : ', result);
-//             dispatch({ type: POST_NOTICE, payload: result.data });
-//         }
-//     }
+        if(result.status === 200) {
+            console.log('[SurveyAPICalls] callSurveyRegistAPI result : ', result);
+            dispatch({ type: POST_SURVEY, payload: result.data });
+        }
+    }
 
-// }
+}
 
 
 // export const callNoticeDetailForAdminAPI = ({notNo}) => {

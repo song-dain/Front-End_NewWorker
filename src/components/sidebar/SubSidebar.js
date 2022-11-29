@@ -4,12 +4,27 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import EmailIcon from '@mui/icons-material/Email';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import CoPresentIcon from '@mui/icons-material/CoPresent';
-
+import { decodeJwt } from '../../utils/tokenUtils';
 import $ from 'jquery';
-
+import { useNavigate, useParams } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
 
 function SubSidebar() {
+
+    const navigate = useNavigate();
+
+    const onClickSurveyInsert = () => {
+        console.log('[survey] onClickSurveyInsert');
+        navigate("/survey-registration", { replace: false })
+    }
+
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0];
+    }
 
     $(function () {
         $("#slideToggleBtn").on("click", function () {
@@ -205,7 +220,12 @@ function SubSidebar() {
                     <li>설문조사</li>
                 </div>
                 <div className={SubSidebarCSS.midleTitle}>
-                    <li><NavLink to="">설문등록</NavLink></li>
+                    {decoded === "ROLE_ADMIN" && <li
+                        onClick={onClickSurveyInsert}
+                    >
+                        설문등록
+                    </li>}
+                    
                 </div>
                 <div>
                     <ul>

@@ -10,7 +10,7 @@
 }
 
 .surveyMain{
-    background-color: beige;
+    
     width: 1470px;
     height: 830px;
 }
@@ -50,28 +50,26 @@ table input{
     border-collapse: collapse;
     width: 1470px;
     height: 760px;
-    background-color: blanchedalmond;
+    
 }
 
 .surThead{
     width: 1470px;
     height: 200px;
     border-bottom: 1px solid black;
-    background-color: rgb(150, 108, 54);
+    
 }
 
 .surTbody{
     width: 1470px;
     height: 50px;
-    
-    background-color: rgb(172, 156, 137);
 }
 
 .surTfoot{
     width: 1470px;
     height: 580px;
     border-bottom: 1px solid black;
-    background-color: rgb(183, 218, 120);
+    
 }
 
 
