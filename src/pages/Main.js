@@ -31,8 +31,9 @@ function Main() {
     return(
         <div className={MainCSS.main}>
            <div
+                className={MainCSS.unreadMessage}
                 onClick={ () => onClickUnreadMessage() }
-           >읽지 않은 메시지가 <span>{unread.unreadMessage}</span> 건 있습니다!</div>
+           >읽지 않은 메시지가 <span className={MainCSS.unreadNum}>{unread.unreadMessage}</span> 건 있습니다.</div>
         </div>
     );
 }

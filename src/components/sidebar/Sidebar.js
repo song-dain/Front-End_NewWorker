@@ -1,12 +1,12 @@
 import SidebarCSS from "./Sidebar.module.css";
 import LanguageIcon from '@mui/icons-material/Language';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { callLogoutAPI } from '../../api/EmployeeAPICalls';
 import { decodeJwt } from '../../utils/tokenUtils';
-
-
+import { callUnreadMessageAPI } from "../../api/MessageAPICalls";
 
 
 function Sidebar() {
@@ -22,6 +22,14 @@ function Sidebar() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const unread = useSelector(state => state.messageReducer);
+
+    /* url 변경될 때마다 안 읽은 메시지 리로드 */
+    useEffect(() => {
+        dispatch(callUnreadMessageAPI());
+    }, [window.location.href]
+    );
 
     /* 로그아웃 버튼 이벤트 */
     const onClickLogoutHandler = () => {
@@ -39,7 +47,9 @@ function Sidebar() {
                 <div className={SidebarCSS.HeaderlistUl}>
                     <div>
 
-                        <img src="static/images/logo.png" alt="로고" />
+                        <img src="static/images/logo.png" alt="로고" 
+                             onClick={ () => navigate('/', { replace : true }) }
+                        />
 
 
                         <h1>CodingSpike</h1>
@@ -77,7 +87,10 @@ function Sidebar() {
                     <li id="slideToggleBtn">근태관리</li>
                     <li id="slideToggleBtn1">전자결재</li>
                     <li id="slideToggleBtn2"><NavLink to="emp/employeeList">직원조회</NavLink></li>
-                    <li id="slideToggleBtn3"><NavLink to="message/receive">메시지</NavLink></li>
+                    <li id="slideToggleBtn3"><NavLink to="message/receive">메시지
+                       <span className={SidebarCSS.newMessage}>{unread.unreadMessage}</span>
+                       </NavLink>
+                    </li>
                     <li id="slideToggleBtn4"><NavLink to="calendar">내 캘린더</NavLink></li>
                     <li id="slideToggleBtn6"><NavLink to="Notice">전사공지</NavLink></li>
 

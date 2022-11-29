@@ -6,12 +6,12 @@ import impoicon from "../../img/impoicon.png";
 import binicon from "../../img/binicon.png";
 import ReceiveMessageMoadl from "../../components/message/ReceiveMessageModal";
 
-function ReceiveMessageBox(){
+function ReceiveMessageBox() {
 
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState('');
-    const [searchResult, setSearchResult ] = useState('');
+    const [searchResult, setSearchResult] = useState('');
     const [selectMContent, setSelectMContent] = useState('');
     const [selectMSender, setSelectMSender] = useState('');
     const [selectMsendDate, setSelectMSendDate] = useState('');
@@ -24,7 +24,7 @@ function ReceiveMessageBox(){
     useEffect(
         () => {
             dispatch(callReceiveMessageListAPI({
-                currentPage : currentPage
+                currentPage: currentPage
             }));
         }
         , [currentPage, messageModal]
@@ -37,29 +37,29 @@ function ReceiveMessageBox(){
 
     /* Enter Key로 검색 */
     const onEnterKeyHandler = (e) => {
-        if(e.key == 'Enter') {
+        if (e.key == 'Enter') {
             dispatch(callSearchReceiveMessageAPI({
-                keyword : search,
-                currentPage : currentPage
+                keyword: search,
+                currentPage: currentPage
             }));
-            setSearchResult(`키워드'${search}' 검색 결과입니다.`);
+            setSearchResult(`검색어 '${search}' 검색 결과입니다.`);
         }
     }
 
     /* Button으로 검색 */
     const onClickBtnHandler = () => {
         dispatch(callSearchReceiveMessageAPI({
-            keyword : search,
-            currentPage :  currentPage
+            keyword: search,
+            currentPage: currentPage
         }));
-        setSearchResult(`키워드 '${search}' 검색 결과입니다.`);
+        setSearchResult(`'${search}' 검색 결과입니다.`);
     }
 
     /* 메시지 조회 */
     const onClickMessageContent = (message) => {
 
         dispatch(callReceiveMessageReadAPI({
-            messageNo : message.messageNo
+            messageNo: message.messageNo
         }));
 
         setSenderNo(message.sender.employeeNo);
@@ -73,14 +73,14 @@ function ReceiveMessageBox(){
 
     /* 중요 메시지함으로 이동 */
     const moveToImpoMessageBox = (num) => {
-        
+
 
         dispatch(callRecipientManagementAPI({
-            form : {
-                message : {
-                    messageNo : num
+            form: {
+                message: {
+                    messageNo: num
                 },
-                receiveMessageCategory : 'impoMessageBox'
+                receiveMessageCategory: 'impoMessageBox'
             }
         }));
 
@@ -93,11 +93,11 @@ function ReceiveMessageBox(){
     const moveToBinMessageBox = (num) => {
 
         dispatch(callRecipientManagementAPI({
-            form : {
-                message : {
-                    messageNo : num
+            form: {
+                message: {
+                    messageNo: num
                 },
-                receiveMessageDelete :'Y'
+                receiveMessageDelete: 'Y'
             }
         }));
 
@@ -108,91 +108,101 @@ function ReceiveMessageBox(){
 
     /* 페이징 버튼 */
     const pageNumber = [];
-    if(pageInfo) {
-        for(let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
+    if (pageInfo) {
+        for (let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
             pageNumber.push(i);
         }
     }
 
-    return(
+    return (
         <>
-            { messageModal ? 
+            {messageModal ?
                 <ReceiveMessageMoadl
                     selectMSenderNo={senderNo}
                     selectMSender={selectMSender}
                     selectMContent={selectMContent}
                     selectMsendDate={selectMsendDate}
                     setMessageModal={setMessageModal}
-                /> : null }
+                /> : null}
             <div className={ReceiveMessageBoxCSS.box}>
-                <h1>받은 메시지함</h1> 
-                <input
-                    type="text"
-                    placeholder="검색"
-                    value={ search }
-                    onChange={ onSearchChangeHandler }
-                    onKeyUp= { onEnterKeyHandler }
-                />
-                <button
-                    onClick={ onClickBtnHandler }
-                >
-                검색</button>
-                <div>{ searchResult }</div>
-                <table className={ReceiveMessageBoxCSS.tabel}>
+                <div className={ReceiveMessageBoxCSS.title}>받은 메시지함</div>
+                <div className={ReceiveMessageBoxCSS.searchs}>
+                    <input
+                        className={ReceiveMessageBoxCSS.search}
+                        type="text"
+                        placeholder="검색어를 입력하세요"
+                        value={search}
+                        onChange={onSearchChangeHandler}
+                        onKeyUp={onEnterKeyHandler}
+                    />
+                    <button
+                        className={ReceiveMessageBoxCSS.searchBtn}
+                        onClick={onClickBtnHandler}
+                    >
+                        검색</button>
+                    <div className={ReceiveMessageBoxCSS.searchResult}>{searchResult}</div>
+                </div>
+                <table>
                     <thead>
-                    <tr>
-                        <td>중요</td>
-                        <td>발신자</td>
-                        <td>내용</td>
-                        <td>받은날짜</td>
-                        <td>삭제</td>
-                    </tr>
+                        <tr>
+                            <td className={ReceiveMessageBoxCSS.thd}>중요</td>
+                            <td className={ReceiveMessageBoxCSS.thd}>발신자</td>
+                            <td className={ReceiveMessageBoxCSS.thd}>내용</td>
+                            <td className={ReceiveMessageBoxCSS.thd}>받은날짜</td>
+                            <td className={ReceiveMessageBoxCSS.thd}>삭제</td>
+                        </tr>
                     </thead>
                     <tbody>
                         {
                             Array.isArray(messageList) && messageList.map(
                                 (messages =>
                                     <tr
-                                        key={ messages.messageNo }
+                                        key={messages.messageNo}
                                     >
-                                        <td><img 
-                                                src={ impoicon }
-                                                onClick={ () => moveToImpoMessageBox(messages.messageNo) }
-                                            /></td>
-                                        <td>{messages.sender.employeeName}</td>
+                                        <td><button
+                                            className={ReceiveMessageBoxCSS.impoBtn}
+                                            onClick={() => moveToImpoMessageBox(messages.messageNo)}
+                                        >★</button></td>
                                         <td
-                                            onClick={ () => onClickMessageContent(messages) }
+                                            className={ReceiveMessageBoxCSS.sender}
+                                        >{(messages.sender.employeeName + " " + messages.sender.position.positionName)}</td>
+                                        <td
+                                            className={ReceiveMessageBoxCSS.content}
+                                            onClick={() => onClickMessageContent(messages)}
                                         >{messages.messageContent}</td>
-                                        <td>{(messages.today > messages.sendDate.substring(0, 10) ? messages.sendDate.substring(0, 10) : messages.sendDate.substring(11, 16) )}</td>
-                                        <td><img 
-                                                src={binicon} alt="bin"
-                                                onClick={ () => moveToBinMessageBox(messages.messageNo) }
-                                            /></td>
+                                        <td
+                                            className={ReceiveMessageBoxCSS.sendDate}
+                                        >{(messages.today > messages.sendDate.substring(0, 10) ? messages.sendDate.substring(0, 10) : messages.sendDate.substring(11, 16))}</td>
+                                        <td><button
+                                            className={ReceiveMessageBoxCSS.binBtn}
+                                            onClick={() => moveToBinMessageBox(messages.messageNo)}
+                                        >X</button></td>
                                     </tr>
                                 )
                             )
                         }
                     </tbody>
                 </table>
-                <div className={ReceiveMessageBoxCSS.page}> 
+                <div className={ReceiveMessageBoxCSS.page}>
                     {
                         Array.isArray(messageList) &&
                         <button
-                            onClick={ () => setCurrentPage(currentPage - 1) }
-                            disabled={ currentPage === 1 }
-                            className={ ReceiveMessageBoxCSS.pagingBtn }
+                            onClick={() => setCurrentPage(currentPage - 1)}
+                            disabled={currentPage === 1}
+                            className={ReceiveMessageBoxCSS.pagingBtn}
                         >
                             &lt;
                         </button>
-                    }  
+                    }
                     {
                         pageNumber.map((num) => (
-                            <li 
-                                key={num} onClick={ () => setCurrentPage(num) }
-                                className={ ReceiveMessageBoxCSS.pageNum }
+                            <li
+                                key={num} onClick={() => setCurrentPage(num)}
+                                className={ReceiveMessageBoxCSS.pageNum}
                             >
                                 <button
-                                    style={ currentPage === num ? { backgroundColor : 'orange'} : null }
+                                    className={ReceiveMessageBoxCSS.numBtn}
+                                    style={currentPage === num ? { color: '#5ec0fd' } : null}
                                 >
                                     {num}
                                 </button>
@@ -202,9 +212,9 @@ function ReceiveMessageBox(){
                     {
                         Array.isArray(messageList) &&
                         <button
-                            onClick={ () => setCurrentPage(currentPage + 1) }
+                            onClick={() => setCurrentPage(currentPage + 1)}
                             disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
-                            className={ ReceiveMessageBoxCSS.pagingBtn }
+                            className={ReceiveMessageBoxCSS.pagingBtn}
                         >
                             &gt;
                         </button>
