@@ -1,5 +1,27 @@
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+
+*{
+    font-family: 'Nanum Gothic Coding', monospace;
+}
+
 .main{
     width: 1470px;
     height: 100%;
-    
+    background-color: a;
+}
+
+.unreadMessage {
+    background-color: rgba(232, 248, 255, 1);
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.unreadMessage:hover {
+    background-color: rgba(186, 229, 254, 1);
+    cursor: pointer;
+}
+
+.unreadNum {
+    color: blue;
 }
