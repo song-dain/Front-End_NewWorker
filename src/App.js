@@ -25,6 +25,10 @@ import RestRegist from "./pages/rest/RestRegist";
 import NewSchedule from "./pages/calendar/NewSchedule";
 import Survey from "./pages/survey/Survey";
 import SurveyDetail from "./pages/survey/SurveyDetail";
+import PwdInquiryResult from "./pages/employee/PwdInquiryResult";
+import PwdUpdate from "./pages/employee/PwdUpdate";
+import PwdUpdateResult from "./pages/employee/PwdUpdateResult";
+
 
 
 function App() {
@@ -71,6 +75,9 @@ function App() {
           <Route path="/idInquiry" element={<IdInquiry />} />
           <Route path="/idInquiryResult" element={<IdInquiryResult />} />
           <Route path="/pwdInquiry" element={<PwdInquiry />} />
+          <Route path="/pwdInquiryResult" element={<PwdInquiryResult />} />
+          <Route path="/pwdUpdate" element={<PwdUpdate />} />
+          <Route path="/pwdUpdateResult" element={<PwdUpdateResult />} />
 
         </Routes>
       </div>
