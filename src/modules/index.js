@@ -4,6 +4,7 @@ import messageReducer from "./MessageModule";
 import noticeReducer from "./NoticeModule";
 import attReducer from "./AttModule";
 import calendarReducer from "./CalendarModule";
+import surveyReducer from "./SurveyModule";
 
 const rootReducer = combineReducers({
 
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
     messageReducer,
     noticeReducer,
     attReducer,
-    calendarReducer
+    calendarReducer,
+    surveyReducer
 
 });
 

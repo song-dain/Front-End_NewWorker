@@ -1,0 +1,111 @@
+.surveyDetail {
+    width: 1470px;
+    height: 969px;
+
+}
+
+.text {
+    font-size: 60px;
+    border-bottom: 1px solid black;
+}
+
+.surveyMain{
+    background-color: beige;
+    width: 1470px;
+    height: 830px;
+}
+
+table input{
+    border: none;
+    font-size: 20px;
+}
+
+.surNo{
+    width: 15px;
+
+}
+
+.surTitle{
+    margin-left: 10px;
+}
+
+.surName{
+    margin-left: 10px;
+}
+
+.surDate{
+    margin-left: 10px;
+}
+
+.surStartDate{
+    margin-left: 10px;
+    width: 110px;
+}
+
+.surEndDate{
+    margin-left: 10px;
+}
+
+.surTable{
+    border-collapse: collapse;
+    width: 1470px;
+    height: 760px;
+    background-color: blanchedalmond;
+}
+
+.surThead{
+    width: 1470px;
+    height: 200px;
+    border-bottom: 1px solid black;
+    background-color: rgb(150, 108, 54);
+}
+
+.surTbody{
+    width: 1470px;
+    height: 50px;
+    
+    background-color: rgb(172, 156, 137);
+}
+
+.surTfoot{
+    width: 1470px;
+    height: 580px;
+    border-bottom: 1px solid black;
+    background-color: rgb(183, 218, 120);
+}
+
+
+
+.backBtnBox{
+    
+    /* width: 1300px; */
+    margin: 0 auto;
+}
+
+
+.backBtn {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 250px;
+    background-color: lightgray;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    float: right;
+}
+
+.backBtn1{
+    margin-top: 15px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 250px;
+    background-color: lightgray;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    float: left;
+}
+

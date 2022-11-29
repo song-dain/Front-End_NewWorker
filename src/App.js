@@ -24,9 +24,11 @@ import EmployeeDetail from "./pages/employee/EmployeeDetail";
 import RestRegist from "./pages/rest/RestRegist";
 import NewSchedule from "./pages/calendar/NewSchedule";
 import Survey from "./pages/survey/Survey";
+import SurveyDetail from "./pages/survey/SurveyDetail";
 import PwdInquiryResult from "./pages/employee/PwdInquiryResult";
 import PwdUpdate from "./pages/employee/PwdUpdate";
 import PwdUpdateResult from "./pages/employee/PwdUpdateResult";
+
 
 
 function App() {
@@ -65,6 +67,8 @@ function App() {
 
             {/* 설문조사부분 */}
             <Route path="Survey" element={<Survey />} />
+            <Route path="surveyDetail/:surNo" element={<SurveyDetail/>} />
+            
           </Route>
 
           <Route path="/login" element={<Login />} />
