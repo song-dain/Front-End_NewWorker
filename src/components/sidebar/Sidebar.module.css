@@ -13,7 +13,6 @@ img {
     margin: auto;
     width: 150px;
     height: 150px;
-    background-color: yellow;
     border-radius: 100px;
 }
 
@@ -22,14 +21,32 @@ img {
 }
 
 .HeaderlistUl {
-    
-    background: #BAE5FE;
-    list-style: none;
-    
+    cursor: pointer;
+    background: #E8F8FF;
+    list-style: none;   
+}
+
+.comName {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-family: 'ChosunSg';
+    font-size: 40px;
+    text-align: center;
 }
 
 .ProfileDiv {
     text-align: center;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    background-color: #E8F8FF;
+}
+
+.profilename {
+    font-size: 18px;
+}
+
+.section {
+    color: #3dabeb;
 }
 
 .HeaderHomebtn {
@@ -39,13 +56,13 @@ img {
 
 .LogoBtn {
     border: none;
-    background: #BAE5FE;
+    background: #E8F8FF;
     font-size: x-large;
 }
 
 .NavlistUl {
     
-    background: #BAE5FE;
+    background: #E8F8FF;
     
     list-style: none;
     
@@ -54,7 +71,7 @@ img {
 .NavlistUl li {
     line-height: 5;
     height: auto;
-    border-bottom: 1px solid #3dabeb;
+    border-bottom: 1px solid #E8F8FF;
     text-align: center;
 }
 
@@ -65,7 +82,7 @@ img {
 
 
 .NavlistUl li:hover {
-    background-color: #3dabeb;
+    background-color: #BAE5FE;
     cursor: pointer;
     
 }
@@ -89,7 +106,7 @@ a:hover, a:focus, a:active{
 
 .FooterlistUl {
 
-    background: #BAE5FE;
+    background: #E8F8FF;
     list-style: none;
     text-align: center;
     
@@ -108,7 +125,7 @@ a {
 
 .LogoutBtn {
     border: none;
-    background: #BAE5FE;
+    background: #E8F8FF;
     color: gray;
     font-size: large;
     margin-top: 67px;
