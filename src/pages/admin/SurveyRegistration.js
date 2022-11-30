@@ -20,8 +20,11 @@ function SurveyRegistration() {
         surContent: '',
         surStartDate: '',
         surEndDate: '',
-        ansContent: ''
-
+        ansContent: '',
+        questionItem1: '',
+        questionItem2: '',
+        questionItem3: '',
+        depNo : 10,
     });
 
 
@@ -62,6 +65,8 @@ function SurveyRegistration() {
         });
     }
 
+
+
     /* 이미지 첨부 버튼 클릭 이벤트 */
     const onClickImageUpload = () => {
         imageInput.current.click();
@@ -84,9 +89,10 @@ function SurveyRegistration() {
         formData.append("surContent", form.surContent); //설문설명
         formData.append("surStartDate", form.surStartDate); //설문시작일
         formData.append("surEndDate", form.surEndDate); //설문종료일
-        formData.append("ansContent", form.ansContent); //질문항목
-
-
+        formData.append("ansContent[0].questionItem", form.questionItem1); //질문항목
+        formData.append("ansContent[1].questionItem", form.questionItem2); //질문항목
+        formData.append("ansContent[2].questionItem", form.questionItem3); //질문항목
+        formData.append("dep.depNo", form.depNo);   //부서
 
         if (image) {
             formData.append("surveyImage", image);
@@ -133,13 +139,24 @@ function SurveyRegistration() {
                             </td>
 
                         </tr>
+                        <tr>
+                            <td><label>부서</label></td>
+                            <td>
+                                <select name="depNo" onChange={ onChangeHandler }>
+                                    <option value={10}>인사팀</option>
+                                    <option value={20}>총무팀</option>
+                                    <option value={30}>영업팀</option>
+                                    <option value={40}>IT사업팀</option>
+                                </select>
+                            </td>
+                        </tr>
                         <tr >
                             <td>
 
                                 설문기간 :
                                 <input
                                     type="date"
-                                    name='startDate'
+                                    name='surStartDate'
 
 
                                     onChange={onChangeHandler}
@@ -147,7 +164,7 @@ function SurveyRegistration() {
                                 ~
                                 <input
                                     type="date"
-                                    name='endDate'
+                                    name='surEndDate'
 
 
                                     onChange={onChangeHandler}
@@ -156,26 +173,7 @@ function SurveyRegistration() {
                             </td>
 
                         </tr>
-                        <tr>
-                            <td>
-
-                                설문대상 :
-                                <select onChange={onChangeSelectHandler}
-                                    placeholder="대상을 선택하세요."
-                                >
-                                    {Options.map((item, index) => (
-                                        <option
-
-                                            key={item.key}
-                                            value={item.key}
-
-                                        >
-                                            {item.value}
-                                        </option>
-                                    ))}
-                                </select>
-                            </td>
-                        </tr>
+                        
                         <tr>
                             <td>
 
@@ -188,7 +186,7 @@ function SurveyRegistration() {
                                 <input
                                     style={{ display: 'none' }}
                                     type="file"
-                                    name='noticeImage'
+                                    name='surveyImage'
                                     accept='image/jpg,image/png,image/jpeg,image/gif'
                                     onChange={onChangeImageUpload}
                                     ref={imageInput}
@@ -213,35 +211,35 @@ function SurveyRegistration() {
                         <tr>
                             <th>
                                 설문항목 : <input
-                                    name='ansContent'
+                                    name='questionItem'
                                     type='text'
                                     placeholder='제목을 입력하세요.'
                                     onChange={onChangeHandler}
                                 />
                             </th>
-                            
+
                         </tr>
                         <tr>
                             <th>
-                                 <input
-                                    name='ansContent'
+                                <input
+                                    name='questionItem'
                                     type='text'
                                     placeholder='제목을 입력하세요.'
                                     onChange={onChangeHandler}
                                 />
                             </th>
-                            
+
                         </tr>
                         <tr>
                             <th>
-                                 <input
-                                    name='ansContent'
+                                <input
+                                    name='questionItem'
                                     type='text'
                                     placeholder='제목을 입력하세요.'
                                     onChange={onChangeHandler}
                                 />
                             </th>
-                            
+
                         </tr>
 
 

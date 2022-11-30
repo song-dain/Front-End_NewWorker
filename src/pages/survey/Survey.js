@@ -150,10 +150,10 @@ function Survey() {
                                                     onClick={() => onClickTableTr(surveyList.surNo)}
                                                 >
                                                     
-                                                    <tbody>
+                                                    <tbody className={SurveyCSS.surBox}>
 
                                                     
-                                                    <div className={SurveyCSS.surBox}>
+                                                    
 
                                                         <td className={SurveyCSS.surIngBox}>진행중</td>
                                                         <tr className={SurveyCSS.surTitle}>{surveyList.surTitle}</tr>
@@ -164,7 +164,7 @@ function Survey() {
                                                             <img src={surveyList.surveyImageUrl} alt="썸네일" />
                                                         </td>
                                                         
-                                                    </div>
+                                                    
                                                     </tbody>
                                                 </tr>
                                             )
