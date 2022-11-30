@@ -5,9 +5,11 @@ import noticeReducer from "./NoticeModule";
 import attReducer from "./AttModule";
 import calendarReducer from "./CalendarModule";
 import surveyReducer from "./SurveyModule";
+import approvalReducer from "./ApprovalModule";
 
 const rootReducer = combineReducers({
 
+    approvalReducer,
     employeeReducer,
     messageReducer,
     noticeReducer,
