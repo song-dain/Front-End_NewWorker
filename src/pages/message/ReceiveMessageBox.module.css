@@ -5,6 +5,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'NeoDunggeunmo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.3/NeoDunggeunmo.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .box {
     width: 1500px;
     height: 50%;
@@ -24,8 +31,8 @@
     border: 0;
     outline: 0;
     font-size: 18px;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 7px;
+    margin-right: 7px;
     background-color: #ffffff;
     color: #B3B3B3;
     font-weight: bold;
@@ -39,21 +46,22 @@
     margin: 5px;
     background-color: white;
     font-weight: bold;
-    color: #00B1FF;
+    color: #C8EEFF;
     font-size: 15px;
     border: 0;
     outline: 0;
+    font-family: 'NeoDunggeunmo';
 }
 
 .title {
     margin-top: 50px;
-    margin-left: 53px;
+    margin-left: 30px;
     font-size: 50px;
 }
 
 .searchs {
     float: right;
-    margin-right: 35px;
+    margin-right: 75px;
     margin-top: 20px;
     margin-bottom: 30px;
 }
@@ -63,7 +71,7 @@
     width: 300px;
     margin-left: 30px;
     border-radius: 7px;
-    border: 1.7px solid #60c5ff;
+    border: 1.5px solid #5ec0fd;
     font-size: 15px;
     box-shadow: none;
     outline: none;
@@ -71,7 +79,7 @@
 
 .search:focus {
     box-shadow: none;
-    border: 1.7px solid #60c5ff;
+    border: 2px solid #5ec0fd;
     box-shadow: none;;
 }
 
@@ -98,26 +106,26 @@
     padding-top: 10px;
 }
 
-table {
+.mtable {
     margin-top: 50px;
     text-align: center;
-    margin-left: 50px;
+    margin-left: 43px;
 }
 
-thead {
-    font-size: 18px;
-    color: #B3B3B3;
+.mthead {
+    font-size: 15px;
+    color: #5ec0fd;
 }
 
 .thd {
     padding-bottom: 20px;
 }
 
-tbody {
+.mtbody {
     font-size: 18px;
 }
 
-td {
+.mtd td{
     border-bottom: 1px solid #F3F3F3;
 }
 

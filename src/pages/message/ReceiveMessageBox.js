@@ -142,8 +142,8 @@ function ReceiveMessageBox() {
                         검색</button>
                     <div className={ReceiveMessageBoxCSS.searchResult}>{searchResult}</div>
                 </div>
-                <table>
-                    <thead>
+                <table className={ReceiveMessageBoxCSS.mtable}>
+                    <thead className={ReceiveMessageBoxCSS.mthead}>
                         <tr>
                             <td className={ReceiveMessageBoxCSS.thd}>중요</td>
                             <td className={ReceiveMessageBoxCSS.thd}>발신자</td>
@@ -152,26 +152,30 @@ function ReceiveMessageBox() {
                             <td className={ReceiveMessageBoxCSS.thd}>삭제</td>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className={ReceiveMessageBoxCSS.mtbody}>
                         {
                             Array.isArray(messageList) && messageList.map(
                                 (messages =>
                                     <tr
+                                        className={ReceiveMessageBoxCSS.mtd}
                                         key={messages.messageNo}
                                     >
-                                        <td><button
+                                        <td ><button
                                             className={ReceiveMessageBoxCSS.impoBtn}
                                             onClick={() => moveToImpoMessageBox(messages.messageNo)}
                                         >★</button></td>
                                         <td
                                             className={ReceiveMessageBoxCSS.sender}
+                                            style={ messages.messageStatus == 'read' ? { color : '#B3B3B3' } : { color : 'black' } }
                                         >{(messages.sender.employeeName + " " + messages.sender.position.positionName)}</td>
                                         <td
                                             className={ReceiveMessageBoxCSS.content}
                                             onClick={() => onClickMessageContent(messages)}
+                                            style={ messages.messageStatus == 'read' ? { color : '#B3B3B3' } : { color : 'black' } }
                                         >{messages.messageContent}</td>
                                         <td
                                             className={ReceiveMessageBoxCSS.sendDate}
+                                            style={ messages.messageStatus == 'read' ? { color : '#B3B3B3' } : { color : 'black' } }
                                         >{(messages.today > messages.sendDate.substring(0, 10) ? messages.sendDate.substring(0, 10) : messages.sendDate.substring(11, 16))}</td>
                                         <td><button
                                             className={ReceiveMessageBoxCSS.binBtn}
