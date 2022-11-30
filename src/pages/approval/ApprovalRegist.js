@@ -1,33 +1,39 @@
 import React from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import ApproverChoiceModal from '../../components/approval/ApproverChoiceModal';
 import { ajax } from 'jquery';
+import { useDispatch } from 'react-redux';
+import { callAppRegisttAPI } from '../../api/ApprovalAPICalls';
 
 
 function ApprovalRegist() {
 
+    const fileInput = useRef();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [approverChoiceModal, setApproverChoiceModal] = useState(false);
+    const [approverListModal, setApproverListModal] = useState(false);
     const [approval, setApproval] = useState({
         appDocNo : '',
         appCreatedDate : 0,
         appEndDate : 0,
         appTitle : '',
-        appContent : '',
-        //appLines : appLines
-        
+        appLines : [],
+        approvalFiles : []
+
     })
 
+
+    const [file, setFile] = useState(null);
+    const [fileUrl, setFileUrl] = useState('');
     const [selectApprover, setSelectApprover] = useState('');
-
+    const [appContent, setAppContent] = useState();
     const [appLines, setAppLines] = useState([])
-
-    
-    const onClickApproverChoiceHandler = () => {
-        setApproverChoiceModal(true);
+  
+    const onClickApproverListHandler = () => {
+        setApproverListModal(true);
     }
 
     const onChangeHandler = (e) => {
@@ -37,15 +43,67 @@ function ApprovalRegist() {
         });
     }
 
-    const AppRegist = () => {}
+    console.log("ApprovalRegist : ", appLines);  
+
+    const onClickAppRegistHandler = () => {
+
+        const formData = new FormData();
+
+        formData.append("appDocNo", approval.appDocNo);
+        formData.append("appEndDate", approval.appEndDate)
+        formData.append("appTitle", approval.appTitle);
+        formData.append("appContent", appContent);
+        
+
+        //결재선 등록
+        for(var i = 0; i<appLines.length; i++){
+        formData.append(`appLines[${i}].employeeNo`, appLines[i].employeeNo);
+        formData.append(`appLines[${i}].appLineTurn`, appLines[i].appLineTurn);
+        }
+
+
+        if(file) {
+            for(var i = 0; 1<file.length; i++) {
+            formData.append("approvalFiles[]", file)
+            }
+        }
+        dispatch(callAppRegisttAPI({ form : formData }));
+    }
+
+
+    useEffect(() => {
+
+        if(file) {
+            const fileReader = new FileReader();
+            fileReader.onload = (e) => { 
+                const { result } = e.target;
+                if(result){
+                    setFileUrl(result);
+                }
+            }
+            fileReader.readAsDataURL(file);
+        }
+    }, 
+    [file]);
+
+
+        /* 파일 첨부 시 동작하는 이벤트 */
+        const onChangeFileUpload = (e) => {
+
+            const file = e.target.files[0];
+    
+            setFile(file);
+        }
+    
+
 
     return (
         <div>
             {
-                approverChoiceModal ? 
+                approverListModal ? 
                 <ApproverChoiceModal 
-                    setApproverChoice={setApproverChoiceModal}
-                    approverChoiceModal={approverChoiceModal}
+                    setApproverListModal={setApproverListModal}
+                    approverListModal={approverListModal}
                     setAppLines={setAppLines}
                     appLines={appLines}
                     setSelectApprover={setSelectApprover}
@@ -72,19 +130,29 @@ function ApprovalRegist() {
                             data='<p>내용을 입력하세요.</p>'
                             onChange={(event, editor) => {
                                 const data = editor.getData();
+                                setAppContent(data);
                                 console.log(data);
                             }}
                         />
                     </div>
                 <br/>
-                <input type="file" name="approvalFiles" multiple/>
+                <input type="file" name="approvalFiles" accep='file/txt, file/jpg, file/png, file/jpeg, file/pdf, file/hwp' 
+                       onChange={ onChangeFileUpload } ref={ fileInput } multiple/>
                 <br/>
                 <br/>
-                <button name="employeeNo" onClick= { onClickApproverChoiceHandler }>결제자 선택</button>
+                <button name="employeeNo" onClick= { onClickApproverListHandler }>결제자 선택</button>
+                <br/>
+                <div>{
+                    appLines.map((appLines) =>
+                        <li>
+                            {appLines.employeeName}
+                        </li>
+                    )
+                }
+                </div>
                 <br/>
                 <br/>
-                <br/>
-                <button onClick={ () => AppRegist() }>확인</button>
+                <button onClick={ onClickAppRegistHandler }>확인</button>
                 <button onClick={ () => { navigate(-1) } }>취소</button>
             </div>                
         </div>
