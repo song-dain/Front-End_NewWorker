@@ -8,6 +8,8 @@ import { callSurveyDetailAPI } from '../../api/SurveyAPICalls';
 
 function SurveyDetail() {
 
+
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const surveys = useSelector(state => state.surveyReducer);
@@ -33,7 +35,7 @@ function SurveyDetail() {
         });
     };
 
-
+    console.log("surveyDetail" , surveyDetail);
 
     return (
         <div className={SurveyDetailCSS.surveyDetail}>
@@ -138,25 +140,36 @@ function SurveyDetail() {
                                 <td>
 
                                     <input
-                                        className={SurveyDetailCSS.surNo}
+                                        
                                         name='surNo'
                                         placeholder='설문번호'
                                         // readOnly={modifyMode ? false : true}
                                         style={{ backgroundColor: 'white' }}
                                         onChange={onChangeHandler}
-                                        value={surveyDetail.surNo || ''}
-                                        disabled
-                                    />.
-                                    <input
-                                        className={SurveyDetailCSS.surTitle}
-                                        name='surTitle'
-                                        placeholder='설문제목'
-                                        // readOnly={modifyMode ? false : true}
-                                        style={{ backgroundColor: 'white' }}
-                                        onChange={onChangeHandler}
-                                        value={surveyDetail.surTitle || ''}
+                                        value={surveyDetail.questionItem1 || ''}
                                         disabled
                                     />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {
+                                        Array.isArray(surveyDetail) && surveyDetail.map(
+                                            (surveyDetail) => (
+                                                <input
+                                                    name='questionItem'
+                                                    placeholder='질문항목'
+                                                    // readOnly={modifyMode ? false : true}
+                                                    style={{ backgroundColor: 'white' }}
+                                                    onChange={onChangeHandler}
+                                                    value={surveyDetail.questionItem1 || ''}
+                                                    disabled
+                                                />
+                                                
+                                            )
+                                        )
+                                    }
+
                                 </td>
                             </tr>
                         </tfoot>

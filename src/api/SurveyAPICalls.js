@@ -102,7 +102,7 @@ export const callSurveyRegistAPI = ({form}) => {
         if(result.status === 200) {
             console.log('[SurveyAPICalls] callSurveyRegistAPI result : ', result);
             dispatch({ type: POST_SURVEY, payload: result.data });
-            alert('설문 등록 완료');
+            
         }
     }
 
