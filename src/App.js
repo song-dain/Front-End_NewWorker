@@ -29,6 +29,7 @@ import SurveyRegistration from "./pages/admin/SurveyRegistration";
 import PwdInquiryResult from "./pages/employee/PwdInquiryResult";
 import PwdUpdate from "./pages/employee/PwdUpdate";
 import PwdUpdateResult from "./pages/employee/PwdUpdateResult";
+import SurveyIng from "./pages/survey/SurveyIng";
 
 
 
@@ -71,6 +72,7 @@ function App() {
             <Route path="Survey" element={<Survey />} />
             <Route path="surveyDetail/:surNo" element={<SurveyDetail/>} />
             <Route path="survey-registration" element={<SurveyRegistration />} />
+            <Route path="survey/ing" element={<SurveyIng/>}/>
           </Route>
 
           <Route path="/login" element={<Login />} />

@@ -17,12 +17,11 @@ function SurveyRegistration() {
     const [form, setForm] = useState({
         surTitle: '',
         surContent: '',
-        surStartDate: '',
-        surEndDate: '',
-        ansContent: '',
-        questionItem1: '',
-        questionItem2: '',
-        questionItem3: '',
+        surStartDate: 0,
+        surEndDate: 0,
+        ansContent1: '',
+        ansContent2: '',
+        ansContent3: '',
         depNo : 10,
     });
 
@@ -51,7 +50,10 @@ function SurveyRegistration() {
             ...form,
             [e.target.name]: e.target.value
         });
+        
+        console.log("ansContent1" , form);
     }
+    
 
 
 
@@ -77,9 +79,9 @@ function SurveyRegistration() {
         formData.append("surContent", form.surContent); //설문설명
         formData.append("surStartDate", form.surStartDate); //설문시작일
         formData.append("surEndDate", form.surEndDate); //설문종료일
-        formData.append("ansContent[0].questionItem", form.questionItem1); //질문항목1
-        formData.append("ansContent[1].questionItem", form.questionItem2); //질문항목2
-        formData.append("ansContent[2].questionItem", form.questionItem3); //질문항목3
+        formData.append("questionItem[0].ansContent", form.ansContent1); //질문항목1
+        formData.append("questionItem[1].ansContent", form.ansContent2); //질문항목2
+        formData.append("questionItem[2].ansContent", form.ansContent3); //질문항목3
         formData.append("dep.depNo", form.depNo);   //부서
 
         if (image) {
@@ -200,18 +202,19 @@ function SurveyRegistration() {
                         <tr>
                             <th>
                                 설문항목 : <input
-                                    name='questionItem1'
+                                    name='ansContent1'
                                     type='text'
                                     placeholder='항목을 입력하세요1.'
                                     onChange={onChangeHandler}
                                 />
+                                
                             </th>
 
                         </tr>
                         <tr>
                             <th>
                                 <input
-                                    name='questionItem2'
+                                    name='ansContent2'
                                     type='text'
                                     placeholder='항목을 입력하세요2.'
                                     onChange={onChangeHandler}
@@ -222,7 +225,7 @@ function SurveyRegistration() {
                         <tr>
                             <th>
                                 <input
-                                    name='questionItem3'
+                                    name='ansContent3'
                                     type='text'
                                     placeholder='항목을 입력하세요3.'
                                     onChange={onChangeHandler}

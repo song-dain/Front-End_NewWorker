@@ -117,28 +117,7 @@ function Survey() {
                     </div>
                     <div className={SurveyCSS.surSubBox}>
                         <div className={SurveyCSS.surFlexBox}>
-                            {/* <table className={SurveyCSS.surBox}>
-                                <thead>
-                                    <button className={SurveyCSS.surIngBox}>진행중</button>
-                                </thead>
-                                <tbody>
-                                    {
-                                        Array.isArray(surveyList) && surveyList.map(
-                                            (surveyList) => (
-                                                <tr
-                                                    key={surveyList.surNo}
-                                                    onClick={() => onClickTableTr(surveyList.surNo)}
-                                                >
-                                                    <th >{surveyList.surTitle}</th>
-                                                    <th >{surveyList.surStartDate} ~ {surveyList.surEndDate}</th>
-                                                    <th >{surveyList.dep.depName}</th>
-                                                    <img src={surveyList.surveyImageUrl} alt="썸네일" />
-                                                </tr>
-                                            )
-                                        )
-                                    }
-                                </tbody>
-                            </table> */}
+                            
                             <table>
 
                                 <thead className={SurveyCSS.surFlexBox1}>
