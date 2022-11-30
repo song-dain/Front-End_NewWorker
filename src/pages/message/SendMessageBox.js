@@ -99,71 +99,88 @@ function SendMessageBox(){
                     setMessageModal={setMessageModal}
                 /> : null }
             <div className={SendMessageBoxCSS.box}>
-                <h1>보낸 메시지함</h1> 
-                <input
-                    type="text"
-                    placeholder="검색"
-                    value={ search }
-                    onChange={ onSearchChangeHandler }
-                    onKeyUp= { onEnterKeyHandler }
-                />
-                <button
-                    onClick={ onClickBtnHandler }
-                >
-                검색</button>
-                <div>{ searchResult }</div>
-                <table className={SendMessageBoxCSS.tabel}>
-                    <thead>
+                <div className={SendMessageBoxCSS.title}>보낸 메시지함</div> 
+                <div className={SendMessageBoxCSS.searchs}>
+                    <input
+                        className={SendMessageBoxCSS.search}
+                        type="text"
+                        placeholder="검색어를 입력하세요"
+                        value={search}
+                        onChange={onSearchChangeHandler}
+                        onKeyUp={onEnterKeyHandler}
+                    />
+                    <button
+                        className={SendMessageBoxCSS.searchBtn}
+                        onClick={onClickBtnHandler}
+                    >
+                        검색</button>
+                    <div className={SendMessageBoxCSS.searchResult}>{searchResult}</div>
+                </div>
+                <table className={SendMessageBoxCSS.mtable}>
+                    <thead className={SendMessageBoxCSS.mthead}>
                     <tr>
-                        <td>상태</td>
-                        <td>수신자</td>
-                        <td>내용</td>
-                        <td>보낸날짜</td>
-                        <td>삭제</td>
+                        <td className={SendMessageBoxCSS.thdstatus}>수신 상태</td>
+                        <td className={SendMessageBoxCSS.thdsender}>수신자</td>
+                        <td className={SendMessageBoxCSS.thdcontent}>내용</td>
+                        <td className={SendMessageBoxCSS.thddate}>보낸날짜</td>
+                        <td className={SendMessageBoxCSS.thddelete}>삭제</td>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody className={SendMessageBoxCSS.mtbody}>
                         {
                             Array.isArray(messageList) && messageList.map(
                                 (messages =>
                                     <tr
+                                    className={SendMessageBoxCSS.mtd}
                                         key={ messages.messageNo }
                                     >
-                                        <td>{ messages.messageStatus == 'send' ? '전송' : '읽음' }</td>
-                                        <td>{messages.sender.employeeName}</td>
+                                        <td 
+                                            className={SendMessageBoxCSS.status}
+                                            style={ messages.messageStatus == 'read' ? { color : '#B3B3B3' } : { color : '#BAE5FE' } }>
+                                        { messages.messageStatus == 'send' ? '전송' : '읽음' }</td>
+                                        <td 
+                                            className={SendMessageBoxCSS.sender}
+                                            style={ messages.messageStatus == 'read' ? { color : '#B3B3B3' } : { color : 'black' } }>
+                                        {(messages.sender.employeeName + " " + messages.sender.position.positionName)}</td>
                                         <td
+                                            className={SendMessageBoxCSS.content}
+                                            style={ messages.messageStatus == 'read' ? { color : '#B3B3B3' } : { color : 'black' } }
                                             onClick={ () => onClickMessageContent(messages) }
                                         >{messages.messageContent}</td>
-                                        <td>{(messages.today > messages.sendDate.substring(0, 10) ? messages.sendDate.substring(0, 10) : messages.sendDate.substring(11, 16) )}</td>
-                                        <td><img 
-                                                src={binicon} alt="bin"
-                                                onClick={ () => moveToBinMessageBox(messages.messageNo) }
-                                            /></td>
+                                        <td 
+                                            className={SendMessageBoxCSS.date}
+                                            style={ messages.messageStatus == 'read' ? { color : '#B3B3B3' } : { color : 'black' } }>
+                                        {(messages.today > messages.sendDate.substring(0, 10) ? messages.sendDate.substring(0, 10) : messages.sendDate.substring(11, 16) )}</td>
+                                        <td><button
+                                            className={SendMessageBoxCSS.binBtn}
+                                            onClick={() => moveToBinMessageBox(messages.messageNo)}
+                                        >X</button></td>
                                     </tr>
                                 )
                             )
                         }
                     </tbody>
                 </table>
-                <div className={SendMessageBoxCSS.page}> 
+                <div className={SendMessageBoxCSS.page}>
                     {
                         Array.isArray(messageList) &&
                         <button
-                            onClick={ () => setCurrentPage(currentPage - 1) }
-                            disabled={ currentPage === 1 }
-                            className={ SendMessageBoxCSS.pagingBtn }
+                            onClick={() => setCurrentPage(currentPage - 1)}
+                            disabled={currentPage === 1}
+                            className={SendMessageBoxCSS.pagingBtn}
                         >
                             &lt;
                         </button>
-                    }  
+                    }
                     {
                         pageNumber.map((num) => (
-                            <li 
-                                key={num} onClick={ () => setCurrentPage(num) }
-                                className={ SendMessageBoxCSS.pageNum }
+                            <li
+                                key={num} onClick={() => setCurrentPage(num)}
+                                className={SendMessageBoxCSS.pageNum}
                             >
                                 <button
-                                    style={ currentPage === num ? { backgroundColor : 'orange'} : null }
+                                    className={SendMessageBoxCSS.numBtn}
+                                    style={currentPage === num ? { color: '#5ec0fd' } : null}
                                 >
                                     {num}
                                 </button>
@@ -173,9 +190,9 @@ function SendMessageBox(){
                     {
                         Array.isArray(messageList) &&
                         <button
-                            onClick={ () => setCurrentPage(currentPage + 1) }
+                            onClick={() => setCurrentPage(currentPage + 1)}
                             disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
-                            className={ SendMessageBoxCSS.pagingBtn }
+                            className={SendMessageBoxCSS.pagingBtn}
                         >
                             &gt;
                         </button>

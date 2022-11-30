@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { callImpoMessageListAPI, callRecipientManagementAPI, callSearchImpoMessageAPI, callReceiveMessageReadAPI } from "../../api/MessageAPICalls";
-import ReceiveMessageBoxCSS from "../message/ReceiveMessageBox.module.css";
+import ImpoMessageBoxCSS from "../message/ImpoMessageBox.module.css";
 import impocancelicon from "../../img/impocancelicon.png";
 import binicon from "../../img/binicon.png";
 import ReceiveMessageMoadl from "../../components/message/ReceiveMessageModal";
@@ -121,75 +121,89 @@ function ImpoMessageBox(){
                     selectMsendDate={selectMsendDate}
                     setMessageModal={setMessageModal}
                 /> : null }
-            <div className={ReceiveMessageBoxCSS.box}>
-                <h1>중요 메시지함</h1> 
-                <input
-                    type="text"
-                    placeholder="검색"
-                    value={ search }
-                    onChange={ onSearchChangeHandler }
-                    onKeyUp= { onEnterKeyHandler }
-                />
-                <button
-                    onClick={ onClickBtnHandler }
-                >
-                검색</button>
-                <div>{ searchResult }</div>
-                <table className={ReceiveMessageBoxCSS.tabel}>
-                    <thead>
+            <div className={ImpoMessageBoxCSS.box}>
+                <div className={ImpoMessageBoxCSS.title}>중요 메시지함</div> 
+                <div className={ImpoMessageBoxCSS.searchs}>
+                    <input
+                        className={ImpoMessageBoxCSS.search}
+                        type="text"
+                        placeholder="검색어를 입력하세요"
+                        value={search}
+                        onChange={onSearchChangeHandler}
+                        onKeyUp={onEnterKeyHandler}
+                    />
+                    <button
+                        className={ImpoMessageBoxCSS.searchBtn}
+                        onClick={onClickBtnHandler}
+                    >
+                        검색</button>
+                    <div className={ImpoMessageBoxCSS.searchResult}>{searchResult}</div>
+                </div>
+                <table className={ImpoMessageBoxCSS.mtable}>
+                    <thead className={ImpoMessageBoxCSS.mthead}>
                     <tr>
-                        <td>중요</td>
-                        <td>발신자</td>
-                        <td>내용</td>
-                        <td>받은날짜</td>
-                        <td>삭제</td>
+                        <td className={ImpoMessageBoxCSS.thd}>중요</td>
+                        <td className={ImpoMessageBoxCSS.thd}>발신자</td>
+                        <td className={ImpoMessageBoxCSS.thd}>내용</td>
+                        <td className={ImpoMessageBoxCSS.thd}>받은날짜</td>
+                        <td className={ImpoMessageBoxCSS.thd}>삭제</td>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody className={ImpoMessageBoxCSS.mtbody}>
                         {
                             Array.isArray(messageList) && messageList.map(
                                 (messages =>
                                     <tr
+                                        className={ImpoMessageBoxCSS.mtd}
                                         key={ messages.messageNo }
                                     >
-                                        <td><img 
-                                                src={ impocancelicon }
-                                                onClick={ () => moveToReceiveMessageBox(messages.messageNo) }
-                                            /></td>
-                                        <td>{messages.sender.employeeName}</td>
+                                        <td ><button
+                                            className={ImpoMessageBoxCSS.impoBtn}
+                                            onClick={() => moveToReceiveMessageBox(messages.messageNo)}
+                                        >★</button></td>
                                         <td
+                                            className={ImpoMessageBoxCSS.receiver}
+                                            style={ messages.messageStatus == 'read' ? { color : '#B3B3B3' } : { color : 'black' } }
+                                        >{(messages.sender.employeeName + " " + messages.sender.position.positionName)}</td>
+                                        <td
+                                            className={ImpoMessageBoxCSS.content}
+                                            style={ messages.messageStatus == 'read' ? { color : '#B3B3B3' } : { color : 'black' } }
                                             onClick={ () => onClickMessageContent(messages) }
                                         >{messages.messageContent}</td>
-                                        <td>{(messages.today > messages.sendDate.substring(0, 10) ? messages.sendDate.substring(0, 10) : messages.sendDate.substring(11, 16) )}</td>
-                                        <td><img 
-                                                src={binicon} alt="bin"
-                                                onClick={ () => moveToBinMessageBox(messages.messageNo) }
-                                            /></td>
+                                        <td
+                                            className={ImpoMessageBoxCSS.sendDate}
+                                            style={ messages.messageStatus == 'read' ? { color : '#B3B3B3' } : { color : 'black' } }
+                                        >{(messages.today > messages.sendDate.substring(0, 10) ? messages.sendDate.substring(0, 10) : messages.sendDate.substring(11, 16) )}</td>
+                                        <td><button
+                                            className={ImpoMessageBoxCSS.binBtn}
+                                            onClick={() => moveToBinMessageBox(messages.messageNo)}
+                                        >X</button></td>
                                     </tr>
                                 )
                             )
                         }
                     </tbody>
                 </table>
-                <div className={ReceiveMessageBoxCSS.page}> 
+                <div className={ImpoMessageBoxCSS.page}>
                     {
                         Array.isArray(messageList) &&
                         <button
-                            onClick={ () => setCurrentPage(currentPage - 1) }
-                            disabled={ currentPage === 1 }
-                            className={ ReceiveMessageBoxCSS.pagingBtn }
+                            onClick={() => setCurrentPage(currentPage - 1)}
+                            disabled={currentPage === 1}
+                            className={ImpoMessageBoxCSS.pagingBtn}
                         >
                             &lt;
                         </button>
-                    }  
+                    }
                     {
                         pageNumber.map((num) => (
-                            <li 
-                                key={num} onClick={ () => setCurrentPage(num) }
-                                className={ ReceiveMessageBoxCSS.pageNum }
+                            <li
+                                key={num} onClick={() => setCurrentPage(num)}
+                                className={ImpoMessageBoxCSS.pageNum}
                             >
                                 <button
-                                    style={ currentPage === num ? { backgroundColor : 'orange'} : null }
+                                    className={ImpoMessageBoxCSS.numBtn}
+                                    style={currentPage === num ? { color: '#5ec0fd' } : null}
                                 >
                                     {num}
                                 </button>
@@ -199,9 +213,9 @@ function ImpoMessageBox(){
                     {
                         Array.isArray(messageList) &&
                         <button
-                            onClick={ () => setCurrentPage(currentPage + 1) }
+                            onClick={() => setCurrentPage(currentPage + 1)}
                             disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
-                            className={ ReceiveMessageBoxCSS.pagingBtn }
+                            className={ImpoMessageBoxCSS.pagingBtn}
                         >
                             &gt;
                         </button>
