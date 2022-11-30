@@ -1,17 +1,3 @@
-@font-face {
-    font-family: 'YanoljaYacheR';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YanoljaYacheR.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'NeoDunggeunmo';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.3/NeoDunggeunmo.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
 .box {
     width: 1500px;
     height: 50%;
@@ -186,6 +172,8 @@
 .sendDate {
     padding-left: 40px;
     padding-right: 35px;
+    font-size: 15px;
+    font-family: 'S-CoreDream-3Light';
 }
 
 .binBtn {
