@@ -4,13 +4,10 @@ import ApproverChoiceModalCSS from './ApproverChoiceModal.module.css';
 import { callEmpListAPI } from '../../api/ApprovalAPICalls';
 
 
-function ApproverChoiceModal({approverChoiceModal, selectApprover, setSelectApprover, appLines, setAppLines, setApproverChoiceModal}) {
-//값이 변경 되는 상황에 체크박스에 눌러진 상황에 저 appLine에 결재순번과, employeeNo라고 하는 숫자를 담는다.
+function ApproverChoiceModal({approverListModal/*, selectApprover, setSelectApprover*/, appLines, setAppLines, setApproverListModal}) {
     const dispatch = useDispatch();
     const employee = useSelector(state => state.approvalReducer);
     const [ isChange, setIsChange ] = useState(10);
-    const [ checkedInputs, setCheckedInputs ] = useState([]);
-
     const [ lineNum, setLineNum ] = useState(1);
 
 
@@ -48,12 +45,9 @@ function ApproverChoiceModal({approverChoiceModal, selectApprover, setSelectAppr
     }
     console.log("appLines : ", appLines);
 
-    // const onChangecheckHandler = (e) => {
-    //     setCheckedInputs(lineNum)
-    // };
 
-
-    console.log(approverChoiceModal);
+    console.log(approverListModal);
+    console.log("setAppModal :", setApproverListModal);
 
     return(
         <div className={ ApproverChoiceModalCSS.modal}>
@@ -96,7 +90,7 @@ function ApproverChoiceModal({approverChoiceModal, selectApprover, setSelectAppr
             }
             </tbody>
             </table>
-            <button onClick={() => setApproverChoiceModal(false) }>확인</button>
+            <button onClick={() => setApproverListModal(false) }>확인</button>
             </div>
         </div>
 
