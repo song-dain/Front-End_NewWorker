@@ -146,7 +146,7 @@ function SurveyDetail() {
                                         // readOnly={modifyMode ? false : true}
                                         style={{ backgroundColor: 'white' }}
                                         onChange={onChangeHandler}
-                                        value={surveyDetail.questionItem1 || ''}
+                                        value={surveyDetail.ansContent || ''}
                                         disabled
                                     />
                                 </td>

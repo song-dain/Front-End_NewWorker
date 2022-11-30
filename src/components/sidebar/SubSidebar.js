@@ -230,8 +230,8 @@ function SubSidebar() {
                 <div>
                     <ul>
                         <li className={SubSidebarCSS.sideTitle1}> ㅇ설문</li>
-                        <li className={SubSidebarCSS.smallTitle}>진행중인 설문</li>
-                        <li className={SubSidebarCSS.smallTitle}>마감된 설문</li>
+                        <li className={SubSidebarCSS.smallTitle}><NavLink to="survey/ing">진행중인 설문</NavLink></li>
+                        <li className={SubSidebarCSS.smallTitle}><NavLink to="survey/end">마감된 설문</NavLink></li>
                         <li className={SubSidebarCSS.smallTitle}>내가 만든 설문</li>
                     </ul>
 
