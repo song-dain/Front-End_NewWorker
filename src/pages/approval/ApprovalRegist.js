@@ -61,6 +61,8 @@ function ApprovalRegist() {
         formData.append(`appLines[${i}].appLineTurn`, appLines[i].appLineTurn);
         }
 
+        formData.append();
+
 
         if(file) {
             for(var i = 0; 1<file.length; i++) {
