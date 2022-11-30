@@ -269,7 +269,7 @@ export const callEmployeeUpdateAPI = ({form}) => {
     }
 }
 
-// [캘린더] 본인 정보 가져오기
+// [사이드바, 캘린더] 본인 정보 가져오기
 export const callEmployeeInfoAPI = () => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/employee/empInfo`;

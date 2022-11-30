@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { callLogoutAPI } from '../../api/EmployeeAPICalls';
 import { decodeJwt } from '../../utils/tokenUtils';
 import { callUnreadMessageAPI } from "../../api/MessageAPICalls";
+import { callEmployeeInfoAPI } from "../../api/EmployeeAPICalls";
+import profileImg from "../../img/profileImg.png";
 
 
 function Sidebar() {
@@ -23,11 +25,13 @@ function Sidebar() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const myInfo = useSelector(state => state.employeeReducer);
     const unread = useSelector(state => state.messageReducer);
 
     /* url 변경될 때마다 안 읽은 메시지 리로드 */
     useEffect(() => {
         dispatch(callUnreadMessageAPI());
+        dispatch(callEmployeeInfoAPI());
     }, [window.location.href]
     );
 
@@ -52,21 +56,28 @@ function Sidebar() {
                         />
 
 
-                        <h1>CodingSpike</h1>
+                        <div
+                            onClick={ () => navigate('/', { replace : true }) }
+                            className={SidebarCSS.comName}>CodingSpike
+                        </div>
 
                     </div>
                     <div>
 
                         <div className={SidebarCSS.HeaderProfile}>
                             {/* 값을 불러와서 사진이 넣어지게 나중에 설정 */}
-
+                            <img
+                                className={SidebarCSS.HeaderProfile}
+                                src={ myInfo.employeeImageUrl ? myInfo.employeeImageUrl : profileImg} />
                         </div>
                     </div>
                     {/* IT부서와 이름 직급은 나중에 값 수정해야 함. */}
                     <div className={SidebarCSS.ProfileDiv}>
-                        IT부서 | 이땡땡대리
+                        { myInfo.position && <span className={SidebarCSS.profilename}>
+                        {myInfo.dep.depName}<span className={SidebarCSS.section}>｜</span>{myInfo.employeeName}{myInfo.position.positionName}
+                        </span> || 'loding'}
                     </div>
-                    <div className={SidebarCSS.HeaderHomebtn}>
+                    {/* <div className={SidebarCSS.HeaderHomebtn}>
 
                         <button
                             className={SidebarCSS.LogoBtn}
@@ -74,7 +85,7 @@ function Sidebar() {
                         >
                             <LanguageIcon color="primary" fontSize="small" />HOME
                         </button>
-                    </div>
+                    </div> */}
 
 
                 </div>
