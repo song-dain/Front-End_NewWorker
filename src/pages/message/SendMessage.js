@@ -44,13 +44,14 @@ function SendMessage(){
             <EmpListModal
                 message={message}
                 setMessage={setMessage}
+                recipientName={selectRecipient}
                 recipient={setSelectRecipient}
                 setEmpListModal={setEmpListModal}
             /> : null
         }
         <div className={SendMessageCSS.box}>
-            <h1>새 메시지 작성</h1>
-            <span>수신자</span>
+            <div className={SendMessageCSS.title}>새 메시지 작성</div>
+            <span className={SendMessageCSS.sender}>수신자</span>
             <input 
                 type="text"
                 name="employeeNo"
@@ -58,21 +59,28 @@ function SendMessage(){
                 defaultValue={ selectRecipient }
                 onClick={ () => openEmpList() }
                 onChange={ onChangeHandler }
+                className={SendMessageCSS.senderinput}
             />
             <button
                 onClick={ () => openEmpList() }
-            >주소록</button>
+                className={SendMessageCSS.searchBtn}
+            >검색</button><br/>
             <textarea
                 name="messageContent"
                 placeholder="메시지 내용을 입력하세요."
                 onChange={ onChangeHandler }
+                className={SendMessageCSS.newMcontent}
             ></textarea>
-            <button
-                onClick={ () => SendMessage() }
-            >전송</button>
-            <button
-                onClick={ () => { navigate(-1) } }
-            >취소</button>
+            <div className={SendMessageCSS.newMbtn}>
+                <button
+                    onClick={ () => SendMessage() }
+                    className={SendMessageCSS.newMsendBtn}
+                >전송</button>
+                <button
+                    onClick={ () => { navigate(-1) } }
+                    className={SendMessageCSS.newMcancelBtn}
+                >취소</button>
+            </div>
         </div>
         </>
     );

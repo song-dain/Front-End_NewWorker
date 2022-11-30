@@ -1,0 +1,132 @@
+.mrmodal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.507);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.mrmcontainer {
+    position: absolute;
+    width: 460px;
+    height: 520px;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: -1px 0 #B3B3B3, 0 1px #B3B3B3, 1px 0 #B3B3B3, 0 -1px #B3B3B3;
+    z-index: 1000;
+}
+
+.mrmtitle {
+    font-size: 38px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    padding-left: 10px;
+}
+
+.empName {
+    float: right;
+    margin-right: 10px;
+    height: 290px;
+    overflow: auto;
+}
+
+.dep, .nameposition {
+    background-color:#90D5FF;
+	border:none;
+	display:inline-block;
+	font-size:18px;
+    margin-left: 10px;
+    width: 200px;
+    height: 50px;
+    border-bottom: 1px solid white;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: #ffffff;
+}
+
+.depBtn {
+    background-color:#FCFCFC;
+	border:none;
+	display:inline-block;
+	cursor:pointer;
+	font-size:18px;
+    margin-left: 10px;
+    width: 200px;
+    height: 60px;
+    border-bottom: 1px solid white;
+}
+
+.empInfo {
+    overflow: auto;
+}
+
+.empBtn {
+    background-color:#E8F8FF;
+	border:none;
+	display:inline-block;
+	cursor:pointer;
+	font-size:18px;
+    margin-left: 10px;
+    width: 200px;
+    height: 60px;
+    border-bottom: 1px solid white;   
+}
+
+.depBtn:hover {
+    background-color:#F1F1F1;
+}
+
+.empBtn:hover {
+    background-color: #BAE5FE;
+}
+
+.selectInfo {
+    margin-top: 15px;
+    margin-left: 173px;
+}
+
+.selectEmpName {
+    border: none;
+    margin-left: 10px;
+    color: #5ec0fd;
+    font-size: 15px;
+
+}
+
+.selectBtn {
+    background-color:#90D5FF;
+	border-radius:10%;
+	border:none;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:15px;
+    margin-left: 140px;
+    margin-top: 30px;
+    width: 80px;
+    height: 40px;
+}
+
+.selectBtn:hover {
+    background-color: #5ec0fd;
+}
+
+.cancelBtn {
+    background-color:#B3B3B3;
+	border-radius:10%;
+	border:none;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:15px;
+    margin-left: 10px;
+    margin-top: 30px;
+    width: 80px;
+    height: 40px;
+}
