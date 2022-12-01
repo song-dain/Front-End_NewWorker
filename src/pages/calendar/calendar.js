@@ -134,7 +134,6 @@ function Calendar(){
                     defaultView="dayGridMonth" 
                     plugins={[ dayGridPlugin, timeGridPlugin, listPlugin  ]}
                     height='900px'
-                    headerToolbar={header}
                     events={events}
                     eventClick={ e => { onClickScheduleHandler(e) } }
                 />

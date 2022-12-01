@@ -88,20 +88,23 @@ function NewSchedule() {
                     
                 </select>
                 <input
+                    className={NewScheduleCSS.stitle}
                     name='scheduleTitle'
                     placeholder="일정 제목"
                     onChange={ e => onChangeHandler(e) }
                 /><br/>
-                시작일
+                <span className={NewScheduleCSS.sdtitle}>시작일</span>
                 <input
+                    className={NewScheduleCSS.startDate}
                     name='startDate'
                     type='date'
                     defaultValue={today}
                     readOnly={allDayBtn}
                     onChange={ e => onChangeHandler(e) }
                 />
-                종료일
+                <span className={NewScheduleCSS.edtitle}>종료일</span>
                 <input
+                    className={NewScheduleCSS.endDate}
                     name='endDate'
                     type='date'
                     defaultValue="2022-11-28"
@@ -109,26 +112,31 @@ function NewSchedule() {
                     readOnly={allDayBtn}
                     onChange={ e => onChangeHandler(e) }
                 />
-                시간<input 
+                <span className={NewScheduleCSS.stimetitle}>시간</span>
+                <input 
+                        className={NewScheduleCSS.stime}
                         type='time'
                         name='startTime'
                         defaultValue='00:00'
                         onChange={ e => onChangeHandler(e) }
-                    />
+                />
                 <input
+                    className={NewScheduleCSS.location}
                     name="scheduleLocation"
                     placeholder="일정 장소"
                     onChange={ e => onChangeHandler(e) }
                 />
                 <textarea 
+                    className={NewScheduleCSS.content}
                     name="scheduleContent"
                     placeholder="일정 내용을 입력하세요"
                     onChange={ e => onChangeHandler(e) }
-                />
-                <button onClick={ () => onClickAddBtn() }>추가</button>
-                <button onClick={ () => navigate(-1) } >취소</button>
+                /><br/>
+                <div className={NewScheduleCSS.btn}>
+                    <button className={NewScheduleCSS.addBtn} onClick={ () => onClickAddBtn() }>추가</button>
+                    <button className={NewScheduleCSS.cancelBtn} onClick={ () => navigate(-1) } >취소</button>
+                </div>
             </div>
-
         </>
     );
 
