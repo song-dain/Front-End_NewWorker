@@ -8,12 +8,14 @@ export const GET_SURVEY     = 'survey/GET_SURVEY';
 export const GET_SURVEYS    = 'survey/GET_SURVEYS';
 export const POST_SURVEY    = 'survey/POST_SURVEY';
 export const PUT_SURVEY     = 'survey/PUT_SURVEY';
+export const POST_SURVEYSUBMIT     = 'survey/POST_SURVEYSUBMIT';
 
 const actions = createActions({
     [GET_SURVEY]: () => {},
     [GET_SURVEYS]: () => {},
     [POST_SURVEY]: () => {},
-    [PUT_SURVEY]: () => {}
+    [PUT_SURVEY]: () => {},
+    [POST_SURVEYSUBMIT]: () => {}
 });
 
 /* 리듀서 */
@@ -32,6 +34,10 @@ const surveyReducer = handleActions(
             return payload;
         },
         [PUT_SURVEY]: (state, { payload }) => {
+            
+            return payload;
+        },
+        [POST_SURVEYSUBMIT]: (state, { payload }) => {
             
             return payload;
         }

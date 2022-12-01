@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
-import { callSurveyDetailAPI } from '../../api/SurveyAPICalls';
+import { callSurveyDetailAPI, callSurveySubmitAPI } from '../../api/SurveyAPICalls';
 
 
 function SurveyDetail() {
@@ -15,7 +15,10 @@ function SurveyDetail() {
     const surveys = useSelector(state => state.surveyReducer);
     const params = useParams();
     const surveyDetail = surveys.data;
-    const [form, setForm] = useState({});
+    const [form, setForm] = useState({
+        ansNo: '',
+
+    });
 
     useEffect(
         () => {
@@ -36,6 +39,25 @@ function SurveyDetail() {
     };
 
     console.log("surveyDetail", surveyDetail);
+
+    const onClickSurveySubmitHandler = () => {
+
+        const formData = new FormData();
+
+        formData.append("ansNo", form.ansNo);     //설문항목
+
+
+
+
+        dispatch(callSurveySubmitAPI({
+            form: formData
+        }));
+        alert('설문이 제출되었습니다.');
+        navigate(`/survey/result`, { replace: true });
+        // window.location.reload();
+
+        console.log("formData", formData);
+    }
 
     return (
         <div className={SurveyDetailCSS.surveyDetail}>
@@ -138,53 +160,41 @@ function SurveyDetail() {
                         <tfoot className={SurveyDetailCSS.surTfoot}>
                             <tr>
                                 <td>
-                                    
-                                    <input
-                                        
-                                        name='surNo'
-                                        placeholder='설문번호123'
-                                        // readOnly={modifyMode ? false : true}
-                                        style={{ backgroundColor: 'white' }}
-                                        onChange={onChangeHandler}
-                                        value={surveyDetail.questionItem[0].ansContent || ''}
-                                        disabled
-                                    />
+                                    <input id="test1" type="checkbox"
+                                        name='ansNo'
+                                        onChange={onChangeHandler} />
+                                    <label htmlFor="test1">
+                                        {/* onChange={onChangeHandler}
+                                    value= */}
+                                        {surveyDetail.questionItem[0].ansContent || ''}
+                                    </label>
                                 </td>
-                                
                             </tr>
                             <tr>
                                 <td>
-                                    
-                                    <input
-                                        
-                                        name='surNo'
-                                        placeholder='설문번호123'
-                                        // readOnly={modifyMode ? false : true}
-                                        style={{ backgroundColor: 'white' }}
-                                        onChange={onChangeHandler}
-                                        value={surveyDetail.questionItem[1].ansContent || ''}
-                                        disabled
-                                    />
+                                    <input id="test1" type="checkbox"
+                                        name='ansNo'
+                                        onChange={onChangeHandler} />
+                                    <label htmlFor="test1">
+                                        {/* onChange={onChangeHandler}
+                                    value= */}
+                                        {surveyDetail.questionItem[1].ansContent || ''}
+                                    </label>
                                 </td>
-                                
                             </tr>
                             <tr>
                                 <td>
-                                    
-                                    <input
-                                        
-                                        name='surNo'
-                                        placeholder='설문번호123'
-                                        // readOnly={modifyMode ? false : true}
-                                        style={{ backgroundColor: 'white' }}
-                                        onChange={onChangeHandler}
-                                        value={surveyDetail.questionItem[2].ansContent || ''}
-                                        disabled
-                                    />
+                                    <input id="test1" type="checkbox"
+                                        name='ansNo'
+                                        onChange={onChangeHandler} />
+                                    <label htmlFor="test1">
+
+                                        {/* onChange={onChangeHandler}
+                                    value= */}
+                                        {surveyDetail.questionItem[2].ansContent || ''}
+                                    </label>
                                 </td>
-                                
                             </tr>
-                            
                         </tfoot>
                     </table>
                 </div>
@@ -193,7 +203,7 @@ function SurveyDetail() {
             <div className={SurveyDetailCSS.backBtnBox}>
                 <button
                     className={SurveyDetailCSS.backBtn}
-                    onClick={() => navigate(`/Survey-regi`)}
+                    onClick={onClickSurveySubmitHandler}
                 >
                     제출하기
                 </button>
