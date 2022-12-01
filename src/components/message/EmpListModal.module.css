@@ -16,6 +16,7 @@
     width: 460px;
     height: 520px;
     padding: 10px;
+    border-radius: 3px;
     background-color: rgb(255, 255, 255);
     box-shadow: -1px 0 #B3B3B3, 0 1px #B3B3B3, 1px 0 #B3B3B3, 0 -1px #B3B3B3;
     z-index: 1000;

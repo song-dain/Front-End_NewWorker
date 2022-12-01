@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import MainCSS from "./Main.module.css";
 import { callUnreadMessageAPI } from "../api/MessageAPICalls";
+import Clock from "../components/main/Clock";
 
 function Main() {
 
@@ -34,6 +35,7 @@ function Main() {
                 className={MainCSS.unreadMessage}
                 onClick={ () => onClickUnreadMessage() }
            >읽지 않은 메시지가 <span className={MainCSS.unreadNum}>{unread.unreadMessage}</span> 건 있습니다.</div>
+            <Clock/>
         </div>
     );
 }

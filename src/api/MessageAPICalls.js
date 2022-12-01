@@ -1,6 +1,6 @@
 import { GET_EMPLOYEE, POST_SEND_MESSAGE, 
         GET_RECEIVE_MESSAGES, PATCH_RECEIVE_MESSAGE, GET_SEARCH_RECEIVE_MESSAGES,
-        GET_SEND_MESSAGES, GET_SEARCH_SEND_MESSAGES,
+        GET_SEND_MESSAGES, GET_SEARCH_SEND_MESSAGES, PATCH_SEND_CALCEL,
         GET_IMPO_MESSAGES, GET_SEARCH_IMPO_MESSAGE,
         GET_RECEIVE_BIN_MESSAGES, GET_SEND_BIN_MESSAGES,
         PATCH_RECIPIENT_MANAGEMENT, PATCH_SENDER_MANAGEMENT, GET_UNREAD_MESSAGE } from '../modules/MessageModule';
@@ -333,6 +333,28 @@ export const callUnreadMessageAPI = () => {
 
         if(result.status === 200) {
             dispatch({ type: GET_UNREAD_MESSAGE, payload: result.data });
+        }
+    }
+}
+
+export const callSendCalcelAPI = ({messageNo}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/message/cancel/${messageNo}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "PATCH",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            },
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            dispatch({ type: PATCH_SEND_CALCEL, payload: result.data });
         }
     }
 }

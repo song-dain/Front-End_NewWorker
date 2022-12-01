@@ -23,6 +23,8 @@ export const PATCH_SENDER_MANAGEMENT = 'message/PATCH_SENDER_MANAGEMENT';
 
 export const GET_UNREAD_MESSAGE = 'message/GET_UNREAD_MESSAGE';
 
+export const PATCH_SEND_CALCEL = 'message/PATCH_SEND_CALCEL';
+
 const actions = createActions({
     [GET_EMPLOYEE]: () => {},
     [POST_SEND_MESSAGE]: () => {},
@@ -43,7 +45,9 @@ const actions = createActions({
     [PATCH_RECIPIENT_MANAGEMENT]: () => {},
     [PATCH_SENDER_MANAGEMENT]: () => {},
 
-    [GET_UNREAD_MESSAGE]: () => {}
+    [GET_UNREAD_MESSAGE]: () => {},
+
+    [PATCH_SEND_CALCEL]: () => {}
 });
 
 const messageReducer = handleActions({
@@ -94,6 +98,10 @@ const messageReducer = handleActions({
     },
     
     [GET_UNREAD_MESSAGE] : (state, { payload }) => {
+        return payload;
+    },
+
+    [PATCH_SEND_CALCEL] : (state, { payload }) => {
         return payload;
     }
     },

@@ -29,9 +29,16 @@ import SurveyRegistration from "./pages/admin/SurveyRegistration";
 import PwdInquiryResult from "./pages/employee/PwdInquiryResult";
 import PwdUpdate from "./pages/employee/PwdUpdate";
 import PwdUpdateResult from "./pages/employee/PwdUpdateResult";
+import DrafterApprovalList from "./pages/approval/DrafterApprovalList";
+import DrafterApprovalDetail from "./pages/approval/DrafterApprovalDetail";
+import ApproverApprovalList from "./pages/approval/ApproverApprovalList";
+import ApproverApprovalDetail from "./pages/approval/ApproverApprovalDetail";
 import SurveyIng from "./pages/survey/SurveyIng";
 import SurveyResult from "./pages/survey/SurveyResult";
-
+import RestList from "./pages/rest/RestList";
+import RestDetail from "./pages/rest/RestDetail";
+import RestOkList from "./pages/rest/RestOkList";
+import RestOkDetail from "./pages/rest/RestOkDetail";
 
 
 
@@ -47,7 +54,12 @@ function App() {
             <Route index element={<Main />} />
 
             <Route path="employee/regist" element={<EmployeeRegist />} />
+            
             <Route path="approval/regist" element={<ApprovalRegist/>} />
+            <Route path="approval/draft" element={<DrafterApprovalList />} />
+            <Route path="approval/drafterDetail/:appNo" element={ <DrafterApprovalDetail />} />
+            <Route path="approval/approver" element={<ApproverApprovalList />} />
+            <Route path="approval/approverDetail/:appNo" element={ <ApproverApprovalDetail/>} />
             
             <Route path="emp/employeeList" element={ <EmployeeList/> }/>
             <Route path="emp/employeeList/detail-management/:employeeNo" element={ <EmployeeDetail/> }/>
@@ -75,6 +87,15 @@ function App() {
             <Route path="survey-registration" element={<SurveyRegistration />} />
             <Route path="survey/ing" element={<SurveyIng/>}/>
             <Route path="survey/result" element={<SurveyResult/> }/>
+
+
+            {/* 휴가부분 */}
+            <Route path="rest/regist" element={<RestRegist/>} />
+            <Route path="rest/list" element={<RestList/>} />
+            <Route path="rest/list/detail/:restNo" element={<RestDetail/>} />
+            <Route path="rest/list/admin" element={<RestOkList/>} />
+            <Route path="rest/list/admin/detail/:restNo" element={<RestOkDetail/>} />
+
           </Route>
 
           <Route path="/login" element={<Login />} />
