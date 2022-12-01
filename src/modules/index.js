@@ -6,6 +6,7 @@ import attReducer from "./AttModule";
 import calendarReducer from "./CalendarModule";
 import surveyReducer from "./SurveyModule";
 import approvalReducer from "./ApprovalModule";
+import restReducer from "./RestModule";
 
 const rootReducer = combineReducers({
 
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     noticeReducer,
     attReducer,
     calendarReducer,
-    surveyReducer
+    surveyReducer,
+    restReducer
 
 });
 

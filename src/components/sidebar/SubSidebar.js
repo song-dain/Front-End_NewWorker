@@ -122,8 +122,8 @@ function SubSidebar() {
                     <ul>
                         <li className={SubSidebarCSS.sideTitle2}>ㅇ휴가 관리</li>
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="rest/regist">연차 신청</NavLink></li>
-                        <li className={SubSidebarCSS.smallTitle}>연차 조회</li>
-                        <li className={SubSidebarCSS.smallTitle}>연차 인가</li>
+                        <li className={SubSidebarCSS.smallTitle}><NavLink to="rest/list">연차 조회</NavLink></li>
+                        <li className={SubSidebarCSS.smallTitle}><NavLink to="rest/list/admin">연차 인가</NavLink></li>
                     </ul>
                 </div>
 

@@ -35,6 +35,10 @@ import ApproverApprovalList from "./pages/approval/ApproverApprovalList";
 import ApproverApprovalDetail from "./pages/approval/ApproverApprovalDetail";
 
 import SurveyIng from "./pages/survey/SurveyIng";
+import RestList from "./pages/rest/RestList";
+import RestDetail from "./pages/rest/RestDetail";
+import RestOkList from "./pages/rest/RestOkList";
+import RestOkDetail from "./pages/rest/RestOkDetail";
 
 
 
@@ -83,6 +87,13 @@ function App() {
             <Route path="surveyDetail/:surNo" element={<SurveyDetail/>} />
             <Route path="survey-registration" element={<SurveyRegistration />} />
             <Route path="survey/ing" element={<SurveyIng/>}/>
+
+            {/* 휴가부분 */}
+            <Route path="rest/regist" element={<RestRegist/>} />
+            <Route path="rest/list" element={<RestList/>} />
+            <Route path="rest/list/detail/:restNo" element={<RestDetail/>} />
+            <Route path="rest/list/admin" element={<RestOkList/>} />
+            <Route path="rest/list/admin/detail/:restNo" element={<RestOkDetail/>} />
           </Route>
 
           <Route path="/login" element={<Login />} />

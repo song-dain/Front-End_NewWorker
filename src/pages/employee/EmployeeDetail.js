@@ -187,7 +187,7 @@ function EmployeeDetail() {
                     <table>
                         <tbody>
                             <tr>
-                                <td><label>사원명</label></td>
+                            <td><label>사원명</label></td>
                                 <td>
                                     <input
                                         name='employeeName'
@@ -206,6 +206,7 @@ function EmployeeDetail() {
                                     <input
                                         name='employeePwd'
                                         placeholder='비밀번호'
+                                        type='password'
                                         className={ ProductRegistrationCSS.productInfoInput }
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? employeeDetail.employeePwd : form.employeePwd) || '' }
@@ -298,7 +299,7 @@ function EmployeeDetail() {
                             </tr>
                             <tr>
                                 <td><label>직위</label></td>
-                                <td>
+                                {/* <td>
                                     
                                     <input
                                         name='position'
@@ -309,11 +310,27 @@ function EmployeeDetail() {
                                         readOnly={ modifyMode ? false : true }
                                         style={ !modifyMode ? { backgroundColor : 'lightgray'} : null }
                                     />
-                                </td>
+                                </td> */}
+                                <td>
+                                <select name="positionNo" className={ ProductRegistrationCSS.productInfoInput } 
+                                onChange={ onChangeHandler } 
+                                value={ (!modifyMode ? employeeDetail.positionNo : form.positionNo) || '' }
+                                        readOnly={ modifyMode ? false : true }
+                                >
+
+                                    <option value={211}>사원</option>
+                                    <option value={212}>주임</option>
+                                    <option value={213}>대리</option>
+                                    <option value={214}>과장</option>
+                                    <option value={215}>차장</option>
+                                    <option value={216}>팀장</option>
+                                    <option value={217}>임원</option>
+                                </select>
+                            </td>
                             </tr>
                             <tr>
                                 <td><label>부서명</label></td>
-                                <td>
+                                {/* <td>
                                     <input
                                         name='dep'
                                         placeholder='부서명'
@@ -323,9 +340,21 @@ function EmployeeDetail() {
                                         readOnly={ modifyMode ? false : true }
                                         style={ !modifyMode ? { backgroundColor : 'lightgray'} : null }
                                     />
-                                </td>
+                                </td> */}
+                                <td>
+                                <select name="depNo" className={ ProductRegistrationCSS.productInfoInput } 
+                                onChange={ onChangeHandler }
+                                value={ (!modifyMode ? employeeDetail.depNo : form.depNo) || '' }
+                                readOnly={ modifyMode ? false : true }
+                                >
+                                    <option value={10}>인사팀</option>
+                                    <option value={20}>총무팀</option>
+                                    <option value={30}>영업팀</option>
+                                    <option value={40}>IT사업팀</option>
+                                </select>
+                            </td>
                             </tr>
-                            <tr>
+                            {/* <tr>
                                 <td><label>잔여휴가일수</label></td>
                                 <td>
                                     <input
@@ -338,10 +367,10 @@ function EmployeeDetail() {
                                         style={ !modifyMode ? { backgroundColor : 'lightgray'} : null }
                                     />
                                 </td>
-                            </tr>
+                            </tr> */}
                             <tr>
                                 <td><label>입사일</label></td>
-                                <td>
+                                {/* <td>
                                     <input
                                         name='employeeHireDate'
                                         placeholder='입사일'
@@ -351,10 +380,21 @@ function EmployeeDetail() {
                                         readOnly={ modifyMode ? false : true }
                                         style={ !modifyMode ? { backgroundColor : 'lightgray'} : null }
                                     />
+                                </td> */}
+                                <td>
+                                <input
+                                    type="date"
+                                    name='employeeHireDate'
+                                    placeholder='해당 직원의 입사일'
+                                    className={ ProductRegistrationCSS.productInfoInput }
+                                    onChange={ onChangeHandler }
+                                    value={ (!modifyMode ? employeeDetail.employeeHireDate : form.employeeHireDate) || '' }
+                                    readOnly={ modifyMode ? false : true }
+                                />
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>퇴사일</label></td>
+                                {/* <td><label>퇴사일</label></td>
                                 <td>
                                     <input
                                         name='employeeEntDate'
@@ -365,6 +405,18 @@ function EmployeeDetail() {
                                         readOnly={ modifyMode ? false : true }
                                         style={ !modifyMode ? { backgroundColor : 'lightgray'} : null }
                                     />
+                                </td> */}
+                                <td><label>퇴사일</label></td>
+                                <td>
+                                <input
+                                    type="date"
+                                    name='employeeEntDate'
+                                    placeholder='해당 직원의 퇴사일'
+                                    className={ ProductRegistrationCSS.productInfoInput }
+                                    onChange={ onChangeHandler }
+                                    value={ (!modifyMode ? employeeDetail.employeeEntDate : form.employeeEntDate) || '' }
+                                    readOnly={ modifyMode ? false : true }
+                                />
                                 </td>
                             </tr>
                         </tbody>
