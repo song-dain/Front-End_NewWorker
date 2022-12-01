@@ -35,7 +35,7 @@ function SurveyDetail() {
         });
     };
 
-    console.log("surveyDetail" , surveyDetail);
+    console.log("surveyDetail", surveyDetail);
 
     return (
         <div className={SurveyDetailCSS.surveyDetail}>
@@ -136,42 +136,55 @@ function SurveyDetail() {
                             </tr>
                         </tbody>
                         <tfoot className={SurveyDetailCSS.surTfoot}>
-                        <tr>
+                            <tr>
                                 <td>
-
+                                    
                                     <input
                                         
                                         name='surNo'
-                                        placeholder='설문번호'
+                                        placeholder='설문번호123'
                                         // readOnly={modifyMode ? false : true}
                                         style={{ backgroundColor: 'white' }}
                                         onChange={onChangeHandler}
-                                        value={surveyDetail.ansContent || ''}
+                                        value={surveyDetail.questionItem[0].ansContent || ''}
                                         disabled
                                     />
                                 </td>
+                                
                             </tr>
                             <tr>
                                 <td>
-                                    {
-                                        Array.isArray(surveyDetail) && surveyDetail.map(
-                                            (surveyDetail) => (
-                                                <input
-                                                    name='questionItem'
-                                                    placeholder='질문항목'
-                                                    // readOnly={modifyMode ? false : true}
-                                                    style={{ backgroundColor: 'white' }}
-                                                    onChange={onChangeHandler}
-                                                    value={surveyDetail.questionItem1 || ''}
-                                                    disabled
-                                                />
-                                                
-                                            )
-                                        )
-                                    }
-
+                                    
+                                    <input
+                                        
+                                        name='surNo'
+                                        placeholder='설문번호123'
+                                        // readOnly={modifyMode ? false : true}
+                                        style={{ backgroundColor: 'white' }}
+                                        onChange={onChangeHandler}
+                                        value={surveyDetail.questionItem[1].ansContent || ''}
+                                        disabled
+                                    />
                                 </td>
+                                
                             </tr>
+                            <tr>
+                                <td>
+                                    
+                                    <input
+                                        
+                                        name='surNo'
+                                        placeholder='설문번호123'
+                                        // readOnly={modifyMode ? false : true}
+                                        style={{ backgroundColor: 'white' }}
+                                        onChange={onChangeHandler}
+                                        value={surveyDetail.questionItem[2].ansContent || ''}
+                                        disabled
+                                    />
+                                </td>
+                                
+                            </tr>
+                            
                         </tfoot>
                     </table>
                 </div>
