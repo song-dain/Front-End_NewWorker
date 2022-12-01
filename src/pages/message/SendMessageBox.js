@@ -11,6 +11,7 @@ function SendMessageBox(){
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState('');
     const [searchResult, setSearchResult ] = useState('');
+    const [ messageNum, setMessageNum ] = useState('');
     const [selectMContent, setSelectMContent] = useState('');
     const [selectMRecipient, setSelectMRecipient] = useState('');
     const [selectMsendDate, setSelectMSendDate] = useState('');
@@ -80,6 +81,7 @@ function SendMessageBox(){
     /* 메시지 조회 */
     const onClickMessageContent = (message) => {
 
+        setMessageNum(message.messageNo);
         setSelectMRecipient(message.recipient.employeeName);
         setSelectMContent(message.messageContent);
         setSelectMSendDate(message.sendDate);
@@ -87,12 +89,13 @@ function SendMessageBox(){
         setMessageModal(true);
 
     }
-
+    
 
     return(
         <>
             { messageModal ? 
                 <SendMessageMoadl
+                    messageNo={messageNum}
                     selectMRecipient={selectMRecipient}
                     selectMContent={selectMContent}
                     selectMsendDate={selectMsendDate}
@@ -136,20 +139,15 @@ function SendMessageBox(){
                                     >
                                         <td 
                                             className={SendMessageBoxCSS.status}
-                                            style={ messages.messageStatus == 'read' ? { color : '#B3B3B3' } : { color : '#BAE5FE' } }>
-                                        { messages.messageStatus == 'send' ? '전송' : '읽음' }</td>
-                                        <td 
-                                            className={SendMessageBoxCSS.sender}
-                                            style={ messages.messageStatus == 'read' ? { color : '#B3B3B3' } : { color : 'black' } }>
+                                            style={ messages.messageStatus == 'read' ? { color : '#B3B3B3' } : messages.messageStatus === 'send' ? { color : '#5EBFFD' } : { color : 'red' } }>
+                                        { messages.messageStatus == 'read' ? '읽음' : messages.messageStatus == 'send' ? '전송' : '취소' }</td>
+                                        <td className={SendMessageBoxCSS.sender}>
                                         {(messages.sender.employeeName + " " + messages.sender.position.positionName)}</td>
                                         <td
                                             className={SendMessageBoxCSS.content}
-                                            style={ messages.messageStatus == 'read' ? { color : '#B3B3B3' } : { color : 'black' } }
                                             onClick={ () => onClickMessageContent(messages) }
                                         >{messages.messageContent}</td>
-                                        <td 
-                                            className={SendMessageBoxCSS.date}
-                                            style={ messages.messageStatus == 'read' ? { color : '#B3B3B3' } : { color : 'black' } }>
+                                        <td className={SendMessageBoxCSS.date}>
                                         {(messages.today > messages.sendDate.substring(0, 10) ? messages.sendDate.substring(0, 10) : messages.sendDate.substring(11, 16) )}</td>
                                         <td><button
                                             className={SendMessageBoxCSS.binBtn}

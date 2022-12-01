@@ -15,6 +15,31 @@ function ReceiveMessageMoadl({selectMSenderNo, selectMSender, selectMContent, se
             employeeNo : selectMSenderNo
         }
     });
+    const [copyStatus, setCopyStatus] = useState('텍스트 복사');
+
+    /* 메시지 내용 복사하기 */
+    const doCopy = () => {
+
+        if(!document.queryCommandSupported("copy")) {
+            return alert("복사하기가 지원되지 않는 브라우저입니다.")
+        }
+
+        const textarea = document.createElement("textarea");
+        textarea.value = selectMContent;
+        textarea.style.top = 0;
+        textarea.style.left = 0;
+        textarea.style.position = "fixed";
+
+        document.body.appendChild(textarea);
+
+        textarea.focus();
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        setCopyStatus('복사 완료!');
+        setTimeout(function(){ setCopyStatus('텍스트 복사') }, 1000);
+
+    }
 
     const onChangeHandler = (e) => {
         setReply({
@@ -29,14 +54,19 @@ function ReceiveMessageMoadl({selectMSenderNo, selectMSender, selectMContent, se
     }
 
     return (
-        <div className={ReceiveMessageMoadlCSS.mrmodal}>
+        <div
+             className={ReceiveMessageMoadlCSS.mrmodal}>
             <div 
                 className={ReceiveMessageMoadlCSS.mrmcontainer}
                 style={ replyMode == true ? { height : '810px' } : { height : '530px' }}
             >
          <div >
             <div className={ReceiveMessageMoadlCSS.mrmtitle}>받은메시지</div>
-            <span className={ReceiveMessageMoadlCSS.mrmsendar}><span style={ {color : '#23C834'} }>발신자</span> { selectMSender }</span>
+            <span className={ReceiveMessageMoadlCSS.mrmsender}><span style={ {color : '#23C834'} }>발신자</span> { selectMSender }</span>
+            <button
+                className={ReceiveMessageMoadlCSS.copy}
+                onClick={ () => doCopy() }
+            >{copyStatus}</button>
             <div className={ReceiveMessageMoadlCSS.mrmcontent}>
                 { selectMContent }
             </div>
