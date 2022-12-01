@@ -28,9 +28,19 @@
     padding-left: 10px;
 }
 
-.mrmsendar {
+.mrmsender {
     font-size: 20px;
     margin-left: 15px;
+}
+
+.copy {
+    background-color:#ffffff;
+	border:none;
+	display:inline-block;
+	cursor:pointer;
+    margin-left: 480px;
+    color: #5ec0fd;
+
 }
 
 .mrmcontent {
