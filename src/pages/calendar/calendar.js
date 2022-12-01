@@ -1,6 +1,8 @@
 import CalendarCSS from "../calendar/CalendarCSS.module.css";
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { callSelectOfficeCalendarAPI } from "../../api/CalendarAPICalls";
@@ -14,21 +16,30 @@ function Calendar(){
     const dayOffList = calendarEvent.dayOffList;
     const [scheduleDetailModal, setScheduleDetailModal] = useState(false);
     const [clickEventId, setClickEventId] = useState(0);
+    const header = {
+        start: "",
+        center: "prev title next",
+        end: "today",
+    }
 
     const scheduleEvents = 
         Array.isArray(scheduleList) && scheduleList.map((item) => ({
             title: `${item.startTime} | ${item.scheduleTitle}`,
             start: item.startDate,
             end: item.endDate,
-            id: item.calendarNo
+            id: item.calendarNo,
+            color: item.calendarCategory.calendarCategoryName == '내 일정' ? '#5ec0fd' : item.calendarCategory.calendarCategoryName == '부서 일정' ? '#D8F0FF' : '#FFF176',
+            textColor: '#000000'
         }));
 
     const dayOffEvents = 
         Array.isArray(dayOffList) && dayOffList.map((item) => ({
-            title: item.restCateTypeNo.restCateType,
+            title: '● ' + item.restCateTypeNo.restCateType,
             start: item.restFdate,
             end: item.restLdate,
-            id: item.restNo
+            id: item.restNo,
+            color: '#ffffff',
+            textColor: '#0C9200'
         }));
 
     const events = Array.isArray(scheduleList) && Array.isArray(dayOffEvents) && scheduleEvents.concat(dayOffEvents) 
@@ -95,11 +106,13 @@ function Calendar(){
                     setScheduleDetailModal={setScheduleDetailModal}
                 /> : null }
             <div className={CalendarCSS.box}>
+                <div className={CalendarCSS.categoryBtn}>
                 {
                     filterList.map((item, idx) => {
                         return (
                             <label key={idx}>
                                 <input
+                                    className={CalendarCSS.checkbox}
                                     key={item.id}
                                     type="checkbox"
                                     name={item.name}
@@ -109,19 +122,23 @@ function Calendar(){
                                             { checkedItemHandler(e) }
                                         }
                                 />
-                            <span>{item.value}</span>
+                            <span> {item.value}　</span>
                             </label>
                         );
                     })
                 }
-
+                </div>
+                <div className={CalendarCSS.container}>
                 <FullCalendar 
+                    className="fullcalendar"
                     defaultView="dayGridMonth" 
-                    plugins={[ dayGridPlugin ]}
+                    plugins={[ dayGridPlugin, timeGridPlugin, listPlugin  ]}
+                    height='900px'
+                    headerToolbar={header}
                     events={events}
                     eventClick={ e => { onClickScheduleHandler(e) } }
                 />
-
+            </div>
             </div>
         </>
     );

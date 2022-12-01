@@ -2,10 +2,12 @@ import SendMessageMoadlCSS from "./SendMessageModal.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { callSendCalcelAPI } from "../../api/MessageAPICalls";
+import { useNavigate } from "react-router-dom";
 
-function SendMessageMoadl({messageNo, selectMRecipient, selectMContent, selectMsendDate, setMessageModal}){
+function SendMessageMoadl({messageStatus, messageNo, selectMRecipient, selectMContent, selectMsendDate, setMessageModal}){
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [copyStatus, setCopyStatus] = useState('텍스트 복사');
 
     /* 메시지 내용 복사하기 */
@@ -34,6 +36,9 @@ function SendMessageMoadl({messageNo, selectMRecipient, selectMContent, selectMs
 
     /* 메시지 전송 취소 */
     const onClickCancelBtn = () => {
+
+        if(messageStatus == 'read') {return alert('수신자가 읽은 메시지는 전송 취소할 수 없습니다.');}
+
         dispatch(callSendCalcelAPI({messageNo : messageNo}))
         alert('메시지 전송이 취소되었습니다.');
         setMessageModal(false);
