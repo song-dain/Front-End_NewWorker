@@ -48,7 +48,7 @@ function SendMessage(){
                 recipient={setSelectRecipient}
                 setEmpListModal={setEmpListModal}
             /> : null
-        }
+        } 
         <div className={SendMessageCSS.box}>
             <div className={SendMessageCSS.title}>새 메시지 작성</div>
             <span className={SendMessageCSS.sender}>수신자</span>

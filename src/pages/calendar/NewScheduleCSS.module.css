@@ -1,4 +1,17 @@
 .box {
-    width: 1000px;
-    height: 100%;
+    width: 1450px;
+    height: 50%;
+}
+
+.title {
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-bottom: 70px;
+    font-size: 50px;
+}
+
+.category {
+    margin-left: 35px;
+    font-size: 23px;
+    padding: 5px 5px 5px 5px;
 }

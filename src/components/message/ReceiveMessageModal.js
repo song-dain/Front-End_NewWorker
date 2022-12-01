@@ -75,7 +75,7 @@ function ReceiveMessageMoadl({selectMSenderNo, selectMSender, selectMContent, se
             <button
                 className={ReceiveMessageMoadlCSS.mrmokbtn}
                 onClick={ () => setReplyMode(true) }
-            >답장</button>
+            >답장</button> 
             <button
                 onClick={ () => setMessageModal(false) }
                 className={ReceiveMessageMoadlCSS.mrmocancelbtn}

@@ -77,14 +77,15 @@ function NewSchedule() {
     return(
         <>
             <div className={NewScheduleCSS.box}>
-                새 일정 추가
-                <select onChange={ e => onSelectChangeHandler(e) }>
+                <div className={NewScheduleCSS.title}>새 일정 추가</div>
+                <select 
+                    className={NewScheduleCSS.category}
+                    onChange={ e => onSelectChangeHandler(e) }>
                     <option>일정 선택</option>
                     <option>내 일정</option>
                     { loginEmp.position ? loginEmp.position.positionNo > 211 && <option>부서 일정</option> : <option>부서일정오락가락</option> }
                     { decoded == "ROLE_ADMIN" && <option>전사 일정</option> }
-
-
+                    
                 </select>
                 <input
                     name='scheduleTitle'

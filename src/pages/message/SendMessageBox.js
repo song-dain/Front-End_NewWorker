@@ -11,6 +11,7 @@ function SendMessageBox(){
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState('');
     const [searchResult, setSearchResult ] = useState('');
+    const [status, setStatus] = useState('');
     const [ messageNum, setMessageNum ] = useState('');
     const [selectMContent, setSelectMContent] = useState('');
     const [selectMRecipient, setSelectMRecipient] = useState('');
@@ -81,6 +82,7 @@ function SendMessageBox(){
     /* 메시지 조회 */
     const onClickMessageContent = (message) => {
 
+        setStatus(message.messageStatus);
         setMessageNum(message.messageNo);
         setSelectMRecipient(message.recipient.employeeName);
         setSelectMContent(message.messageContent);
@@ -95,6 +97,7 @@ function SendMessageBox(){
         <>
             { messageModal ? 
                 <SendMessageMoadl
+                    messageStatus={status}
                     messageNo={messageNum}
                     selectMRecipient={selectMRecipient}
                     selectMContent={selectMContent}
