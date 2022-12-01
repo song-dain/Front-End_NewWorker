@@ -29,6 +29,10 @@ import SurveyRegistration from "./pages/admin/SurveyRegistration";
 import PwdInquiryResult from "./pages/employee/PwdInquiryResult";
 import PwdUpdate from "./pages/employee/PwdUpdate";
 import PwdUpdateResult from "./pages/employee/PwdUpdateResult";
+import DrafterApprovalList from "./pages/approval/DrafterApprovalList";
+import DrafterApprovalDetail from "./pages/approval/DrafterApprovalDetail";
+import ApproverApprovalList from "./pages/approval/ApproverApprovalList";
+import ApproverApprovalDetail from "./pages/approval/ApproverApprovalDetail";
 
 
 
@@ -45,7 +49,12 @@ function App() {
             <Route index element={<Main />} />
 
             <Route path="employee/regist" element={<EmployeeRegist />} />
+            
             <Route path="approval/regist" element={<ApprovalRegist/>} />
+            <Route path="approval/draft" element={<DrafterApprovalList />} />
+            <Route path="approval/drafterDetail/:appNo" element={ <DrafterApprovalDetail />} />
+            <Route path="approval/approver" element={<ApproverApprovalList />} />
+            <Route path="approval/approverDetail/:appNo" element={ <ApproverApprovalDetail/>} />
             
             <Route path="emp/employeeList" element={ <EmployeeList/> }/>
             <Route path="emp/employeeList/detail-management/:employeeNo" element={ <EmployeeDetail/> }/>

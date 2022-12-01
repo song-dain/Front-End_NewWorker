@@ -4,7 +4,7 @@ import ApproverChoiceModalCSS from './ApproverChoiceModal.module.css';
 import { callEmpListAPI } from '../../api/ApprovalAPICalls';
 
 
-function ApproverChoiceModal({approverListModal/*, selectApprover, setSelectApprover*/, appLines, setAppLines, setApproverListModal}) {
+function ApproverChoiceModal({approverListModal, appLines, setAppLines, setApproverListModal}) {
     const dispatch = useDispatch();
     const employee = useSelector(state => state.approvalReducer);
     const [ isChange, setIsChange ] = useState(10);

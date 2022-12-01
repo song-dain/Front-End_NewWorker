@@ -141,8 +141,8 @@ function SubSidebar() {
 
                     <ul>
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="approval/regist">결재 작성</NavLink></li>
-                        <li className={SubSidebarCSS.smallTitle}>상신함</li>
-                        <li className={SubSidebarCSS.smallTitle}>수신함</li>
+                        <li className={SubSidebarCSS.smallTitle}><NavLink to="approval/draft">상신함</NavLink></li>
+                        <li className={SubSidebarCSS.smallTitle}><NavLink to="approval/approver">수신함</NavLink></li>
                     </ul>
 
                 </div>
