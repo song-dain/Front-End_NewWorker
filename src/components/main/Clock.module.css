@@ -1,0 +1,16 @@
+.clock {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.DateP {
+    font-size: 25px;
+    color: #505050;
+}
+
+.ClockP {
+    font-size: 75px;
+    font-weight: bold;
+    color: #505050;
+    margin-bottom: 30px;
+}
