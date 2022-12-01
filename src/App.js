@@ -34,6 +34,8 @@ import DrafterApprovalDetail from "./pages/approval/DrafterApprovalDetail";
 import ApproverApprovalList from "./pages/approval/ApproverApprovalList";
 import ApproverApprovalDetail from "./pages/approval/ApproverApprovalDetail";
 
+import SurveyIng from "./pages/survey/SurveyIng";
+
 
 
 
@@ -80,6 +82,7 @@ function App() {
             <Route path="Survey" element={<Survey />} />
             <Route path="surveyDetail/:surNo" element={<SurveyDetail/>} />
             <Route path="survey-registration" element={<SurveyRegistration />} />
+            <Route path="survey/ing" element={<SurveyIng/>}/>
           </Route>
 
           <Route path="/login" element={<Login />} />

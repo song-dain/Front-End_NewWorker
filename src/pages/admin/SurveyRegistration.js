@@ -14,33 +14,20 @@ function SurveyRegistration() {
     const imageInput = useRef();
     const [image, setImage] = useState(null);
     const [imageUrl, setImageUrl] = useState('');
-    const [Content, setContent] = useState();
     const [form, setForm] = useState({
         surTitle: '',
         surContent: '',
-        surStartDate: '',
-        surEndDate: '',
-        ansContent: '',
-        questionItem1: '',
-        questionItem2: '',
-        questionItem3: '',
+        surStartDate: 0,
+        surEndDate: 0,
+        ansContent1: '',
+        ansContent2: '',
+        ansContent3: '',
         depNo : 10,
     });
 
 
 
-    // 대상을 선택하는 select 옵션
-    const Options = [
-        { key: 1, value: "모든 부서" },
-        { key: 2, value: "IT사업팀" },
-        { key: 3, value: "인사팀" },
-        { key: 4, value: "총무팀" },
-        { key: 5, value: "영업팀" },
-    ]
-
-    const onChangeSelectHandler = (e) => {
-        setContent(e.currentTarget.value)
-    }
+    
 
     useEffect(() => {
         // image 값이 바뀔 때마다 랜더링 -> 파일 첨부가 다시 일어날 때마다 preview 보여주기
@@ -63,7 +50,10 @@ function SurveyRegistration() {
             ...form,
             [e.target.name]: e.target.value
         });
+        
+        console.log("ansContent1" , form);
     }
+    
 
 
 
@@ -89,9 +79,9 @@ function SurveyRegistration() {
         formData.append("surContent", form.surContent); //설문설명
         formData.append("surStartDate", form.surStartDate); //설문시작일
         formData.append("surEndDate", form.surEndDate); //설문종료일
-        formData.append("ansContent[0].questionItem", form.questionItem1); //질문항목
-        formData.append("ansContent[1].questionItem", form.questionItem2); //질문항목
-        formData.append("ansContent[2].questionItem", form.questionItem3); //질문항목
+        formData.append("questionItem[0].ansContent", form.ansContent1); //질문항목1
+        formData.append("questionItem[1].ansContent", form.ansContent2); //질문항목2
+        formData.append("questionItem[2].ansContent", form.ansContent3); //질문항목3
         formData.append("dep.depNo", form.depNo);   //부서
 
         if (image) {
@@ -104,8 +94,9 @@ function SurveyRegistration() {
         alert('설문이 등록되었습니다.');
         navigate(`/Survey`, { replace: true });
         // window.location.reload();
+        
+        console.log("formData" , formData);
     }
-
     return (
         <div >
             <h1>설문조사</h1>
@@ -211,9 +202,21 @@ function SurveyRegistration() {
                         <tr>
                             <th>
                                 설문항목 : <input
-                                    name='questionItem'
+                                    name='ansContent1'
                                     type='text'
-                                    placeholder='제목을 입력하세요.'
+                                    placeholder='항목을 입력하세요1.'
+                                    onChange={onChangeHandler}
+                                />
+                                
+                            </th>
+
+                        </tr>
+                        <tr>
+                            <th>
+                                <input
+                                    name='ansContent2'
+                                    type='text'
+                                    placeholder='항목을 입력하세요2.'
                                     onChange={onChangeHandler}
                                 />
                             </th>
@@ -222,20 +225,9 @@ function SurveyRegistration() {
                         <tr>
                             <th>
                                 <input
-                                    name='questionItem'
+                                    name='ansContent3'
                                     type='text'
-                                    placeholder='제목을 입력하세요.'
-                                    onChange={onChangeHandler}
-                                />
-                            </th>
-
-                        </tr>
-                        <tr>
-                            <th>
-                                <input
-                                    name='questionItem'
-                                    type='text'
-                                    placeholder='제목을 입력하세요.'
+                                    placeholder='항목을 입력하세요3.'
                                     onChange={onChangeHandler}
                                 />
                             </th>

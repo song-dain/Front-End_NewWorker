@@ -1,4 +1,23 @@
 .box {
-    width: 1000px;
-    height: 100%;
+    width: 1450px;
+    height: 50%;
+}
+
+.categoryBtn {
+    position: relative;
+    top: 120px;
+    left: 85px;
+    cursor: pointer;
+}
+
+.checkbox {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    vertical-align: top;
+}
+
+.container {
+    width: 1300px;
+    margin-left: 80px;
 }
