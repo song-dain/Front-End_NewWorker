@@ -1,4 +1,4 @@
-import { GET_SURVEY, GET_SURVEYS, POST_SURVEY, PUT_SURVEY } from "../modules/SurveyModule";
+import { GET_SURVEY, GET_SURVEYS, POST_SURVEY, PUT_SURVEY, POST_SURVEYSUBMIT } from "../modules/SurveyModule";
 
 export const callSurveyAPI = ({surNo, currentPage}) => {
 
@@ -102,6 +102,34 @@ export const callSurveyRegistAPI = ({form}) => {
         if(result.status === 200) {
             console.log('[SurveyAPICalls] callSurveyRegistAPI result : ', result);
             dispatch({ type: POST_SURVEY, payload: result.data });
+            
+        }
+    }
+
+}
+
+//제출하기
+export const callSurveySubmitAPI = ({form}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/survey/survey/submit`;
+
+    return async (dispatch, getState) => {
+
+        console.log("동작 확인");
+
+        const result = await fetch(requestURL, {
+            method : "POST",
+            headers : {
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            },
+            body : form 
+         })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[SurveyAPICalls] callSurveySubmitAPI result : ', result);
+            dispatch({ type: POST_SURVEYSUBMIT, payload: result.data });
             
         }
     }
