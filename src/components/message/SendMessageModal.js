@@ -37,7 +37,13 @@ function SendMessageMoadl({messageStatus, messageNo, selectMRecipient, selectMCo
     /* 메시지 전송 취소 */
     const onClickCancelBtn = () => {
 
-        if(messageStatus == 'read') {return alert('수신자가 읽은 메시지는 전송 취소할 수 없습니다.');}
+        if(messageStatus == 'read') {
+            return alert('수신자가 읽은 메시지는 전송 취소할 수 없습니다.');
+        }
+
+        if(messageStatus == 'cancel') {
+            return alert('이미 전송 취소된 메시지입니다.');
+        }
 
         dispatch(callSendCalcelAPI({messageNo : messageNo}))
         alert('메시지 전송이 취소되었습니다.');
@@ -63,6 +69,7 @@ function SendMessageMoadl({messageStatus, messageNo, selectMRecipient, selectMCo
                     onClick={ () => setMessageModal(false) }
                 >닫기</button>
                 <button
+                    style={messageStatus == 'send' ? {backgroundColor : '#ff4444'} : { backgroundColor : '#B3B3B3' } }
                     className={SendMessageMoadlCSS.msmocancelbtn}
                     onClick={ () => onClickCancelBtn() }
                 >전송취소</button>
