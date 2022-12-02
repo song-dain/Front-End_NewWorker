@@ -40,7 +40,7 @@ function Sidebar() {
         window.localStorage.removeItem('accessToken');
         dispatch(callLogoutAPI());
         alert('로그아웃되어 로그인 화면으로 이동합니다.');
-        navigate('/', { replace : true });
+        navigate('/login', { replace : true });
     }
 
     return (

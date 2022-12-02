@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { callApproverApprovalDetailAPI } from '../../api/ApprovalAPICalls';
+import { callApproverApprovalDetailAPI, callAcceptChangeAPI, callNotAcceptChangeAPI } from '../../api/ApprovalAPICalls';
 
 
 
@@ -12,30 +12,55 @@ function ApproverApprovalDetail() {
     const dispatch = useDispatch();
     const approval = useSelector(state => state.approvalReducer);
 
+
     const params = useParams();
     const appNo = params.appNo
 
-    const [form, setForm] = useState({
-        appNo : 0,
-        appStatus : '',
-        acceptStatus : ''
-    });
+
+
+    
 
     useEffect(() => {
         console.log('appNo : ', params.appNo);
 
         dispatch(callApproverApprovalDetailAPI({
             appNo : appNo
-        }))
+        }));
     }
     , []
     );
 
+
+    const onClickAccChangeHandler = () => {
+
+        // 승인 상태가 null 이며, 결재활성화여부가 'Y'인 배열의 appLineNo를 서버에 전송
+        const index = approval.appLines.findIndex(idx => idx.acceptActivate == 'Y' && idx.acceptStatus == null);
+        console.log(index);
+
+        dispatch(callAcceptChangeAPI({ 
+            appLineNo : approval.appLines[index].appLineNo,
+            approvalNo : approval.appLines[index].approvalNo
+        }))
+
+
+    }
+
+    const onClickNotAccChangeHandler = () => {
+
+        const index = approval.appLines.findIndex(idx => idx.acceptActivate == 'Y' && idx.acceptStatus == null);
+        console.log(index);
+
+        dispatch(callNotAcceptChangeAPI({
+            appLineNo : approval.appLines[index].appLineNo,
+            approvalNo : approval.appLines[index].approvalNo
+        }))
+    }
     
+
+
     return ( 
 
-         approval.appLines &&
-            
+         approval.appLines &&           
         <div>
             <table>
                 <tbody>
@@ -66,8 +91,7 @@ function ApproverApprovalDetail() {
                         <td><th>내용</th></td>
                     </tr>
                     <br/>
-                    <tr>
-                        { approval.appContent }
+                    <tr dangerouslySetInnerHTML={ {__html: approval.appContent} }>
                     </tr>
                     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                     <tr>
@@ -79,7 +103,7 @@ function ApproverApprovalDetail() {
                         결재자
                     </tr>
                     {
-                 approval.appLines.map((appLine) => (
+                     approval.appLines.map((appLine) => (
                     <tr>
                             {appLine.employee.employeeName} {appLine.acceptStatus}
                     </tr>
@@ -90,8 +114,8 @@ function ApproverApprovalDetail() {
             </table>
             <br/>
             <div>
-                { approval.appStatus === "대기" &&<button name="acceptStatus" value="승인">승인</button>}
-                { approval.appStatus === "대기" &&<button name="acceptStatus" value="반려">반려</button>}
+                { (approval.appStatus == "대기" || approval.appStatus == "진행중") && <button onClick={ onClickAccChangeHandler }>승인</button>}
+                { (approval.appStatus == "대기" || approval.appStatus == "진행중") && <button onClick={ onClickNotAccChangeHandler }>반려</button>}
                 <button onClick={ () => { navigate('/approval/approver') } }>돌아가기</button>
             </div>
                 
