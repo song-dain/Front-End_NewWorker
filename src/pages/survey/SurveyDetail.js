@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
-import { callSurveyDetailAPI, callSurveySubmitAPI } from '../../api/SurveyAPICalls';
+import { callSurveyDetailAPI, callSurveySubmitAPI, callSurveyDeleteAPI } from '../../api/SurveyAPICalls';
 
 
 function SurveyDetail() {
@@ -46,19 +46,33 @@ function SurveyDetail() {
 
         formData.append("ansNo", form.ansNo);     //설문항목
 
-
-
-
+        
+        
+        
+        
         dispatch(callSurveySubmitAPI({
             form: formData
         }));
         alert('설문이 제출되었습니다.');
         navigate(`/survey/result`, { replace: true });
         // window.location.reload();
-
+        
         console.log("formData", formData);
     }
+    
+    //삭제하기
+    const onClickSurveyDeleteHandler = () => {
+        // console.log('[noticeDetail 공지사항 번호] : ', form.notNo);
+        dispatch(callSurveyDeleteAPI({
+            surNo: params.surNo
+        }));
 
+        alert("설문이 삭제되었습니다.")
+
+        navigate(`/Survey`, { replace: true });
+        // window.location.reload();
+    }
+    
     return (
         <div className={SurveyDetailCSS.surveyDetail}>
             <h1 className={SurveyDetailCSS.text}>설문조사</h1>
@@ -160,7 +174,7 @@ function SurveyDetail() {
                         <tfoot className={SurveyDetailCSS.surTfoot}>
                             <tr>
                                 <td>
-                                    <input id="test1" type="checkbox"
+                                    <input id="test1" type="radio"
                                         name='ansNo'
                                         onChange={onChangeHandler} />
                                     <label htmlFor="test1">
@@ -172,10 +186,10 @@ function SurveyDetail() {
                             </tr>
                             <tr>
                                 <td>
-                                    <input id="test1" type="checkbox"
+                                    <input id="test2" type="radio"
                                         name='ansNo'
                                         onChange={onChangeHandler} />
-                                    <label htmlFor="test1">
+                                    <label htmlFor="test2">
                                         {/* onChange={onChangeHandler}
                                     value= */}
                                         {surveyDetail.questionItem[1].ansContent || ''}
@@ -184,10 +198,10 @@ function SurveyDetail() {
                             </tr>
                             <tr>
                                 <td>
-                                    <input id="test1" type="checkbox"
+                                    <input id="test3" type="radio"
                                         name='ansNo'
                                         onChange={onChangeHandler} />
-                                    <label htmlFor="test1">
+                                    <label htmlFor="test3">
 
                                         {/* onChange={onChangeHandler}
                                     value= */}
@@ -220,6 +234,13 @@ function SurveyDetail() {
                     onClick={() => navigate(`/survey-update/${surveyDetail.surNo}`, { replace: false })}
                 >
                     수정하기
+                </button>
+
+                <button
+                    className={SurveyDetailCSS.backBtn1}
+                    onClick={onClickSurveyDeleteHandler}
+                >
+                    삭제
                 </button>
 
 

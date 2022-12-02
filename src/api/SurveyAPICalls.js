@@ -1,4 +1,4 @@
-import { GET_SURVEY, GET_SURVEYS, POST_SURVEY, PUT_SURVEY, POST_SURVEYSUBMIT } from "../modules/SurveyModule";
+import { GET_SURVEY, GET_SURVEYS, POST_SURVEY, PUT_SURVEY, POST_SURVEYSUBMIT, DELETE_SURVEY } from "../modules/SurveyModule";
 
 export const callSurveyAPI = ({surNo, currentPage}) => {
 
@@ -131,6 +131,32 @@ export const callSurveySubmitAPI = ({form}) => {
             console.log('[SurveyAPICalls] callSurveySubmitAPI result : ', result);
             dispatch({ type: POST_SURVEYSUBMIT, payload: result.data });
             
+        }
+    }
+
+}
+
+/* 설문 삭제 */
+export const callSurveyDeleteAPI = ({ surNo }) => {
+    console.log('[surveyAPICalls] surNo 설문 삭제 : ', surNo);
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/survey/surveyDetail/delete/${surNo}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "DELETE",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            }
+            // body : form
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[noticeAPICalls] callSurveyDeleteAPI result : ', result);
+            dispatch({ type: DELETE_SURVEY, payload: result });
         }
     }
 

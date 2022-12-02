@@ -8,12 +8,14 @@ export const GET_NOTICE     = 'notice/GET_NOTICE';
 export const GET_NOTICES    = 'notice/GET_NOTICES';
 export const POST_NOTICE    = 'notice/POST_NOTICE';
 export const PUT_NOTICE     = 'notice/PUT_NOTICE';
+export const DELETE_NOTICE     = 'notice/DELETE_NOTICE';
 
 const actions = createActions({
     [GET_NOTICE]: () => {},
     [GET_NOTICES]: () => {},
     [POST_NOTICE]: () => {},
-    [PUT_NOTICE]: () => {}
+    [PUT_NOTICE]: () => {},
+    [DELETE_NOTICE]: () => {}
 });
 
 /* 리듀서 */
@@ -32,6 +34,10 @@ const noticeReducer = handleActions(
             return payload;
         },
         [PUT_NOTICE]: (state, { payload }) => {
+            
+            return payload;
+        },
+        [DELETE_NOTICE]: (state, { payload }) => {
             
             return payload;
         }

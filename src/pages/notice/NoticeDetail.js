@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react';
 
 import {
     callNoticeDetailAPI,
-    callNoticeUpdateAPI
+    callNoticeUpdateAPI,
+    callNoticeDeleteAPI
 } from '../../api/NoticeAPICalls';
 
 function NoticeDetail() {
@@ -38,6 +39,18 @@ function NoticeDetail() {
             [e.target.name]: e.target.value
         });
     };
+
+    //삭제하기
+    const onClickNoticeDeleteHandler = () => {
+        // console.log('[noticeDetail 공지사항 번호] : ', form.notNo);
+        dispatch(callNoticeDeleteAPI({
+            notNo: params.notNo}));
+
+        alert("글이 삭제되었습니다.")
+
+        navigate(`/Notice`, { replace: true});
+        // window.location.reload();
+    }
 
     const onClickUpdate = (notNo) => {
         navigate(`/notice-update/${notNo}`, { replace: false });
@@ -108,15 +121,22 @@ function NoticeDetail() {
                 >
                     목록으로
                 </button>
-                
-                
+
+
                 <button
                     className={NoticeDetailCSS.backBtn}
                     onClick={() => navigate(`/notice-update/${noticeDetail.notNo}`, { replace: false })}
                 >
                     수정하기
                 </button>
-                
+
+                <button
+                    className={NoticeDetailCSS.backBtn}
+                    onClick={onClickNoticeDeleteHandler}
+                >
+                    삭제
+                </button>
+
 
 
 
