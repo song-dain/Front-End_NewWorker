@@ -32,6 +32,17 @@ function SendMessage(){
 
     /* 메시지 보내기 */
     const SendMessage = () => {
+
+        if(message.recipient.employeeNo == 0) {
+            alert('수신자를 선택하세요.');
+            return;
+        }
+
+        if(message.messageContent == ''){
+            alert('메시지 내용을 입력하세요.');
+            return;
+        }
+
         dispatch(callSendMessageAPI({ form : message }));
         window.alert('메시지가 전송되었습니다.');
         navigate('/message/send', { replace : false });
@@ -56,10 +67,11 @@ function SendMessage(){
                 type="text"
                 name="employeeNo"
                 placeholder="검색을 통해 입력하세요."
-                defaultValue={ selectRecipient }
+                value={ selectRecipient }
                 onClick={ () => openEmpList() }
                 onChange={ onChangeHandler }
                 className={SendMessageCSS.senderinput}
+                readOnly='true'
             />
             <button
                 onClick={ () => openEmpList() }

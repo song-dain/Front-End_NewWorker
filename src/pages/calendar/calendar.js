@@ -24,7 +24,7 @@ function Calendar(){
 
     const scheduleEvents = 
         Array.isArray(scheduleList) && scheduleList.map((item) => ({
-            title: `${item.startTime} | ${item.scheduleTitle}`,
+            title: item.startTime != null ? `AD | ${item.scheduleTitle}` : `${item.startTime} | ${item.scheduleTitle}`,
             start: item.startDate,
             end: item.endDate,
             id: item.calendarNo,

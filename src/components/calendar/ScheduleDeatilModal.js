@@ -70,7 +70,11 @@ function ScheduleDetailModal({clickEventId, setScheduleDetailModal}){
     /* 일정 수정 저장 */
     const onClickSaveHandler = (e) => {
 
-        console.log(update);
+        if(update.scheduleTitle == ''){
+            alert('일정 타이틀을 입력해주세요.');
+            return;
+        }
+
         dispatch(callUpdateScheduleAPI({ 
             form : update,
             scheduleNo : clickEventId
