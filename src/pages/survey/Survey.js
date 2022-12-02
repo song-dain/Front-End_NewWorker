@@ -31,7 +31,7 @@ function Survey() {
         , [currentPage]
     )
 
-
+    
 
 
     // 슬라이드 배너 코드
@@ -87,7 +87,7 @@ function Survey() {
                     <div className={SurveyCSS.bannerBox}>
                         <div className={SurveyCSS.banner}>
                             <div data-index={1}><a href="#">
-                                <img src="static/images/logo.png" alt="로고" />
+                                
                             </a></div >
                             <div data-index={2}><a href="#">
                                 <img src="static/images/logo.png" alt="로고" />

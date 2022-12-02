@@ -38,7 +38,7 @@
 
 .surButton:hover {
     background-color: #D9D9D9;
-    cursor: pointer;
+    
 }
 
 .surSubBox {
@@ -132,19 +132,19 @@
 }
 
 .banner>div:nth-child(1) {
-    background-image: url('../../../public/static/images/logo.png');
+    background-image: url('../../../public/static/images/설문조사.png');
 }
 
 .banner>div:nth-child(2) {
-    background-image: url('../../../public/static/images/logo.png');
+    background-image: url('../../../public/static/images/탕비실설문.png');
 }
 
 .banner>div:nth-child(3) {
-    background-image: url('../../../public/static/images/logo.png');
+    background-image: url('../../../public/static/images/회식설문.png');
 }
 
 .banner>div:nth-child(4) {
-    background-image: url('../../../public/static/images/logo.png');
+    background-image: url('../../../public/static/images/근무설문.png');
 }
 
 .listbutton {

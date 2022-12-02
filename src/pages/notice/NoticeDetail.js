@@ -83,7 +83,7 @@ function NoticeDetail() {
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src={notices.noticeImageUrl} alt="테스트" />
+                                    {/* { localhost:8001/uploadFiles/noticeimgs && <img src={notices.noticeImageUrl} alt="테스트" />} */}
                                     <textarea
                                         className={NoticeDetailCSS.noticeContent}
                                         name='notContent'
