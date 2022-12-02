@@ -49,6 +49,12 @@ function ReceiveMessageMoadl({selectMSenderNo, selectMSender, selectMContent, se
     }
 
     const onClickSendReplyBtn = () => {
+
+        if(reply.messageContent == '') {
+            alert('메시지 내용을 입력하세요.');
+            return;
+        }
+
         dispatch(callSendMessageAPI({form : reply}))
         navigate('/message/send', { replace : false });
     }
@@ -84,7 +90,7 @@ function ReceiveMessageMoadl({selectMSenderNo, selectMSender, selectMContent, se
             {
                 replyMode && 
                 <>
-                    <div className={ReceiveMessageMoadlCSS.mrmreply}>빠른답장</div>
+                    <div className={ReceiveMessageMoadlCSS.mrmreply}>답장</div>
                     <div className={ReceiveMessageMoadlCSS.mrmreceiver}><span style={ {color : '#5ec0fd'} }>수신자</span> { selectMSender }</div>
                     <textarea
                         placeholder="답장 내용을 입력하세요."

@@ -33,8 +33,6 @@ function NewSchedule() {
         scheduleContent : ""
     });
 
-    console.log(newSchedule);
-
     useEffect(
         () => {
             dispatch(callEmployeeInfoAPI());
@@ -67,12 +65,36 @@ function NewSchedule() {
 
     /* 일정 등록 */
     const onClickAddBtn = () => {
+
+        if(newSchedule.calendarCategory.calendarCategoryName == ''){
+            alert('일정 카테고리를 선택해주세요.');
+            return;
+        }
+
+        if(newSchedule.scheduleTitle == ''){
+            alert('일정 타이틀을 입력해주세요.');
+            return;
+        }
+
+        if(newSchedule.startDate == ''){
+            alert('일정 시작 날짜를 입력해주세요.');
+            return;
+        }
+
+        if(newSchedule.endDate == ''){
+            alert('일정 종료 날짜를 입력해주세요.');
+            return;
+        }
+
+        if(newSchedule.startTime == ''){
+            alert('일정 시작 시간을 입력해주세요.');
+            return;
+        }
+
         dispatch(callAddScheduleAPI({form : newSchedule}))
         alert('일정이 추가되었습니다.');
         navigate('/calendar', { replace : false })
     };
-
-    console.log(newSchedule.startDate + 1);
 
     return(
         <>
@@ -98,7 +120,6 @@ function NewSchedule() {
                     className={NewScheduleCSS.startDate}
                     name='startDate'
                     type='date'
-                    defaultValue={today}
                     readOnly={allDayBtn}
                     onChange={ e => onChangeHandler(e) }
                 />
@@ -107,7 +128,6 @@ function NewSchedule() {
                     className={NewScheduleCSS.endDate}
                     name='endDate'
                     type='date'
-                    defaultValue="2022-11-28"
                     min={newSchedule.startDate}
                     readOnly={allDayBtn}
                     onChange={ e => onChangeHandler(e) }
@@ -117,7 +137,6 @@ function NewSchedule() {
                         className={NewScheduleCSS.stime}
                         type='time'
                         name='startTime'
-                        defaultValue='00:00'
                         onChange={ e => onChangeHandler(e) }
                 />
                 <input
