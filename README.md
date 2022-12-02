@@ -19,18 +19,18 @@
 
 ## **✔ 프로젝트 개발 환경**
 
-**운영체제**    Windows10,11 Mac OS
+**운영체제 :** Windows10,11 Mac OS
 
-**개발도구**    SpringToolSuite4, VS Code, Oracle SQL Developer
+**개발도구 :** SpringToolSuite4, VS Code, Oracle SQL Developer
 
-**DMMS**        Oracle
+**DMMS :** Oracle
 
-**Server**         Apache Tomcat 
+**Server :** Apache Tomcat 
 
-**언어**            Java, HTML, CSS3, JavaScript
+**언어 :** Java, HTML, CSS3, JavaScript
 
-**협업툴**        GitHub, DA#, Figma, Whimsical, Slack, Notion
+**협업툴 :** GitHub, DA#, Figma, Whimsical, Slack, Notion
 
-**API**              FullCalendar
+**API :** FullCalendar
 
-**프레임워크** Spring framework, React
+**프레임워크** : Spring framework, React
