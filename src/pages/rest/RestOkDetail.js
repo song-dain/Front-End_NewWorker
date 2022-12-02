@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { callRestOkDetailAPI } from '../../api/RestAPICalls';
+import { callRestOkDetailAPI, callRestOkButtonAPI, callRestNoButtonAPI } from '../../api/RestAPICalls';
 
 
 
@@ -12,6 +12,8 @@ function RestOkDetail() {
     const navigate = useNavigate();    
     const restOk = useSelector(state => state.restReducer); 
     const restOkDetail = restOk.data;
+
+    const [form, setForm] = useState({});
 
     
 
@@ -35,7 +37,25 @@ function RestOkDetail() {
     //     });
     // }
 
+    //승인버튼
+    const onClickRestOkHandler = () => {
+        dispatch(callRestOkButtonAPI({
+            restNo: restOk.restNo
+        }));
+        alert("승인완료")
+        navigate(`/rest/list/admin`, { replace: true});
+        window.location.reload();
+    }
     
+    //반려버튼
+    const onClickRestNoHandler = () => {
+        dispatch(callRestNoButtonAPI({
+            restNo: restOk.restNo
+        }));
+        alert("반려완료")
+        navigate(`/rest/list/admin`, { replace: true});
+        window.location.reload();
+    }
     
     //수정모드 변경
     // const onClickModifyModeHandler = () => {
@@ -225,7 +245,8 @@ function RestOkDetail() {
 
                     {/* 버튼 */}
                     <button
-                    onClick={ () => restOk.restOk='Y'  }
+                    // onClick={ () => onClickRestOkHandler()  }
+                    onClick={ onClickRestOkHandler }
                 >
                     승인
                 </button>
@@ -235,7 +256,7 @@ function RestOkDetail() {
                     목록으로
                 </button>
                 <button
-                    onClick={ () => navigate(-1) }
+                    onClick={ onClickRestNoHandler }
                 >
                     반려
                 </button>

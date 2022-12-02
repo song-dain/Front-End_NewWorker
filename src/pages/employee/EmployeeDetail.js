@@ -76,8 +76,8 @@ function EmployeeDetail() {
             employeeAddress : employeeDetail.employeeAddress,
             employeeStatus : employeeDetail.employeeStatus,
             employeeRole : employeeDetail.employeeRole,
-            position : employeeDetail.position,
-            dep : employeeDetail.dep,
+            position : employeeDetail.position.positionNo,
+            dep : employeeDetail.dep.depNo,
             employeeRestDay : employeeDetail.employeeRestDay,
             employeeHireDate : employeeDetail.employeeHireDate,
             employeeEntDate : employeeDetail.employeeEntDate

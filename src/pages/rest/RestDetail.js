@@ -81,30 +81,7 @@ function RestDetail() {
 
     return (
         <div>
-            <div 
-            // className={ ProductRegistrationCSS.productButtonDiv }
-            >
-                <button
-                    onClick={ () => navigate(-1) }
-                >
-                    돌아가기
-                </button>
-            {!modifyMode &&
-                <button
-                    onClick={ onClickModifyModeHandler }
-                >
-                    수정하기
-                </button>
-            }
-            {modifyMode &&
-                <button
-                    onClick={ onClickRestUpdateHandler }
-                >
-                    저장하기
-
-                </button>
-            }
-            </div>
+           
             <div 
             // className={ ProductRegistrationCSS.productSection }
             >
@@ -130,8 +107,8 @@ function RestDetail() {
                                     <option value={5}>오후반차</option>                                
                                 </select>
                             </td>
+                       
                         </tr>
-                        <br/>
                           
                         <tr>
                             <td><label>휴가기간</label></td>
@@ -146,7 +123,7 @@ function RestDetail() {
                                      readOnly={ modifyMode ? false : true }
                                 />
                             </td>
-                            ~
+                        
                             <td>
                                 <input
                                      type="date"
@@ -159,7 +136,6 @@ function RestDetail() {
                                 />
                             </td>
                         </tr>
-                        <br/>
                         <tr>      
                             <td><label>휴가일수</label></td>
                             <td>
@@ -174,7 +150,6 @@ function RestDetail() {
                                     />
                             </td>
                         </tr>
-                        <br/>
                         <tr>
                             <td><label>작성일</label></td>
                             <td>
@@ -189,7 +164,6 @@ function RestDetail() {
                                 />
                             </td>
                         </tr>
-                        <br/>
                         <tr>                             
                             <td><label>휴가사유</label></td>
                             <td>
@@ -204,10 +178,33 @@ function RestDetail() {
                             </td>
                         </tr>
                         
-                        <br/>                        
                         </tbody>
                     </table>
                 </div>
+                <div 
+            // className={ ProductRegistrationCSS.productButtonDiv }
+            >
+                <button
+                    onClick={ () => navigate(-1) }
+                >
+                    돌아가기
+                </button>
+            {!modifyMode &&
+                <button
+                    onClick={ onClickModifyModeHandler }
+                >
+                    수정하기
+                </button>
+            }
+            {modifyMode &&
+                <button
+                    onClick={ onClickRestUpdateHandler }
+                >
+                    저장하기
+
+                </button>
+            }
+            </div>
             </div>
 
         </div>

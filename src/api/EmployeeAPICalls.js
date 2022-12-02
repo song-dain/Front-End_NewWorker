@@ -232,7 +232,7 @@ export const callEmployeeDetailAPI = ({employeeNo}) => {
             headers : {
                 "Content-Type" : "application/json",
                 "Accept" : "*/*",
-                //"Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             }
         })
         .then(response => response.json());
@@ -248,7 +248,8 @@ export const callEmployeeDetailAPI = ({employeeNo}) => {
 //수정
 export const callEmployeeUpdateAPI = ({form}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/employee/${form.get("employeeNo")}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/employee/register`;
+    // ${form.get("employeeNo")}
 
     console.log("form", form);
 
