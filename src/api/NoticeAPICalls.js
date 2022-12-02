@@ -1,5 +1,6 @@
-import { GET_NOTICE, GET_NOTICES, POST_NOTICE, PUT_NOTICE } from "../modules/NoticeModule";
+import { GET_NOTICE, GET_NOTICES, POST_NOTICE, PUT_NOTICE, DELETE_NOTICE } from "../modules/NoticeModule";
 
+//조회하기
 export const callNoticeAPI = ({notNo, currentPage}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/notice/noticeList`;
@@ -24,6 +25,7 @@ export const callNoticeAPI = ({notNo, currentPage}) => {
 
 }
 
+//상세 조회하기
 export const callNoticeDetailAPI = ({notNo}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/notice/noticeDetail/${notNo}`;
@@ -104,6 +106,31 @@ export const callNoticeRegistAPI = ({form}) => {
 
 }
 
+/* 공지 삭제 */
+export const callNoticeDeleteAPI = ({ notNo }) => {
+    console.log('[noticeAPICalls] noticeCode 공지 삭제 : ', notNo);
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/notice/noticeDetail/delete/${notNo}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "DELETE",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            }
+            // body : form
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[noticeAPICalls] callNoticeDeleteAPI result : ', result);
+            dispatch({ type: DELETE_NOTICE, payload: result });
+        }
+    }
+
+}
 
 export const callNoticeDetailForAdminAPI = ({notNo}) => {
 
