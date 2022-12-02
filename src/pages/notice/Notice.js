@@ -79,7 +79,7 @@ function Notice() {
                         <col width="50%" />
                         <col width="10%" />
                         <col width="20%" />
-                        <col width="10%" />
+                        
                     </colgroup>
                     <thead>
                         <tr className={NoticeCSS.notice_tr}>
@@ -87,7 +87,7 @@ function Notice() {
                             <th className={NoticeCSS.notice_td2}>제목</th>
                             <th className={NoticeCSS.notice_td3}>작성자</th>
                             <th className={NoticeCSS.notice_td4}>작성일</th>
-                            <th className={NoticeCSS.notice_td5}>조회수</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -103,7 +103,7 @@ function Notice() {
                                         <th>{noticeList.notTitle}</th>
                                         <th>{noticeList.employee.employeeName}</th>
                                         <th>{noticeList.notDate}</th>
-                                        <th>{noticeList.notCount}</th>
+                                        
                                     </tr>
                                 )
                             )
