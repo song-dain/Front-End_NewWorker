@@ -48,6 +48,7 @@ function SendMessageMoadl({messageStatus, messageNo, selectMRecipient, selectMCo
         dispatch(callSendCalcelAPI({messageNo : messageNo}))
         alert('메시지 전송이 취소되었습니다.');
         setMessageModal(false);
+        navigate('/message/send', {replace : false});
     }
 
     return (
