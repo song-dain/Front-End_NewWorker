@@ -61,6 +61,7 @@ function RestList() {
                     <thead>
                         <tr >
                             <th >휴가번호</th>
+                            <th>사원명</th>
                             <th >휴가종류</th>
                             <th >신청기간</th>
                             <th >사용일수</th>
@@ -80,6 +81,7 @@ function RestList() {
                                     onClick={() => onClickRestListHandler(rest.restNo)}
                                 >
                                     <th>{rest.restNo}</th>
+                                    <th>{rest.employeeNo.employeeName}</th>
                                     <th>{rest.restCateTypeNo.restCateType}</th>
                                     <th>{rest.restFdate} ~ {rest.restLdate}</th>
                                     <th>{rest.restDay}</th>

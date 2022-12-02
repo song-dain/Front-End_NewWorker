@@ -162,3 +162,59 @@ export const callRestOkDetailAPI = ({restNo}) => {
     }
 
 }
+
+//휴가승인버튼
+export const callRestOkButtonAPI = ({restNo}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/rest/list/admin/detail/${restNo}`;
+    // ${form.get("restNo")}
+
+    // console.log('restNo : ', form.restNo);
+    // console.log("form", form);
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "PUT",
+            headers : {
+                "Accept" : "*/*",
+                // "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            }
+            // body : form
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[RestAPICalls] callRestUpdateAPI RESULT : ', result);
+            dispatch({ type: PUT_REST, payload : result.data });
+        }
+    }
+}
+
+//휴가반려버튼
+export const callRestNoButtonAPI = ({restNo}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/rest/list/admin/detail/${restNo}`;
+    // ${form.get("restNo")}
+
+    // console.log('restNo : ', form.restNo);
+    // console.log("form", form);
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "PUT",
+            headers : {
+                "Accept" : "*/*",
+                // "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            }
+            // body : form
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[RestAPICalls] callRestUpdateAPI RESULT : ', result);
+            dispatch({ type: PUT_REST, payload : result.data });
+        }
+    }
+}
