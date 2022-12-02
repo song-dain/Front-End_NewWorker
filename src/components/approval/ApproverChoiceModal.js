@@ -72,7 +72,7 @@ function ApproverChoiceModal({approverListModal, appLines, setAppLines, setAppro
                         emp =>
                             <div key={emp.employeeNo}>
                                 <td>
-                                    <input type="checkbox" name={emp.employeeName} onClick={ () => selectEmp(emp)} /*onChange={ onChangecheckHandler }*//>
+                                    <input type="checkbox" name={emp.employeeName} onClick={ () => selectEmp(emp)} />
                                 </td>
                                 <td>{emp.employeeName}</td>
                             </div>

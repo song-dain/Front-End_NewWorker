@@ -9,6 +9,9 @@ export const GET_DRAFTER = 'approval/GET_DRAFTER';
 export const GET_DRAFTER_APPROVAL = 'approval/GET_DRAFTER_APPROVAL';
 export const GET_APPROVER_APPROVAL = 'approval/GET_APPROVER_APPROVAL';
 export const GET_APPROVER = 'approval/GET_APPROVER';
+export const PUT_APPROVER_ACCEPT = 'approval/PUT_APPROVER_ACCEPT';
+export const PUT_APPROVER_NOT_ACCEPT = 'approval/PUT_APPROVER_NOT_ACCEPT';
+export const PUT_DRAFTER_CHANGE_APP_STATUS = 'approval/PUT_DRAFTER_CHANGE_APP_STATUS';
 
 const actions = createActions({
      [GET_EMPLOYEE]: () => {},
@@ -16,7 +19,10 @@ const actions = createActions({
      [GET_DRAFTER]: () => {},
      [GET_DRAFTER_APPROVAL]: () => {},
      [GET_APPROVER_APPROVAL]: () => {},
-     [GET_APPROVER]: () => {}
+     [GET_APPROVER]: () => {},
+     [PUT_APPROVER_ACCEPT]: () => {},
+     [PUT_APPROVER_NOT_ACCEPT]: () => {},
+     [PUT_DRAFTER_CHANGE_APP_STATUS]: () => {}
 });
 
 const approvalReducer = handleActions({
@@ -38,7 +44,16 @@ const approvalReducer = handleActions({
      },
      [GET_APPROVER] : (state, { payload }) => {
       return payload;
-   }
+     },
+     [PUT_APPROVER_ACCEPT] : (state, { payload }) => {
+      return payload;
+     },
+     [PUT_APPROVER_NOT_ACCEPT] : (state, { payload }) => {
+      return payload;
+     },
+     [PUT_DRAFTER_CHANGE_APP_STATUS] : (state, { payload }) => {
+      return payload;
+     }
 
     },
     initialState

@@ -4,7 +4,6 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import ApproverChoiceModal from '../../components/approval/ApproverChoiceModal';
-import { ajax } from 'jquery';
 import { useDispatch } from 'react-redux';
 import { callAppRegisttAPI } from '../../api/ApprovalAPICalls';
 
@@ -57,7 +56,7 @@ function ApprovalRegist() {
 
         //결재선 등록
         for(var i = 0; i<appLines.length; i++){
-        formData.append(`appLines[${i}].employeeNo`, appLines[i].employeeNo);
+        formData.append(`appLines[${i}].employee.employeeNo`, appLines[i].employeeNo);
         formData.append(`appLines[${i}].appLineTurn`, appLines[i].appLineTurn);
         }
 
@@ -128,7 +127,7 @@ function ApprovalRegist() {
                         <CKEditor
                             name="appContent"
                             editor={ClassicEditor}
-                            data='<p>내용을 입력하세요.</p>'
+                            data='내용을 입력하세요.'
                             onChange={(event, editor) => {
                                 const data = editor.getData();
                                 setAppContent(data);
