@@ -31,7 +31,7 @@ function Survey() {
         , [currentPage]
     )
 
-    
+
 
 
     // 슬라이드 배너 코드
@@ -87,7 +87,7 @@ function Survey() {
                     <div className={SurveyCSS.bannerBox}>
                         <div className={SurveyCSS.banner}>
                             <div data-index={1}><a href="#">
-                                
+
                             </a></div >
                             <div data-index={2}><a href="#">
                                 <img src="static/images/logo.png" alt="로고" />
@@ -117,7 +117,7 @@ function Survey() {
                     </div>
                     <div className={SurveyCSS.surSubBox}>
                         <div className={SurveyCSS.surFlexBox}>
-                            
+
                             <table>
 
                                 <thead className={SurveyCSS.surFlexBox1}>
@@ -128,22 +128,35 @@ function Survey() {
                                                     key={surveyList.surNo}
                                                     onClick={() => onClickTableTr(surveyList.surNo)}
                                                 >
-                                                    
+
                                                     <tbody className={SurveyCSS.surBox}>
 
-                                                    
-                                                    
+                                                        <tr>
+                                                            <th className={SurveyCSS.surIngBox}>진행중</th>
 
-                                                        <td className={SurveyCSS.surIngBox}>진행중</td>
-                                                        <tr className={SurveyCSS.surTitle}>{surveyList.surTitle}</tr>
-                                                        <tr >{surveyList.surStartDate} ~ {surveyList.surEndDate}</tr>
-                                                        <tr>{surveyList.dep.depName}</tr>
-                                                        <td>
+                                                        </tr>
+                                                        <tr>
 
-                                                            <img src={surveyList.surveyImageUrl} alt="썸네일" />
-                                                        </td>
-                                                        
-                                                    
+                                                            <th className={SurveyCSS.surTitle}>{surveyList.surTitle}</th>
+                                                        </tr>
+                                                        <tr>
+
+                                                            <th >{surveyList.surStartDate} ~ {surveyList.surEndDate}</th>
+                                                        </tr>
+                                                        <th>
+                                                            <tr>{surveyList.dep.depName}</tr>
+
+                                                        </th>
+                                                        <tr>
+                                                            <th>
+
+                                                                <img className={SurveyCSS.surveyImg}
+                                                                    src={surveyList.surveyImageUrl} alt="썸네일" />
+                                                            </th>
+
+                                                        </tr>
+
+
                                                     </tbody>
                                                 </tr>
                                             )

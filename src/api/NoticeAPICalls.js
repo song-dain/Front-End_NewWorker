@@ -64,11 +64,7 @@ export const callNoticeUpdateAPI = ({form}) => {
                 "Accept": "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
             }, 
-            body : JSON.stringify({
-                notNo : form.notNo,
-                notTitle : form.notTitle,
-                notContent : form.notContent
-            })
+            body : form
         })
         .then(response => response.json());
 

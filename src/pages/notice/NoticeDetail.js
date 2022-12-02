@@ -16,9 +16,10 @@ function NoticeDetail() {
     const params = useParams();
     const notices = useSelector(state => state.noticeReducer);
     const noticeDetail = notices.data
+    
 
 
-    // const [modifyMode, setModifyMode] = useState(false);
+    const [updateMode, setUpdateMode] = useState(false);
     const [form, setForm] = useState({});
 
 
@@ -33,6 +34,7 @@ function NoticeDetail() {
         , []
     );
 
+    console.log(noticeDetail);
     const onChangeHandler = (e) => {
         setForm({
             ...form,
@@ -40,21 +42,54 @@ function NoticeDetail() {
         });
     };
 
+    
+
+    /* 수정 모드 변경 이벤트 */
+    const onClickUpdateModeHandler = () => {
+        setUpdateMode(true);
+        setForm({
+            
+            notTitle: noticeDetail.notTitle,
+            notContent : noticeDetail.notContent
+
+        });
+    }
+
+    /* 공지사항 수정 버튼 클릭 이벤트 */
+    const onClickNoticeUpdateHandler = () => {
+        console.log('[noticeDetail] onClickNoticeUpdateHandler Start!!');
+
+        const formData = new FormData();
+
+        
+        formData.append("notTitle", form.notTitle);
+        formData.append("notContent", form.notContent);
+
+        dispatch(callNoticeUpdateAPI({
+            form: form
+        }));
+
+        alert("글이 수정되었습니다.")
+
+        navigate(`/Notice`, { replace: true });
+        // window.location.reload();
+
+        console.log('[noticeDetail] onClickNoticeUpdateHandler End!!');
+    }
+
     //삭제하기
     const onClickNoticeDeleteHandler = () => {
-        // console.log('[noticeDetail 공지사항 번호] : ', form.notNo);
         dispatch(callNoticeDeleteAPI({
-            notNo: params.notNo}));
+            notNo: params.notNo
+        }));
 
         alert("글이 삭제되었습니다.")
 
-        navigate(`/Notice`, { replace: true});
-        // window.location.reload();
+        navigate(`/Notice`, { replace: true });
+        window.location.reload();
     }
 
-    const onClickUpdate = (notNo) => {
-        navigate(`/notice-update/${notNo}`, { replace: false });
-    }
+
 
     return (
         <div className={NoticeDetailCSS.noticeDetail}>
@@ -68,10 +103,10 @@ function NoticeDetail() {
                                     className={NoticeDetailCSS.noticeTitle}
                                     name='notTitle'
                                     placeholder='제목'
-                                    // readOnly={modifyMode ? false : true}
+                                    readOnly={updateMode ? false : true}
                                     style={{ backgroundColor: 'white' }}
                                     onChange={onChangeHandler}
-                                    value={noticeDetail.notTitle || ''}
+                                    value={(!updateMode ? noticeDetail.notTitle : form.notTitle) || ''}
                                     disabled
                                 /></th>
                                 <th><input
@@ -94,56 +129,69 @@ function NoticeDetail() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    {/* { localhost:8001/uploadFiles/noticeimgs && <img src={notices.noticeImageUrl} alt="테스트" />} */}
-                                    <textarea
-                                        className={NoticeDetailCSS.noticeContent}
-                                        name='notContent'
-                                        // readOnly={modifyMode ? false : true}
-                                        style={{ backgroundColor: 'white' }}
-                                        onChange={onChangeHandler}
-                                        value={noticeDetail.notContent || ''}
-                                        disabled
-                                    >
-                                    </textarea>
-                                </td>
-                            </tr>
+                            
+                                    <tr>
+                                        <td>
+                                            <img src={noticeDetail.noticeImageUrl} alt="테스트" />
+                                            <textarea
+                                                className={NoticeDetailCSS.noticeContent}
+                                                name='notContent'
+                                                readOnly={updateMode ? false : true}
+                                                style={{ backgroundColor: 'white' }}
+                                                onChange={onChangeHandler}
+                                                value={(!updateMode ? noticeDetail.notContent : form.notContent) || ''}
+                                                
+                                            >
+                                            </textarea>
+                                        </td>
+                                    </tr>
+                            
                         </tbody>
                     </table>
                 </div>
             }
 
-            <div className={NoticeDetailCSS.backBtnBox}>
-                <button
-                    className={NoticeDetailCSS.backBtn}
-                    onClick={() => navigate(`/Notice`)}
-                >
-                    목록으로
-                </button>
+            {noticeDetail &&
+                <div className={NoticeDetailCSS.backBtnBox}>
+                    <button
+                        className={NoticeDetailCSS.backBtn}
+                        onClick={() => navigate(`/Notice`)}
+                    >
+                        목록으로
+                    </button>
+
+                    {!updateMode &&
+                        <button
+                            className={NoticeDetailCSS.backBtn}
+                            onClick={onClickUpdateModeHandler}
+                        >
+                            수정모드
+                        </button>
+                    }
+                    {updateMode &&
+                        <button
+                            className={NoticeDetailCSS.backBtn}
+                            onClick={onClickNoticeUpdateHandler}
+                        >
+                            수정 저장하기
+                        </button>
+                    }
+                    {!updateMode &&
+                        <button
+                            className={NoticeDetailCSS.backBtn}
+                            onClick={onClickNoticeDeleteHandler}
+                        >
+                            삭제
+                        </button>
+                    }
 
 
-                <button
-                    className={NoticeDetailCSS.backBtn}
-                    onClick={() => navigate(`/notice-update/${noticeDetail.notNo}`, { replace: false })}
-                >
-                    수정하기
-                </button>
-
-                <button
-                    className={NoticeDetailCSS.backBtn}
-                    onClick={onClickNoticeDeleteHandler}
-                >
-                    삭제
-                </button>
 
 
-
-
-
-            </div>
-
+                </div>
+            }
         </div>
+
     );
 }
 
