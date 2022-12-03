@@ -68,6 +68,21 @@ function ApprovalRegist() {
             
         }
         dispatch(callAppRegisttAPI({ form : formData }));
+
+        if(approval.appDocNo == '') {
+            alert('참조번호를 입력하세요.');
+            return;
+        } else if(approval.appEndDate == 0) {
+            alert('종료일을 지정하세요.');
+            return;
+        } else if(approval.appTitle == '') {
+            alert('문서 제목을 입력하세요.');
+            return;
+        } else if(appContent == '') {
+            alert('문서 내용을 입력하세요.');
+            return;
+        }
+        
     }
 
 
@@ -116,9 +131,7 @@ function ApprovalRegist() {
             <div>
                 <p>문서번호</p>
                 <input type="text" className="appDocNo" name="appDocNo" placeholder="20221108-1229580" autoComplete='off' onChange={ onChangeHandler }/>
-                <p>작성일</p>
-                <input type="date" className="appDocNo" name="appCreatedDate" autoComplete='off' onChange={ onChangeHandler }/>
-                <p>종료일</p>
+                <p>결재 종료일</p>
                 <input type="date" className="appDocNo" name="appEndDate" autoComplete='off' onChange={ onChangeHandler }/>
                 <p>제목</p>
                 <input type="text" className="appDocNo" name="appTitle" placeholder="2022년 11월 지출결의서(예시)" autoComplete='off' onChange={ onChangeHandler }/>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { callDrafterApprovalDetailAPI, callAppStatusChangeAPI } from '../../api/ApprovalAPICalls';
+import { callDrafterApprovalDetailAPI, callAppStatusChangeAPI, callAppRemoveAPI } from '../../api/ApprovalAPICalls';
 
 
 
@@ -38,16 +38,12 @@ function DrafterApprovalDetail() {
         }))
     }
 
-    // const onClickNotAccChangeHandler = () => {
-
-    //     const index = approval.appLines.findIndex(idx => idx.acceptActivate == 'Y' && idx.acceptStatus == null);
-    //     console.log(index);
-
-    //     dispatch(callNotAcceptChangeAPI({
-    //         appLineNo : approval.appLines[index].appLineNo,
-    //         approvalNo : approval.appLines[index].approvalNo
-    //     }))
-    // }
+    const onClickAppRemoveHandler = () => {
+        dispatch(callAppRemoveAPI({
+            appNo : appNo
+        }))
+        navigate('/approval/draft');
+    }
 
     
     return ( 
@@ -110,7 +106,7 @@ function DrafterApprovalDetail() {
                 
                 { approval.appStatus === "대기" &&<button onClick={ onClickAppStatusChangeHandler }>회수</button>}
               {/* { approval.appStatus === "회수" &&<button>수정</button>} */}
-                { (approval.appStatus === "회수" || approval.appStatus === "반려") && <button>삭제</button>}
+                { (approval.appStatus === "회수" || approval.appStatus === "반려") && <button onClick={ onClickAppRemoveHandler }>삭제</button>}
                 <button onClick={ () => { navigate('/approval/draft') } }>돌아가기</button>
             </div>
                 
