@@ -12,6 +12,7 @@ export const GET_APPROVER = 'approval/GET_APPROVER';
 export const PUT_APPROVER_ACCEPT = 'approval/PUT_APPROVER_ACCEPT';
 export const PUT_APPROVER_NOT_ACCEPT = 'approval/PUT_APPROVER_NOT_ACCEPT';
 export const PUT_DRAFTER_CHANGE_APP_STATUS = 'approval/PUT_DRAFTER_CHANGE_APP_STATUS';
+export const POST_REMOVE_APPROVAL = 'approval/POST_REMOVE_APPROVAL';
 
 const actions = createActions({
      [GET_EMPLOYEE]: () => {},
@@ -22,7 +23,8 @@ const actions = createActions({
      [GET_APPROVER]: () => {},
      [PUT_APPROVER_ACCEPT]: () => {},
      [PUT_APPROVER_NOT_ACCEPT]: () => {},
-     [PUT_DRAFTER_CHANGE_APP_STATUS]: () => {}
+     [PUT_DRAFTER_CHANGE_APP_STATUS]: () => {},
+     [POST_REMOVE_APPROVAL]: () => {}
 });
 
 const approvalReducer = handleActions({
@@ -52,6 +54,9 @@ const approvalReducer = handleActions({
       return payload;
      },
      [PUT_DRAFTER_CHANGE_APP_STATUS] : (state, { payload }) => {
+      return payload;
+     },
+     [POST_REMOVE_APPROVAL] : (state, { payload }) => {
       return payload;
      }
 
