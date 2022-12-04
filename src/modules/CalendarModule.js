@@ -7,6 +7,7 @@ export const GET_SCHEDULE = 'calendar/GET_SCHEDULE';
 export const POST_ADD_SCHEDULE = 'calendar/POST_SCHEDULE';
 export const PATCH_UPDATE_SCHEDULE = 'calendar/PATCH_UPDATE_SCHEDULE';
 export const PATCH_DELETE_SCHEDULE = 'calendar/PATCH_DELETE_SCHEDULE';
+export const GET_TODAY_SCHEDULE = 'calendar/GET_TODAY_SCHDULE';
 
 const actions = createActions({
 
@@ -14,7 +15,8 @@ const actions = createActions({
     [GET_SCHEDULE]: () => {},
     [POST_ADD_SCHEDULE]: () => {},
     [PATCH_UPDATE_SCHEDULE]: () => {},
-    [PATCH_DELETE_SCHEDULE]: () => {}
+    [PATCH_DELETE_SCHEDULE]: () => {},
+    [GET_TODAY_SCHEDULE]: () => {}
 
 });
 
@@ -33,6 +35,9 @@ const calendarReducer = handleActions({
         return payload;
     },
     [PATCH_DELETE_SCHEDULE] : (state, { payload }) => {
+        return payload;
+    },
+    [GET_TODAY_SCHEDULE] : (state, { payload }) => {
         return payload;
     }
     },
