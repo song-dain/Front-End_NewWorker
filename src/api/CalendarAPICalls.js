@@ -1,4 +1,5 @@
-import { POST_SCHEDULE, GET_SCHEDULE, POST_ADD_SCHEDULE, PATCH_UPDATE_SCHEDULE, PATCH_DELETE_SCHEDULE } from '../modules/CalendarModule';
+import { POST_SCHEDULE, GET_SCHEDULE, POST_ADD_SCHEDULE, PATCH_UPDATE_SCHEDULE, PATCH_DELETE_SCHEDULE, 
+    GET_TODAY_SCHEDULE } from '../modules/CalendarModule';
 
 export const callSelectOfficeCalendarAPI = ({form}) => {
 
@@ -136,6 +137,29 @@ export const callDeleteScheduleAPI = ({scheduleNo}) => {
 
         if(result.status === 200) {
             dispatch({ type: PATCH_DELETE_SCHEDULE, payload: result.data });
+        }
+    }
+}
+
+export const callTodayScheduleAPI = () => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/emp/calendar/schedule/today`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            }
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log(result);
+            dispatch({ type: GET_TODAY_SCHEDULE, payload: result.data });
         }
     }
 }
