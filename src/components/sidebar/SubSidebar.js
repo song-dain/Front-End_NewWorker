@@ -8,10 +8,13 @@ import { decodeJwt } from '../../utils/tokenUtils';
 import $ from 'jquery';
 import { useNavigate, useParams } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
+import approvalReducer, { GET_EMPLOYEE } from "../../modules/ApprovalModule";
+import { useSelector } from "react-redux";
 
 function SubSidebar() {
 
     const navigate = useNavigate();
+    const employee = useSelector(state => state.employeeReducer);
 
     const onClickSurveyInsert = () => {
         console.log('[survey] onClickSurveyInsert');
@@ -162,7 +165,7 @@ function SubSidebar() {
                     <ul>
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="emp/employeeList">직원 조회</NavLink></li>
                         {/* 관리자로 로그인시 보이게끔 작업할 것 */}
-                        <li className={SubSidebarCSS.smallTitle}><NavLink to="employee/regist">직원 등록</NavLink></li>
+                        { employee.positionNo >= '214' && <li className={SubSidebarCSS.smallTitle}><NavLink to="employee/regist">직원 등록</NavLink></li>}
 
                     </ul>
 
