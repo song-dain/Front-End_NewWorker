@@ -105,7 +105,6 @@ function DrafterApprovalDetail() {
             <div>
                 
                 { approval.appStatus === "대기" &&<button onClick={ onClickAppStatusChangeHandler }>회수</button>}
-              {/* { approval.appStatus === "회수" &&<button>수정</button>} */}
                 { (approval.appStatus === "회수" || approval.appStatus === "반려") && <button onClick={ onClickAppRemoveHandler }>삭제</button>}
                 <button onClick={ () => { navigate('/approval/draft') } }>돌아가기</button>
             </div>
