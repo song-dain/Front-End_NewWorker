@@ -11,8 +11,7 @@ function RestRegist() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const rest = useSelector(state => state.restReducer);
-    // const { search } = useLocation();
-    // const { amount } = queryString.parse(search);
+  
 
     const [form, setForm] = useState({
 
@@ -36,22 +35,6 @@ function RestRegist() {
         });
     }
 
-    // const onClickRestRegistHandler = () => {
-       
-    //     if (form.restCateTypeNo.restCateType === '' || form.restFdate === ''
-    //         || form.restLdate === '' || form.restDay === '' ||
-    //         form.restDate === '' || form.restReason === '') {
-    //         alert("모두 입력해주세요");
-    //         return;
-    //     }
-
-    //     dispatch(callRestRegistAPI({
-    //         form: form
-    //     }));
-
-    //     alert("완료");
-    //     navigate("/rest/list", { replace: true });
-    // }
 
 
 
@@ -91,129 +74,12 @@ function RestRegist() {
 
     return (
 
-        // <div>
-
-        //     <div>
-        //         <table>
-        //             <tbody>
-        //                 <tr>
-        //                     <input
-        //                         name='restregister'
-        //                         placeholder='휴가신청자'
-        //                         autocomplete='off'
-        //                         value= { token.sub || ''}
-        //                         />
-        //                     <td><label>휴가종류</label></td>
-        //                     <td>
-        //                         <select name="restCateTypeNo" onChange={onChangeHandler} value={form.restCateTypeNo}>  {/*className={ RestCateTypeNo }*/}
-        //                             <option value={1}>연차</option>
-        //                             <option value={2}>공가</option>
-        //                             <option value={3}>병가</option>
-        //                             <option value={4}>오전반차</option>
-        //                             <option value={5}>오후반차</option>
-        //                         </select>
-        //                     </td>
-        //                 </tr>
-        //                 <br />
-
-        //                 <tr>
-        //                     <td><label>휴가기간</label></td>
-        //                     <td>
-        //                         <input
-        //                             type="date"
-        //                             name='restFdate'
-        //                             placeholder='휴가시작일'
-        //                             //  className={ RestFdate }
-        //                             onChange={onChangeHandler}
-        //                         />
-        //                     </td>
-        //                     ~
-        //                     <td>
-        //                         <input
-        //                             type="date"
-        //                             name='restLdate'
-        //                             placeholder='휴가종료일'
-        //                             //  className={ RestLdate }
-        //                             onChange={onChangeHandler}
-        //                         />
-        //                     </td>
-        //                 </tr>
-        //                 <br />
-        //                 <tr>
-        //                     <td><label>휴가일수</label></td>
-        //                     <td>
-        //                         <input
-        //                             placeholder='휴가일수'
-        //                             type='number'
-        //                             name='restDay'
-        //                             onChange={onChangeHandler}
-        //                         // className={ ProductRegistrationCSS.productInfoInput }
-        //                         />
-        //                     </td>
-        //                 </tr>
-        //                 <br />
-        //                 <tr>
-        //                     <td><label>작성일</label></td>
-        //                     <td>
-        //                         <input
-        //                             type="date"
-        //                             name='restDate'
-        //                             placeholder='작성일'
-        //                             // className={ RestDate }
-        //                             onChange={onChangeHandler}
-        //                         />
-        //                     </td>
-        //                 </tr>
-        //                 <br />
-        //                 <tr>
-        //                     <td><label>휴가사유</label></td>
-        //                     <td>
-        //                         <input
-        //                             name='restReason'
-        //                             placeholder='휴가사유'
-        //                             // className={ RestReason }
-        //                             onChange={onChangeHandler}
-        //                         />
-        //                     </td>
-        //                 </tr>
-        //                 <br />
-        //             </tbody>
-        //         </table>
-        //         <br /><br />
-        //         <button
-        //             onClick={onClickRestRegistHandler}
-        //         // className={ RestRegistButton }
-
-        //         >
-        //             휴가 등록
-        //         </button>
-        //         <br />
-        //         <button
-        //             onClick={onClickBackHandler}
-        //         // className={ RestRegistBack }     
-        //         >
-        //             메인으로
-        //         </button>
-        //     </div>
-        // </div>
+       
 
         <div>
 
             <div>
-                {/* <h3>휴가자 정보</h3>
-                <input
-                    name='restregister'
-                    placeholder='휴가신청자'
-                    autoComplete='off'
-                    // readOnly={ true }
-                    value={token.sub || ''}
-                    // value={rest.employeeNo}
-
-
-
-                    
-                    
-                /> */}
+                
                 
                 <h3>휴가종류</h3>
                         <select name="restCateTypeNo" onChange={onChangeHandler} value={form.restCateTypeNo}>  {/*className={ RestCateTypeNo }*/}

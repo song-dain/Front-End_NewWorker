@@ -43,7 +43,6 @@ function RestDetail() {
             restLdate : restDetail.restLdate,
             restDay : restDetail.restDay,
             restDate : restDetail.restDate,
-            // employeeRestDay : restDetail.employeeRestDay,
             restReason : restDetail.restReason
             
         });
@@ -63,7 +62,6 @@ function RestDetail() {
         formData.append("restLdate", form.restLdate);
         formData.append("restDay", form.restDay);
         formData.append("restDate", form.restDate);
-        // formData.append("employeeRestDay", form.employeeRestDay);        
         formData.append("restReason", form.restReason);
         
   
@@ -96,7 +94,6 @@ function RestDetail() {
                             <td>
                                 <select name="restCateTypeNo"  
                                 onChange={ onChangeHandler } 
-                                // value={form.restCateTypeNo}>  
                                 value={ (!modifyMode ? restDetail.restCateTypeNo : form.restCateTypeNo) || '' }
                                 readOnly={ modifyMode ? false : true }>
                                 

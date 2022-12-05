@@ -88,11 +88,7 @@ function RestOkList() {
 
 
                 </table>
-                {/* {
-                 Array.isArray(restOkList) 
-                 && restOkList.map((restOk) => (<RestOk key={ restOk.restNo } restOk={ restOk } />))
-             } */}
-
+               
             </div>
 
 

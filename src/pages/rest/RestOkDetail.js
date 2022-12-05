@@ -19,8 +19,7 @@ function RestOkDetail() {
 
     
 
-    /* 모드구분 */
-    // const [modifyMode, setModifyMode] = useState(false);
+ 
 
     /* 최초 랜더링시 상세조회 */
     useEffect(()=> {
@@ -28,15 +27,7 @@ function RestOkDetail() {
             restNo : params.restNo
         }));
     }, []);
-
-    /* 입력 양식의 값 변경될 때 */
-    // const onChangeHandler = (e) => {
-    //     setForm({
-    //         ...form,
-    //         [e.target.name] : e.target.value
-    //     });
-    // }
-
+   
     //승인버튼
     const onClickRestOkHandler = () => {
         dispatch(callRestOkButtonAPI({
@@ -57,49 +48,7 @@ function RestOkDetail() {
         window.location.reload();
     }
     
-    //수정모드 변경
-    // const onClickModifyModeHandler = () => {
-    //     setModifyMode(true);
-    //     setForm({
-    //         restNo : restDetail.restNo,
-    //         restCateTypeNo : restDetail.restCateTypeNo.restCateTypeNo,
-    //         restFdate : restDetail.restFdate,
-    //         restLdate : restDetail.restLdate,
-    //         restDay : restDetail.restDay,
-    //         // employeeRestDay : restDetail.employeeRestDay,
-    //         restOk : restDetail.restOk
-            
-    //     });
-    // }
-
-    /* 수정 저장 */
-    // const onClickRestUpdateHandler = () => {
-
-    //     console.log('form', form)
-
-    //     const formData = new FormData();
-
     
-    //     formData.append("restNo", form.restNo);
-    //     formData.append("restCateTypeNo.restCateTypeNo", form.restCateTypeNo);
-    //     formData.append("restFdate", form.restFdate);
-    //     formData.append("restLdate", form.restLdate);
-    //     formData.append("restDay", form.restDay);
-    //     // formData.append("employeeRestDay", form.employeeRestDay);
-    //     formData.append("restOk", form.restOk);
-        
-  
-    //     dispatch(callRestUpdateAPI({
-    //         form : formData
-    //     }));
-
-    //     alert("저장되었습니다.");
-
-        // navigate('/rest/list', { replace : true });
-        // window.location.reload();
-
-
-    // }
     if(restOk) {
         var str = restOk?.restFdate;
         str += " ~ ";
@@ -115,21 +64,7 @@ function RestOkDetail() {
                 >
                     돌아가기
                 </button>
-            {/* {!modifyMode &&
-                <button
-                    onClick={ onClickModifyModeHandler }
-                >
-                    수정하기
-                </button>
-            }
-            {modifyMode &&
-                <button
-                    onClick={ onClickRestUpdateHandler }
-                >
-                    저장하기
-
-                </button>
-            } */}
+            
             </div>
             <div 
             // className={ ProductRegistrationCSS.productSection }
@@ -147,13 +82,10 @@ function RestOkDetail() {
                                 <input
                                 name='employeeNo.employeeName'
                                
-                                readOnly                               
+                                readOnly={true}                               
                                 value={restOk.employeeNo.employeeName ||''}
                                
-                                // onChange={ onChangeHandler } 
-                                // value={form.restCateTypeNo}>  
-                                // value={ (!modifyMode ? restDetail.restCateTypeNo : form.restCateTypeNo) || '' }
-                                // readOnly={ modifyMode ? false : true }
+                                
                                 />                 
                                     
                             </td>
@@ -169,10 +101,7 @@ function RestOkDetail() {
                                      placeholder='휴가시작일'
                                      value={str}
                                      readOnly = {true}
-                                    //  className={ RestFdate }
-                                    //  onChange={ onChangeHandler }
-                                    //  value={ (!modifyMode ? restDetail.restFdate : form.restFdate) || '' }
-                                    //  readOnly={ modifyMode ? false : true }
+                                    
                                 />
                             </td>
 
@@ -183,7 +112,7 @@ function RestOkDetail() {
                                 <select name="restCateTypeNo"  
                                 // onChange={ onChangeHandler } 
                                 value={restOk.restCateTypeNo}
-                                readOnly
+                                readOnly = {true}
                                 >  {/*className={ RestCateTypeNo }*/}
                                     <option value={1}>연차</option>
                                     <option value={2}>공가</option>
@@ -203,7 +132,7 @@ function RestOkDetail() {
                                         type='number'
                                         name='restDay'
                                         value={restOk.restDay}
-                                        readOnly
+                                        readOnly = {true}
                                         // onChange={ onChangeHandler }
                                         // className={ ProductRegistrationCSS.productInfoInput }
                                     />
@@ -218,7 +147,7 @@ function RestOkDetail() {
                                     name='restDate'
                                     placeholder='작성일'
                                     value={restOk.restDate}
-                                    readOnly
+                                    readOnly = {true}
                                     // className={ RestDate }
                                     // onChange={ onChangeHandler }
                                 />
@@ -232,7 +161,7 @@ function RestOkDetail() {
                                     name='restReason'
                                     placeholder='휴가사유'
                                     value={restOk.restReason}
-                                    readOnly
+                                    readOnly = {true}
                                     // className={ RestReason }
                                     // onChange={ onChangeHandler }
                                 />

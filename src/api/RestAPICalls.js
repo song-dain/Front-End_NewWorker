@@ -10,22 +10,10 @@ export const callRestRegistAPI = ({form}) => {
         const result = await fetch(requestURL, {
             method : "POST",
             headers : {
-                // "Content-Type" : "application/json",/*추가 */
                 "Accept": "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")/*추가 */
             },
-        //     body : JSON.stringify({
-        //         rest : {
-        //             employeeNo : form.employeeNo.employeeNo
-        //         },
-        //         restCateTypeNo : form.restCateTypeNo,
-        //         restFdate : form.restFdate,
-        //         restLdate : form.restLdate,
-        //         restDay : form.restDay, 
-        //         restDate : form.restDate,
-        //         restReason : form.restReason
-        //     })
-        // })
+       
             body : form
         })
         .then(response => response.json());
@@ -75,7 +63,6 @@ export const callRestDetailAPI = ({restNo}) => {
             headers : {
                 "Content-Type" : "application/json",
                 "Accept" : "*/*",
-                //"Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             }
         })
         .then(response => response.json());
@@ -91,7 +78,6 @@ export const callRestDetailAPI = ({restNo}) => {
 export const callRestUpdateAPI = ({form}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/rest/regist`;
-    // ${form.get("restNo")}
 
     console.log("form", form);
 
@@ -101,7 +87,6 @@ export const callRestUpdateAPI = ({form}) => {
             method : "PUT",
             headers : {
                 "Accept" : "*/*",
-                //"Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             },
             body : form
         })
@@ -150,7 +135,6 @@ export const callRestOkDetailAPI = ({restNo}) => {
             headers : {
                 "Content-Type" : "application/json",
                 "Accept" : "*/*",
-                //"Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             }
         })
         .then(response => response.json());
@@ -167,10 +151,7 @@ export const callRestOkDetailAPI = ({restNo}) => {
 export const callRestOkButtonAPI = ({restNo}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/rest/list/admin/detail/${restNo}`;
-    // ${form.get("restNo")}
-
-    // console.log('restNo : ', form.restNo);
-    // console.log("form", form);
+    
 
     return async (dispatch, getState) => {
 
@@ -178,9 +159,7 @@ export const callRestOkButtonAPI = ({restNo}) => {
             method : "PUT",
             headers : {
                 "Accept" : "*/*",
-                // "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             }
-            // body : form
         })
         .then(response => response.json());
 
@@ -194,21 +173,15 @@ export const callRestOkButtonAPI = ({restNo}) => {
 //휴가반려버튼
 export const callRestNoButtonAPI = ({restNo}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/rest/list/admin/detail/${restNo}`;
-    // ${form.get("restNo")}
-
-    // console.log('restNo : ', form.restNo);
-    // console.log("form", form);
-
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/rest/list/admin/detail/No/${restNo}`;
+    
     return async (dispatch, getState) => {
 
         const result = await fetch(requestURL, {
             method : "PUT",
             headers : {
                 "Accept" : "*/*",
-                // "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             }
-            // body : form
         })
         .then(response => response.json());
 
