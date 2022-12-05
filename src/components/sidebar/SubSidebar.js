@@ -165,7 +165,7 @@ function SubSidebar() {
                     <ul>
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="emp/employeeList">직원 조회</NavLink></li>
                         {/* 관리자로 로그인시 보이게끔 작업할 것 */}
-                        { employee.positionNo >= '214' && <li className={SubSidebarCSS.smallTitle}><NavLink to="employee/regist">직원 등록</NavLink></li>}
+                        { employee.employeeRole === 'ROLE_ADMIN' && <li className={SubSidebarCSS.smallTitle}><NavLink to="employee/regist">직원 등록</NavLink></li> }
 
                     </ul>
 
