@@ -1,0 +1,54 @@
+
+.returnBtn {
+    background-color:#5ec0fd;
+	border-radius:5px;
+	border:1px solid #5ec0fd;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:5px 45px;
+    margin-right: 10px;
+}
+
+.returnBtn:active {
+    position:relative;
+	top:1px;
+}
+
+.cancleBtn {
+    background-color:#F5F5F5;
+	border-radius:5px;
+	border:1px solid #5ec0fd;
+	display:inline-block;
+	cursor:pointer;
+	color:#9D9D9D;
+	font-family:Arial;
+	font-size:17px;
+	padding:5px 30px;
+    margin-top:10px;
+}
+
+.cancleBtn:active {
+    position:relative;
+	top:1px;
+}
+
+.deleteBtn {
+    background-color:#fd5e5e;
+	border-radius:5px;
+	border:1px solid #fd5e5e;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:5px 45px;
+    margin-right: 10px;
+}	
+
+.deleteBtn:active {
+    position:relative;
+	top:1px;
+}
