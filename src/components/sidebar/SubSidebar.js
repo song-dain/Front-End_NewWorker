@@ -221,11 +221,9 @@ function SubSidebar() {
                     <li>설문조사</li>
                 </div>
                 <div className={SubSidebarCSS.midleTitle}>
-                    {decoded === "ROLE_ADMIN" && <li
-                        onClick={onClickSurveyInsert}
-                    >
+                     <li onClick={onClickSurveyInsert}>
                         설문등록
-                    </li>}
+                    </li>
 
                 </div>
                 <div>

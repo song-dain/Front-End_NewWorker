@@ -2,7 +2,7 @@ import NoticeDetailCSS from './NoticeDetail.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-
+import { decodeJwt } from '../../utils/tokenUtils';
 import {
     callNoticeDetailAPI,
     callNoticeUpdateAPI,
@@ -16,11 +16,16 @@ function NoticeDetail() {
     const params = useParams();
     const notices = useSelector(state => state.noticeReducer);
     const noticeDetail = notices.data
-    
-
-
     const [updateMode, setUpdateMode] = useState(false);
     const [form, setForm] = useState({});
+
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if (isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0];
+    }
 
 
     useEffect(
@@ -160,7 +165,7 @@ function NoticeDetail() {
                         목록으로
                     </button>
 
-                    {!updateMode &&
+                    {/* {!updateMode &&
                         <button
                             className={NoticeDetailCSS.backBtn}
                             onClick={onClickUpdateModeHandler}
@@ -175,13 +180,13 @@ function NoticeDetail() {
                         >
                             수정 저장하기
                         </button>
-                    }
-                    {!updateMode &&
+                    } */}
+                    {decoded === "ROLE_ADMIN" &&
                         <button
                             className={NoticeDetailCSS.backBtn}
                             onClick={onClickNoticeDeleteHandler}
                         >
-                            삭제
+                            삭제하기
                         </button>
                     }
 
