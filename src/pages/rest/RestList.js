@@ -93,30 +93,10 @@ function RestList() {
                         }
 
                     </tbody>
-                    {/* <tbody>
-
-                        {
-                            Array.isArray(restList) && restList.map(
-                                (restList) => (
-                                    <tr 
-                                        key={rests.restNo}
-                                        
-                                    >
-                                        <th>{restList.restNo}</th>
-                                        
-                                    </tr>
-                                )
-                            )
-                        }
-
-                    </tbody> */}
-
+                    
                 </table>
 
-                {/* {
-                 Array.isArray(restList) 
-                 && restList.map((rest) => (<Rest key={ rest.restNo } rest={ rest } />))
-             } */}
+                
             </div>
 
 

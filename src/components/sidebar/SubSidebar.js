@@ -126,7 +126,7 @@ function SubSidebar() {
                         <li className={SubSidebarCSS.sideTitle2}>ㅇ휴가 관리</li>
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="rest/regist">연차 신청</NavLink></li>
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="rest/list">연차 조회</NavLink></li>
-                        <li className={SubSidebarCSS.smallTitle}><NavLink to="rest/list/admin">연차 인가</NavLink></li>
+                        { decoded === "ROLE_ADMIN" &&<li className={SubSidebarCSS.smallTitle}><NavLink to="rest/list/admin">연차 인가</NavLink></li>}
                     </ul>
                 </div>
 
@@ -241,7 +241,7 @@ function SubSidebar() {
                 </div>
 
             </div>
-            {/* 7.직원 관리 부분 / 관리자 로그인 시 */}
+            {/* 7.직원 관리 부분 / 관리자 로그인 시
             <div className={SubSidebarCSS.divBox} id="divBox7">
 
                 <div className={SubSidebarCSS.mui}>
@@ -260,7 +260,7 @@ function SubSidebar() {
 
                 </div>
 
-            </div>
+            </div> */}
 
         </div>
     );
