@@ -1,18 +1,16 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { callSendMessageAPI } from "../../api/MessageAPICalls";
 import ReceiveMessageMoadlCSS from "./ReceiveMessageModal.module.css";
 
-function ReceiveMessageMoadl({selectMSenderNo, selectMSender, selectMContent, selectMsendDate, setMessageModal}){
+function ReceiveMessageMoadl({receiveForm, setMessageModal}){
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [replyMode, setReplyMode] = useState(false);
     const [reply, setReply] = useState({
         messageContent : "",
         recipient : {
-            employeeNo : selectMSenderNo
+            employeeNo : receiveForm.senderNo
         }
     });
     const [copyStatus, setCopyStatus] = useState('텍스트 복사');
@@ -25,7 +23,7 @@ function ReceiveMessageMoadl({selectMSenderNo, selectMSender, selectMContent, se
         }
 
         const textarea = document.createElement("textarea");
-        textarea.value = selectMContent;
+        textarea.value = receiveForm.content;
         textarea.style.top = 0;
         textarea.style.left = 0;
         textarea.style.position = "fixed";
@@ -41,6 +39,7 @@ function ReceiveMessageMoadl({selectMSenderNo, selectMSender, selectMContent, se
 
     }
 
+    /* 답장 내용 상태 저장 */
     const onChangeHandler = (e) => {
         setReply({
             ...reply,
@@ -48,6 +47,7 @@ function ReceiveMessageMoadl({selectMSenderNo, selectMSender, selectMContent, se
         })
     }
 
+    /* 답장 전송 */
     const onClickSendReplyBtn = () => {
 
         if(reply.messageContent == '') {
@@ -56,7 +56,7 @@ function ReceiveMessageMoadl({selectMSenderNo, selectMSender, selectMContent, se
         }
 
         dispatch(callSendMessageAPI({form : reply}))
-        navigate('/message/send', { replace : false });
+        window.location.reload();
     }
 
     return (
@@ -68,15 +68,15 @@ function ReceiveMessageMoadl({selectMSenderNo, selectMSender, selectMContent, se
             >
          <div >
             <div className={ReceiveMessageMoadlCSS.mrmtitle}>받은메시지</div>
-            <span className={ReceiveMessageMoadlCSS.mrmsender}><span style={ {color : '#23C834'} }>발신자</span> { selectMSender }</span>
+            <span className={ReceiveMessageMoadlCSS.mrmsender}><span style={ {color : '#23C834'} }>발신자</span> { receiveForm.sender }</span>
             <button
                 className={ReceiveMessageMoadlCSS.copy}
                 onClick={ () => doCopy() }
             >{copyStatus}</button>
             <div className={ReceiveMessageMoadlCSS.mrmcontent}>
-                { selectMContent }
+                { receiveForm.content }
             </div>
-            <span className={ReceiveMessageMoadlCSS.mrmdate}>{ selectMsendDate }</span>
+            <span className={ReceiveMessageMoadlCSS.mrmdate}>{ receiveForm.sendDate }</span>
             <div className={ReceiveMessageMoadlCSS.mrmbtn}>
             <button
                 className={ReceiveMessageMoadlCSS.mrmokbtn}
@@ -91,7 +91,7 @@ function ReceiveMessageMoadl({selectMSenderNo, selectMSender, selectMContent, se
                 replyMode && 
                 <>
                     <div className={ReceiveMessageMoadlCSS.mrmreply}>답장</div>
-                    <div className={ReceiveMessageMoadlCSS.mrmreceiver}><span style={ {color : '#5ec0fd'} }>수신자</span> { selectMSender }</div>
+                    <div className={ReceiveMessageMoadlCSS.mrmreceiver}><span style={ {color : '#5ec0fd'} }>수신자</span> { receiveForm.sender }</div>
                     <textarea
                         placeholder="답장 내용을 입력하세요."
                         onChange={ (e) => onChangeHandler(e) }

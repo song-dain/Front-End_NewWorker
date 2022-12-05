@@ -5,15 +5,13 @@ import { callBinReceiveMessageAPI, callBinSendMessageAPI, callRecipientManagemen
 import BinMessageBoxCSS from "../message/BinMessageBoxCSS.module.css";
 import backsquareR from "../../img/backsquareR.png";
 import backsquareS from "../../img/backsquareS.png";
-import binicon from "../../img/binicon.png";
 
 function BinMessageBox(){
 
     const navigate = useNavigate();
-    const param = useParams();
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
-    const [ senderOrReceiver, setSenderOrReceiver ] = useState('발신자'); // 맨위 수신자발신자 변경
+    const [ senderOrReceiver, setSenderOrReceiver ] = useState('발신자');
 
 
     const [ textStrR, setTextStrR ] = useState({ color : "#2DADFF" });
@@ -109,8 +107,6 @@ function BinMessageBox(){
             alert("메시지가 영구 삭제되었습니다.");
             window.location.reload();
         }
-
-
     }
 
     /* 페이징 버튼 */

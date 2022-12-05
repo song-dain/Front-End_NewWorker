@@ -41,8 +41,8 @@
 }
 
 .main{
-    width: 1470px;
-    height: 100%;
+    width: 1450px;
+    height: 50%;
     background-color: a;
 }
 
@@ -60,4 +60,9 @@
 
 .unreadNum {
     color: #3dabeb;
+}
+
+.calendartitle {
+    font-size: 30px;
+    margin-left: 10px;
 }

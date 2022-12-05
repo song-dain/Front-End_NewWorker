@@ -14,13 +14,6 @@ function NewSchedule() {
     const loginEmp = useSelector(state => state.employeeReducer);
     const isLogin = window.localStorage.getItem('accessToken');
     let decoded = null;
-    const [allDayBtn, setAllDayBtn] = useState(false);
-    let todayfull = new Date();
-    let year = todayfull.getFullYear();
-    let month = ("0" + (1 + todayfull.getMonth())).slice(-2);
-    let day = ("0" + todayfull.getDate()).slice(-2);
-    const today = year + "-" + month + "-" + day;
-
     const [newSchedule, SetNewSchedule] = useState({
         calendarCategory : {
             calendarCategoryName : ""
@@ -33,17 +26,17 @@ function NewSchedule() {
         scheduleContent : ""
     });
 
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0];
+    }
+
     useEffect(
         () => {
             dispatch(callEmployeeInfoAPI());
         }
         , []
     )
-
-    if(isLogin) {
-        const temp = decodeJwt(isLogin);
-        decoded = temp.auth[0];
-    }
 
     /* 일정 입력 */
     const onChangeHandler = (e) => {
@@ -94,6 +87,7 @@ function NewSchedule() {
         dispatch(callAddScheduleAPI({form : newSchedule}))
         alert('일정이 추가되었습니다.');
         navigate('/calendar', { replace : false })
+        
     };
 
     return(
@@ -105,8 +99,8 @@ function NewSchedule() {
                     onChange={ e => onSelectChangeHandler(e) }>
                     <option>일정 선택</option>
                     <option>내 일정</option>
-                    { loginEmp.position ? loginEmp.position.positionNo > 211 && <option>부서 일정</option> : <option>부서일정오락가락</option> }
-                    { decoded == "ROLE_ADMIN" && <option>전사 일정</option> }
+                    { loginEmp.position && loginEmp.position.positionNo > 211 && <option>부서 일정</option> } {/* 직급이 사원 이상이면 등록 가능 */}
+                    { decoded == "ROLE_ADMIN" && <option>전사 일정</option> } {/* 관리자 등록 가능 */}
                     
                 </select>
                 <input
@@ -120,7 +114,6 @@ function NewSchedule() {
                     className={NewScheduleCSS.startDate}
                     name='startDate'
                     type='date'
-                    readOnly={allDayBtn}
                     onChange={ e => onChangeHandler(e) }
                 />
                 <span className={NewScheduleCSS.edtitle}>종료일</span>
@@ -129,7 +122,6 @@ function NewSchedule() {
                     name='endDate'
                     type='date'
                     min={newSchedule.startDate}
-                    readOnly={allDayBtn}
                     onChange={ e => onChangeHandler(e) }
                 />
                 <span className={NewScheduleCSS.stimetitle}>시간</span>

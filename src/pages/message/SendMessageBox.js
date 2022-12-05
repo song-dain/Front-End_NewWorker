@@ -11,15 +11,17 @@ function SendMessageBox(){
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState('');
     const [searchResult, setSearchResult ] = useState('');
-    const [status, setStatus] = useState('');
-    const [ messageNum, setMessageNum ] = useState('');
-    const [selectMContent, setSelectMContent] = useState('');
-    const [selectMRecipient, setSelectMRecipient] = useState('');
-    const [selectMsendDate, setSelectMSendDate] = useState('');
     const [messageModal, setMessageModal] = useState(false);
     const messages = useSelector(state => state.messageReducer);
     const messageList = messages.data;
     const pageInfo = messages.pageInfo;
+    const [ sendForm, setSendForm ] = useState({
+        messageStatus: '',
+        messageNo: 0,
+        recipient: '',
+        content: '', 
+        sendDate: ''
+    });
 
     useEffect(
         () => {
@@ -55,7 +57,7 @@ function SendMessageBox(){
         setSearchResult(`키워드 '${search}' 검색 결과입니다.`);
     }
 
-    /* 휴지통으로 이동 */
+    /* 휴지통 이동 */
     const moveToBinMessageBox = (num) => {
 
         dispatch(callSenderManagementAPI({
@@ -79,29 +81,25 @@ function SendMessageBox(){
         }
     }
 
-    /* 메시지 조회 */
+    /* 메시지 상세 조회 */
     const onClickMessageContent = (message) => {
 
-        setStatus(message.messageStatus);
-        setMessageNum(message.messageNo);
-        setSelectMRecipient(message.recipient.employeeName);
-        setSelectMContent(message.messageContent);
-        setSelectMSendDate(message.sendDate);
+        setSendForm({
+            messageStatus: message.messageStatus,
+            messageNo: message.messageNo,
+            recipient: message.recipient.employeeName,
+            content: message.messageContent, 
+            sendDate: message.sendDate
+        });
 
         setMessageModal(true);
-
     }
     
-
     return(
         <>
             { messageModal ? 
                 <SendMessageMoadl
-                    messageStatus={status}
-                    messageNo={messageNum}
-                    selectMRecipient={selectMRecipient}
-                    selectMContent={selectMContent}
-                    selectMsendDate={selectMsendDate}
+                    sendForm={sendForm}
                     setMessageModal={setMessageModal}
                 /> : null }
             <div className={SendMessageBoxCSS.box}>

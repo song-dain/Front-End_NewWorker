@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { callImpoMessageListAPI, callRecipientManagementAPI, callSearchImpoMessageAPI, callReceiveMessageReadAPI } from "../../api/MessageAPICalls";
 import ImpoMessageBoxCSS from "../message/ImpoMessageBox.module.css";
-import impocancelicon from "../../img/impocancelicon.png";
-import binicon from "../../img/binicon.png";
 import ReceiveMessageMoadl from "../../components/message/ReceiveMessageModal";
 
 function ImpoMessageBox(){
@@ -12,14 +10,16 @@ function ImpoMessageBox(){
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState('');
     const [searchResult, setSearchResult ] = useState('');
-    const [selectMContent, setSelectMContent] = useState('');
-    const [selectMSender, setSelectMSender] = useState('');
-    const [selectMsendDate, setSelectMSendDate] = useState('');
-    const [senderNo, setSenderNo] = useState(0);
     const [messageModal, setMessageModal] = useState(false);
     const messages = useSelector(state => state.messageReducer);
     const messageList = messages.data;
     const pageInfo = messages.pageInfo;
+    const [ receiveForm, setReceiveForm ] = useState({
+        senderNo : 0,
+        sender : '',
+        content : '',
+        sendDate : ''
+    });
 
     useEffect(
         () => {
@@ -55,19 +55,17 @@ function ImpoMessageBox(){
         setSearchResult(`키워드 '${search}' 검색 결과입니다.`);
     }
 
-    /* 메시지 조회 */
+    /* 메시지 상세 조회 */
     const onClickMessageContent = (message) => {
 
-        dispatch(callReceiveMessageReadAPI({
-            messageNo : message.messageNo
-        }));
-
-        setSenderNo(message.sender.employeeNo);
-        setSelectMSender(message.sender.employeeName);
-        setSelectMContent(message.messageContent);
-        setSelectMSendDate(message.sendDate);
-
         setMessageModal(true);
+
+        setReceiveForm({
+            senderNo : message.sender.employeeNo,
+            sender : message.sender.employeeName,
+            content : message.messageContent,
+            sendDate : message.sendDate
+        });
 
     }
 
@@ -115,10 +113,7 @@ function ImpoMessageBox(){
         <>
             { messageModal ? 
                 <ReceiveMessageMoadl
-                    selectMSenderNo={senderNo}
-                    selectMSender={selectMSender}
-                    selectMContent={selectMContent}
-                    selectMsendDate={selectMsendDate}
+                    receiveForm={receiveForm}
                     setMessageModal={setMessageModal}
                 /> : null }
             <div className={ImpoMessageBoxCSS.box}>

@@ -24,7 +24,6 @@ export const callSelectOfficeCalendarAPI = ({form}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log(result);
             dispatch({ type: POST_SCHEDULE, payload: result.data });
         }
     }
@@ -47,7 +46,6 @@ export const callScheduleDetailAPI = ({scheduleNo}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log(result);
             dispatch({ type: GET_SCHEDULE, payload: result.data });
         }
     }
@@ -158,7 +156,6 @@ export const callTodayScheduleAPI = () => {
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log(result);
             dispatch({ type: GET_TODAY_SCHEDULE, payload: result.data });
         }
     }

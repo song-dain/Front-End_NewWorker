@@ -19,12 +19,19 @@ function Main() {
     const scheduleList = calendarEvent.todaySchedule;
     const dayOffList = calendarEvent.todayDayOff;
     const header = {
-        start: "title"
+        start: "",
+        center: "",
+        end: ""
     }
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const today = year + "년 " + month + "월 " + day + "일";
 
     const scheduleEvents = 
         Array.isArray(scheduleList) && scheduleList.map((item) => ({
-            title: item.startTime != null ? `AD | ${item.scheduleTitle}` : `${item.startTime} | ${item.scheduleTitle}`,
+            title: `${item.startTime} | ${item.scheduleTitle}`,
             start: item.startDate,
             end: item.endDate,
             id: item.calendarNo,
@@ -71,18 +78,17 @@ function Main() {
                 className={MainCSS.unreadMessage}
                 onClick={ () => onClickUnreadMessage() }
            >읽지 않은 메시지가 <span className={MainCSS.unreadNum}>{unread.unreadMessage}</span> 건 있습니다.</div>
-            {/* <Clock/> */}
-            <br/>
-            <div className={MainCSS.calendarContainer}>
-                <FullCalendar 
-                    className="fullcalendar"
-                    defaultView="dayGridMonth" 
-                    headerToolbar={header}
-                    plugins={[ dayGridPlugin, timeGridPlugin, listPlugin  ]}
-                    height='900px'
-                    events={events}
+            <Clock className={MainCSS.clock}/>
+            <span className={MainCSS.calendartitle}>{today} 일정</span>
+            <FullCalendar 
+                className="fullcalendar"
+                defaultView="dayGridPlugin" 
+                headerToolbar={header}
+                locale='ko'
+                plugins={[ dayGridPlugin, timeGridPlugin, listPlugin  ]}
+                height='850px'
+                events={events}
                 />
-            </div>
         </div>
         
     );
