@@ -132,7 +132,7 @@ function NoticeDetail() {
                             
                                     <tr>
                                         <td>
-                                            <img src={noticeDetail.noticeImageUrl} alt="테스트" />
+                                            
                                             <textarea
                                                 className={NoticeDetailCSS.noticeContent}
                                                 name='notContent'

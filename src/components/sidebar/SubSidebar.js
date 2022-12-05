@@ -7,7 +7,6 @@ import { decodeJwt } from '../../utils/tokenUtils';
 import $ from 'jquery';
 import { useNavigate, useParams } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
-import approvalReducer, { GET_EMPLOYEE } from "../../modules/ApprovalModule";
 import { useSelector } from "react-redux";
 
 function SubSidebar() {
@@ -23,7 +22,7 @@ function SubSidebar() {
     const isLogin = window.localStorage.getItem('accessToken');
     let decoded = null;
 
-    if(isLogin) {
+    if (isLogin) {
         const temp = decodeJwt(isLogin);
         decoded = temp.auth[0];
     }
@@ -36,7 +35,7 @@ function SubSidebar() {
             $("#divBox3").hide();
             $("#divBox4").hide();
             $("#divBox5").hide();
-            
+
         });
     });
 
@@ -48,7 +47,7 @@ function SubSidebar() {
             $("#divBox3").hide();
             $("#divBox4").hide();
             $("#divBox5").hide();
-            
+
         });
     });
 
@@ -60,7 +59,7 @@ function SubSidebar() {
             $("#divBox3").hide();
             $("#divBox4").hide();
             $("#divBox5").hide();
-            
+
         });
     });
 
@@ -72,7 +71,7 @@ function SubSidebar() {
             $("#divBox3").fadeToggle("fast");
             $("#divBox4").hide();
             $("#divBox5").hide();
-            
+
         });
     });
 
@@ -84,7 +83,7 @@ function SubSidebar() {
             $("#divBox3").hide();
             $("#divBox4").fadeToggle("fast");
             $("#divBox5").hide();
-            
+
         });
     });
 
@@ -96,7 +95,7 @@ function SubSidebar() {
             $("#divBox3").hide();
             $("#divBox4").hide();
             $("#divBox5").fadeToggle("fast");
-            
+
         });
     });
 
@@ -125,7 +124,7 @@ function SubSidebar() {
                         <li className={SubSidebarCSS.sideTitle2}>ㅇ휴가 관리</li>
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="rest/regist">연차 신청</NavLink></li>
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="rest/list">연차 조회</NavLink></li>
-                        { decoded === "ROLE_ADMIN" &&<li className={SubSidebarCSS.smallTitle}><NavLink to="rest/list/admin">연차 인가</NavLink></li>}
+                        {decoded === "ROLE_ADMIN" && <li className={SubSidebarCSS.smallTitle}><NavLink to="rest/list/admin">연차 인가</NavLink></li>}
                     </ul>
                 </div>
 
@@ -164,7 +163,7 @@ function SubSidebar() {
                     <ul>
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="emp/employeeList">직원 조회</NavLink></li>
                         {/* 관리자로 로그인시 보이게끔 작업할 것 */}
-                        { employee.employeeRole === 'ROLE_ADMIN' && <li className={SubSidebarCSS.smallTitle}><NavLink to="employee/regist">직원 등록</NavLink></li> }
+                        {employee.employeeRole === 'ROLE_ADMIN' && <li className={SubSidebarCSS.smallTitle}><NavLink to="employee/regist">직원 등록</NavLink></li>}
 
                     </ul>
 
@@ -227,14 +226,12 @@ function SubSidebar() {
                     >
                         설문등록
                     </li>}
-                    
+
                 </div>
                 <div>
                     <ul>
                         <li className={SubSidebarCSS.sideTitle1}> ㅇ설문</li>
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="survey/ing">진행중인 설문</NavLink></li>
-                        <li className={SubSidebarCSS.smallTitle}><NavLink to="survey/end">마감된 설문</NavLink></li>
-                        <li className={SubSidebarCSS.smallTitle}>내가 만든 설문</li>
                     </ul>
 
                 </div>
