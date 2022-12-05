@@ -2,6 +2,7 @@ import SurveyDetailCSS from './SurveyDetail.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { decodeJwt } from '../../utils/tokenUtils';
 
 import { callSurveyDetailAPI, callSurveySubmitAPI, callSurveyDeleteAPI } from '../../api/SurveyAPICalls';
 
@@ -15,10 +16,27 @@ function SurveyDetail() {
     const surveys = useSelector(state => state.surveyReducer);
     const params = useParams();
     const surveyDetail = surveys.data;
-    const [form, setForm] = useState({
-        ansNo: '',
+    // const [form, setForm] = useState({
+    //     surTitle: '',
+    //     surContent: '',
+    //     surDate: 0,
+    //     surStartDate: 0,
+    //     surEndDate: 0,
+    //     ansContent1: '',
+    //     ansContent2: '',
+    //     ansContent3: '',
+    //     depNo: 10,
 
-    });
+    // });
+    const [form, setForm] = useState({});
+
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if (isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0];
+    }
 
     useEffect(
         () => {
@@ -46,20 +64,20 @@ function SurveyDetail() {
 
         formData.append("ansNo", form.ansNo);     //설문항목
 
-        
-        
-        
-        
+
+
+
+
         dispatch(callSurveySubmitAPI({
             form: formData
         }));
         alert('설문이 제출되었습니다.');
-        navigate(`/survey/result`, { replace: true });
+        navigate(`/Survey`, { replace: true });
         // window.location.reload();
-        
+
         console.log("formData", formData);
     }
-    
+
     //삭제하기
     const onClickSurveyDeleteHandler = () => {
         // console.log('[noticeDetail 공지사항 번호] : ', form.notNo);
@@ -72,7 +90,7 @@ function SurveyDetail() {
         navigate(`/Survey`, { replace: true });
         // window.location.reload();
     }
-    
+
     return (
         <div className={SurveyDetailCSS.surveyDetail}>
             <h1 className={SurveyDetailCSS.text}>설문조사</h1>
@@ -100,6 +118,7 @@ function SurveyDetail() {
                                     작성자 :
                                     <input
                                         className={SurveyDetailCSS.surName}
+                                        name='employeeName'
                                         placeholder='작성자'
                                         readOnly={true}
                                         style={{ backgroundColor: 'white' }}
@@ -113,6 +132,7 @@ function SurveyDetail() {
                                     작성일 :
                                     <input
                                         className={SurveyDetailCSS.surDate}
+                                        name='surDate'
                                         placeholder='작성일'
                                         readOnly={true}
                                         style={{ backgroundColor: 'white' }}
@@ -171,45 +191,46 @@ function SurveyDetail() {
                                 </td>
                             </tr>
                         </tbody>
-                        <tfoot className={SurveyDetailCSS.surTfoot}>
-                            <tr>
-                                <td>
-                                    <input id="test1" type="radio"
-                                        name='ansNo'
-                                        onChange={onChangeHandler} />
-                                    <label htmlFor="test1">
-                                        {/* onChange={onChangeHandler}
+                        {surveyDetail &&
+                            <tfoot className={SurveyDetailCSS.surTfoot}>
+                                <tr>
+                                    <td>
+                                        <input id="test1" type="radio"
+                                            name='ansNo'
+                                            onChange={onChangeHandler} />
+                                        <label for="test1">
+                                            
+                                            {Array.isArray(surveyDetail.questionItem) && surveyDetail.questionItem[0].ansContent || ''}
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input id="test2" type="radio"
+                                            name='ansNo'
+                                            onChange={onChangeHandler} />
+                                        <label for="test2">
+                                            {/* onChange={onChangeHandler}
                                     value= */}
-                                        {surveyDetail.questionItem[0].ansContent || ''}
-                                    </label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input id="test2" type="radio"
-                                        name='ansNo'
-                                        onChange={onChangeHandler} />
-                                    <label htmlFor="test2">
-                                        {/* onChange={onChangeHandler}
-                                    value= */}
-                                        {surveyDetail.questionItem[1].ansContent || ''}
-                                    </label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input id="test3" type="radio"
-                                        name='ansNo'
-                                        onChange={onChangeHandler} />
-                                    <label htmlFor="test3">
+                                            {Array.isArray(surveyDetail.questionItem) && surveyDetail.questionItem[1].ansContent || ''}
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input id="test3" type="radio"
+                                            name='ansNo'
+                                            onChange={onChangeHandler} />
+                                        <label for="test3">
 
-                                        {/* onChange={onChangeHandler}
+                                            {/* onChange={onChangeHandler}
                                     value= */}
-                                        {surveyDetail.questionItem[2].ansContent || ''}
-                                    </label>
-                                </td>
-                            </tr>
-                        </tfoot>
+                                            {Array.isArray(surveyDetail.questionItem) && surveyDetail.questionItem[2].ansContent || ''}
+                                        </label>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        }
                     </table>
                 </div>
             }
@@ -228,20 +249,12 @@ function SurveyDetail() {
                     목록으로
                 </button>
 
-
-                <button
-                    className={SurveyDetailCSS.backBtn1}
-                    onClick={() => navigate(`/survey-update/${surveyDetail.surNo}`, { replace: false })}
-                >
-                    수정하기
-                </button>
-
-                <button
+                {decoded === "ROLE_ADMIN" && <button
                     className={SurveyDetailCSS.backBtn1}
                     onClick={onClickSurveyDeleteHandler}
                 >
-                    삭제
-                </button>
+                    삭제하기
+                </button>}
 
 
 
