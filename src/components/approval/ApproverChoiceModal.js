@@ -20,6 +20,7 @@ function ApproverChoiceModal({approverListModal, appLines, setAppLines, setAppro
         , [isChange]
     )
 
+    /* 부서별 직원 조회 */
     const selectDept = (dep) => {
         dispatch(callEmpListAPI({
             depNo : dep
@@ -52,33 +53,36 @@ function ApproverChoiceModal({approverListModal, appLines, setAppLines, setAppro
     return(
         <div className={ ApproverChoiceModalCSS.modal}>
             <div className={ ApproverChoiceModalCSS.modalContainer }>
-                결재자 선택
-                <ul>
-                    <li onClick={ () => selectDept(10) } className={ ApproverChoiceModalCSS.depCheck }>인사팀</li>
-                    <li onClick={ () => selectDept(20) } className={ ApproverChoiceModalCSS.depCheck }>총무팀</li>
-                    <li onClick={ () => selectDept(30) } className={ ApproverChoiceModalCSS.depCheck }>영업팀</li>
-                    <li onClick={ () => selectDept(40) } className={ ApproverChoiceModalCSS.depCheck }>IT사업팀</li>
-                </ul>
-                <table>
+                <div className={ ApproverChoiceModalCSS.choiceTitle }>결재자 선택</div>
+                    <span className={ ApproverChoiceModalCSS.choiceDep }>부서</span>
+                    <button onClick={ () => selectDept(10) } className={ ApproverChoiceModalCSS.depBtn }>인사팀</button>
+                    <br/>
+                    <button onClick={ () => selectDept(20) } className={ ApproverChoiceModalCSS.depBtn }>총무팀</button>
+                    <br/>
+                    <button onClick={ () => selectDept(30) } className={ ApproverChoiceModalCSS.depBtn }>영업팀</button>
+                    <br/>
+                    <button onClick={ () => selectDept(40) } className={ ApproverChoiceModalCSS.depBtn }>IT사업팀</button>
+                    <br/>
+                    <div className={ ApproverChoiceModalCSS.empName }>
+                    <span className={ ApproverChoiceModalCSS.choiceEmp }>이름 / 직급</span>
+                    {
+                        Array.isArray(employee) && employee.map((
+                            emp =>
+                                <div key={emp.employeeNo}>
+                                    <td>
+                                        <input type="checkbox" name={emp.employeeName} onClick={ () => selectEmp(emp)} />
+                                    </td>
+                                    <td>{emp.employeeName} {emp.position.positionName}</td>
+                                </div>
+                        ))
+                    }
+                    </div>
+                    <table>
                     <thead>
                         <tr>
                             <th>선택</th>
-                            <th>이름</th>
                         </tr>
                     </thead>
-                <tbody>
-                {
-                    Array.isArray(employee) && employee.map((
-                        emp =>
-                            <div key={emp.employeeNo}>
-                                <td>
-                                    <input type="checkbox" name={emp.employeeName} onClick={ () => selectEmp(emp)} />
-                                </td>
-                                <td>{emp.employeeName}</td>
-                            </div>
-                    ))
-                }
-            </tbody>
             <tbody>
                 결재자 확인
             {
