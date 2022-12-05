@@ -51,13 +51,15 @@
 	border:none;
 	display:inline-block;
 	font-size:18px;
-    margin-bottom: 10px;
+    position:relative;
+    /* bottom: 30px; */
     width: 200px;
     height: 50px;
     border-bottom: 1px solid white;
     justify-content: center;
     align-items: center;
     display: flex;
+
     color: #ffffff;
 }
 
@@ -78,10 +80,11 @@
 }
 
 .empName {
-    float: right;
-    margin-right: 350px;
-    
-    height: 290px;
+    /* float: right; */
+    /* margin-right: 350px; */
+    width: 500px;
+    height: 500px;
+    /* background-color: antiquewhite; */
     overflow: auto;
 }
 
@@ -89,3 +92,90 @@
 .depCheck {
     cursor: pointer; 
 }
+
+
+.empInfo {
+    overflow: auto;
+    background-color:#FCFCFC;
+	border:none;
+	display:inline-block;
+	font-size:18px;
+    width: 200px;
+    height: 60px;
+    border-bottom: 1px solid white;
+    margin-top:20px;
+    margin-right: 60px;
+}
+
+.checkApprover {
+    background-color:#e3e3e3;
+	border:none;
+	display:inline-block;
+    
+	font-size:18px;
+    /* position:relative; */
+    /* left:500px; */
+    /* bottom:290px; */
+    width: 200px;
+    height: 50px;
+    border-bottom: 1px solid white;
+    justify-content: center;
+    align-items: center;
+    /* display: flex; */
+    color: #ffffff;
+}
+
+.checkApproverOK {
+    border:none;
+	display:inline-block;
+	font-size:18px;
+    position:relative;
+    /* left:500px; */
+    /* bottom:290px; */
+    left:25px;
+    width: 200px;
+    height: 50px;
+    border-bottom: 1px solid white;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color : balck;
+}
+
+.test {
+    /* background-color: green; */
+    height: 291px;
+    width: 200px;
+    float: left;
+}
+
+.test1 {
+    /* background-color: yellow; */
+    
+    width: 500px;
+    float: right;
+}
+
+.test2 {
+    /* background-color: beige; */
+    float: left;
+
+    width: 250px;
+    
+}
+
+.test3 {
+    /* background-color: rgb(192, 192, 58); */
+    float: right;
+
+    width: 250px;
+    
+}
+
+.clickBtn {
+    width: 200px;
+    height: 30px;
+    margin-right: 250px;
+    background-color:#90D5FF;
+    border: 1px solid white;
+    color : white}

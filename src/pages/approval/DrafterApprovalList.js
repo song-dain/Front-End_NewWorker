@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { callDrafterApprovalListAPI } from '../../api/ApprovalAPICalls';
 import { decodeJwt } from '../../utils/tokenUtils';
+import ApproverApprovalListCSS from './ApproverApprovalList.module.css';
 
 function DrafterApprovalList() {
 
@@ -47,16 +48,17 @@ function DrafterApprovalList() {
             <h1> 상신함 </h1>
             <p>───────────────────────────────────────────────────────────────</p>
             <br/>
-            <table>
+            <table className={ ApproverApprovalListCSS.ApprovalTable }>
                 <thead>
-                    <tr>
+                    <tr className={ ApproverApprovalListCSS.ApprovalThead }>
                         <td>문서번호</td>
                         <td>제목</td>
                         <td>작성일</td>
                         <td>상태</td>
                     </tr>
                 </thead>
-                <tbody>
+                <br/>
+                <tbody className= { ApproverApprovalListCSS.ApprovalTBody }>
                     {
                         Array.isArray(approvalList) && approvalList.map(
                             (approval) => ( 
@@ -67,14 +69,16 @@ function DrafterApprovalList() {
                                     <td>{ approval.appDocNo }</td>
                                     <td>{ approval.appTitle }</td>
                                     <td>{ approval.appCreatedDate }</td>
-                                    <td>{ approval.appStatus }</td>
+                                    <td
+                                        style={ approval.appStatus == '완료' ? { color : '#4885FF' } : { color : 'black' } }
+                                    >{ approval.appStatus }</td>
                                 </tr>
                                 )
                         )
                     }
                 </tbody>
             </table>
-            <div>
+            <div className={ ApproverApprovalListCSS.pageDiv }>
                 {
                     Array.isArray(approvalList) &&
                     <button

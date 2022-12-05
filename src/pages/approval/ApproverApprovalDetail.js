@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { callApproverApprovalDetailAPI, callAcceptChangeAPI, callNotAcceptChangeAPI } from '../../api/ApprovalAPICalls';
-
+import ApprovalDetailCSS from './ApprovalDetail.module.css';
 
 
 
@@ -76,7 +76,7 @@ function ApproverApprovalDetail() {
                     <br/>
                     <tr>
                         <td>문서번호</td>
-                        <td>결제상태</td>
+                        <td>결재상태</td>
                         <td>작성일</td>
                         <td>종료일</td>
                     </tr>
@@ -94,18 +94,18 @@ function ApproverApprovalDetail() {
                     <tr dangerouslySetInnerHTML={ {__html: approval.appContent} }>
                     </tr>
                     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                    <tr>
-                        첨부 파일
-                    </tr>
+
                     <br/>
                     <br/>
                     <tr>
                         결재자
                     </tr>
+                    <br/>
                     {
                      approval.appLines.map((appLine) => (
                     <tr>
                             {appLine.employee.employeeName} {appLine.acceptStatus}
+                            
                     </tr>
                     ))}
                     
@@ -114,9 +114,9 @@ function ApproverApprovalDetail() {
             </table>
             <br/>
             <div>
-                { (approval.appStatus == "대기" || approval.appStatus == "진행중") && <button onClick={ onClickAccChangeHandler }>승인</button>}
-                { (approval.appStatus == "대기" || approval.appStatus == "진행중") && <button onClick={ onClickNotAccChangeHandler }>반려</button>}
-                <button onClick={ () => { navigate('/approval/approver') } }>돌아가기</button>
+                { (approval.appStatus == "대기") && <button onClick={ onClickAccChangeHandler } className={ ApprovalDetailCSS.returnBtn }>승인</button>}
+                { (approval.appStatus == "대기" || approval.appStatus == "진행중") && <button onClick={ onClickNotAccChangeHandler } className={ ApprovalDetailCSS.deleteBtn }>반려</button>}
+                <button onClick={ () => { navigate('/approval/approver') } } className={ ApprovalDetailCSS.cancleBtn }>돌아가기</button>
             </div>
                 
         </div>

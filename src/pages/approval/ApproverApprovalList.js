@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { callApproverApprovalListAPI } from '../../api/ApprovalAPICalls';
 import { decodeJwt } from '../../utils/tokenUtils';
+import ApproverApprovalListCSS from './ApproverApprovalList.module.css';
 
 function ApproverApprovalList() {
 
@@ -46,65 +47,71 @@ function ApproverApprovalList() {
         <div>
             <h1> 수신함 </h1>
             <p>───────────────────────────────────────────────────────────────</p>
-            <br/>
-            <table>
-                <thead>
-                    <tr>
-                        <td>문서번호</td>
-                        <td>제목</td>
-                        <td>작성일</td>
-                        <td>상태</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        Array.isArray(approvalList) && approvalList.map(
-                            (approval) => ( 
-                                <tr
-                                    key={ approval.appNo }
-                                    onClick={() => onClickApproverApprovalDetail(approval.appNo)}
-                                >
-                                    <td>{ approval.appDocNo }</td>
-                                    <td>{ approval.appTitle }</td>
-                                    <td>{ approval.appCreatedDate }</td>
-                                    <td>{ approval.appStatus }</td>
-                                </tr>
-                                )
-                        )
-                    }
-                </tbody>
-            </table>
-            <div>
-                {
-                    Array.isArray(approvalList) &&
-                    <button
-                        onClick={() => setCurrentPage(currentPage - 1)}
-                        disabled={currentPage === 1}
-                    >
-                        &lt;
-                    </button>
-                }
-                {
-                    pageNumber.map((num) => (
-                        <li key={num} onClick={() => setCurrentPage(num)}>
+            <div className={ ApproverApprovalListCSS.approverApprovalListDiv }>
+                <br/>
+                <table className={ ApproverApprovalListCSS.ApprovalTable }>
+                    <thead>
+                        <tr className={ ApproverApprovalListCSS.ApprovalThead }>
+                            <th>문서번호</th>
+                            <th>제목</th>
+                            <th>작성일</th>
+                            <th>상태</th>
+                        </tr>
+                    </thead>
+                    <br/>
+                    <br/>
+                    <tbody className= { ApproverApprovalListCSS.ApprovalTBody }>
+                        {
+                            Array.isArray(approvalList) && approvalList.map(
+                                (approval) => ( 
+                                    <tr
+                                        key={ approval.appNo }
+                                        onClick={() => onClickApproverApprovalDetail(approval.appNo)}
+                                    >
+                                        <td>{ approval.appDocNo }</td>
+                                        <td>{ approval.appTitle }</td>
+                                        <td>{ approval.appCreatedDate }</td>
+                                        <td
+                                            style={ approval.appStatus == '완료' ? { color : '#4885FF' } : { color : 'black' } }
+                                        >{ approval.appStatus }</td>
+                                    </tr>
+                                    )
+                            )
+                        }
+                    </tbody>
+                </table>
+                <div className={ ApproverApprovalListCSS.pageDiv }>
+                        {
+                            Array.isArray(approvalList) &&
                             <button
-                                style={currentPage === num ? { backgroundColor: 'lightgray' } : null}
-
+                                onClick={() => setCurrentPage(currentPage - 1)}
+                                disabled={currentPage === 1}
                             >
-                                {num}
+                                &lt;
                             </button>
-                        </li>
-                    ))
-                }
-                {
-                    Array.isArray(approvalList) &&
-                    <button
-                        onClick={() => setCurrentPage(currentPage + 1)}
-                        disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
-                    >
-                        &gt;
-                    </button>
-                }
+                        }
+                        {
+                            pageNumber.map((num) => (
+                                <li key={num} onClick={() => setCurrentPage(num)}>
+                                    <button
+                                        style={currentPage === num ? { backgroundColor: 'lightgray' } : null}
+
+                                    >
+                                        {num}
+                                    </button>
+                                </li>
+                            ))
+                        }
+                        {
+                            Array.isArray(approvalList) &&
+                            <button
+                                onClick={() => setCurrentPage(currentPage + 1)}
+                                disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
+                            >
+                                &gt;
+                            </button>
+                        }
+                </div>
             </div>
         </div>
         

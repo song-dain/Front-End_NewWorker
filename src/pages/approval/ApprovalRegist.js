@@ -5,7 +5,8 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import ApproverChoiceModal from '../../components/approval/ApproverChoiceModal';
 import { useDispatch } from 'react-redux';
-import { callAppRegisttAPI } from '../../api/ApprovalAPICalls';
+import { callAppRegistAPI } from '../../api/ApprovalAPICalls';
+import ApprovalRegistCSS from './ApprovalRegist.module.css';
 
 
 function ApprovalRegist() {
@@ -57,9 +58,6 @@ function ApprovalRegist() {
         formData.append(`appLines[${i}].appLineTurn`, appLines[i].appLineTurn);
         }
 
-
-        dispatch(callAppRegisttAPI({ form : formData }));
-
         if(approval.appDocNo == '') {
             alert('참조번호를 입력하세요.');
             return;
@@ -73,7 +71,8 @@ function ApprovalRegist() {
             alert('문서 내용을 입력하세요.');
             return;
         }
-        
+        dispatch(callAppRegistAPI({ form : formData }));
+        navigate('/approval/draft', { replace : false });
     }
 
 
@@ -95,15 +94,21 @@ function ApprovalRegist() {
         <br/>
             <div>
                 <p>문서번호</p>
-                <input type="text" className="appDocNo" name="appDocNo" placeholder="20221108-1229580" autoComplete='off' onChange={ onChangeHandler }/>
+                <input type="text" className={ ApprovalRegistCSS.appDocNo } name="appDocNo" placeholder="20221108-1229580" autoComplete='off' onChange={ onChangeHandler }/>
+                <br/>
+                <br/>
                 <p>결재 종료일</p>
-                <input type="date" className="appDocNo" name="appEndDate" autoComplete='off' onChange={ onChangeHandler }/>
+                <input type="date" className={ ApprovalRegistCSS.appEndDate } name="appEndDate" autoComplete='off' onChange={ onChangeHandler }/>
+                <br/>
+                <br/>
                 <p>제목</p>
-                <input type="text" className="appDocNo" name="appTitle" placeholder="2022년 11월 지출결의서(예시)" autoComplete='off' onChange={ onChangeHandler }/>
+                <input type="text" className={ ApprovalRegistCSS.appTitle } name="appTitle" placeholder="2022년 11월 지출결의서(예시)" autoComplete='off' onChange={ onChangeHandler }/>
+                <br/>
                 <br/>
                     <div>
                         <CKEditor
                             name="appContent"
+                            className={ ApprovalRegistCSS.ckCSS }
                             editor={ClassicEditor}
                             data='내용을 입력하세요.'
                             onChange={(event, editor) => {
@@ -115,7 +120,7 @@ function ApprovalRegist() {
                     </div>
                 <br/>
                 <br/>
-                <button name="employeeNo" onClick= { onClickApproverListHandler }>결제자 선택</button>
+                <button name="employeeNo" onClick= { onClickApproverListHandler } className={ ApprovalRegistCSS.approverChoiceBtn }>결제자 선택</button>
                 <br/>
                 <div>{
                     appLines.map((appLines) =>
@@ -127,8 +132,10 @@ function ApprovalRegist() {
                 </div>
                 <br/>
                 <br/>
-                <button onClick={ onClickAppRegistHandler }>확인</button>
-                <button onClick={ () => { navigate(-1) } }>취소</button>
+                <div className={ ApprovalRegistCSS.btnDiv }>
+                <button onClick={ onClickAppRegistHandler } className={ ApprovalRegistCSS.registBtn }>확인</button>
+                <button onClick={ () => { navigate(-1) } } className={ ApprovalRegistCSS.cancleBtn }>취소</button>
+                </div>
             </div>                
         </div>
 

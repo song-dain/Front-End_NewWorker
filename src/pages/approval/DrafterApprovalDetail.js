@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { callDrafterApprovalDetailAPI, callAppStatusChangeAPI, callAppRemoveAPI } from '../../api/ApprovalAPICalls';
-
+import ApprovalDetailCSS from './ApprovalDetail.module.css';
 
 
 
@@ -83,18 +83,16 @@ function DrafterApprovalDetail() {
                     <tr dangerouslySetInnerHTML={ {__html: approval.appContent} }>
                     </tr>
                     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                    <tr>
-                        첨부 파일
-                    </tr>
                     <br/>
                     <br/>
                     <tr>
                         결재자
                     </tr>
+                    <br/>
                     {
                  approval.appLines.map((appLine) => (
                     <tr>
-                            {appLine.employee.employeeName} {appLine.acceptStatus}
+                            {appLine.employee.employeeName}  {appLine.acceptStatus}
                     </tr>
                     ))}
                     
@@ -104,9 +102,9 @@ function DrafterApprovalDetail() {
             <br/>
             <div>
                 
-                { approval.appStatus === "대기" &&<button onClick={ onClickAppStatusChangeHandler }>회수</button>}
-                { (approval.appStatus === "회수" || approval.appStatus === "반려") && <button onClick={ onClickAppRemoveHandler }>삭제</button>}
-                <button onClick={ () => { navigate('/approval/draft') } }>돌아가기</button>
+                { approval.appStatus === "대기" &&<button onClick={ onClickAppStatusChangeHandler }  className={ ApprovalDetailCSS.returnBtn }>회수</button>}
+                { (approval.appStatus === "회수" || approval.appStatus === "반려") && <button onClick={ onClickAppRemoveHandler } className={ ApprovalDetailCSS.deleteBtn }>삭제</button>}
+                <button onClick={ () => { navigate('/approval/draft') } } className={ ApprovalDetailCSS.cancleBtn }>돌아가기</button>
             </div>
                 
         </div>

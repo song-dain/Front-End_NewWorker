@@ -27,7 +27,7 @@ export const callEmpListAPI = ({depNo}) => {
 
 
 
-export const callAppRegisttAPI = ({form}) => {
+export const callAppRegistAPI = ({form}) => {
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/app/approval/regist`;
 
     return async (dispatch, getState) => {
@@ -48,7 +48,6 @@ export const callAppRegisttAPI = ({form}) => {
             console.log('[AppRegistAPICalls] callAppRegistAPI result : ', result);
             dispatch({ type: POST_APPROVAL, payload: result.data });
             alert('결재 상신 완료');
-            window.location.reload();
 
         }
     }
