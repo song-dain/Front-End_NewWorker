@@ -23,6 +23,7 @@ function SendMessage(){
         setEmpListModal(true);
     }
 
+    /* 메시지 내용 상태 저장 */
     const onChangeHandler = (e) => {
         setMessage({
             ...message,
@@ -30,7 +31,7 @@ function SendMessage(){
         });
     }
 
-    /* 메시지 보내기 */
+    /* 메시지 전송 */
     const SendMessage = () => {
 
         if(message.recipient.employeeNo == 0) {

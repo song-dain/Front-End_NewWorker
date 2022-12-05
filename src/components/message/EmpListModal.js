@@ -15,6 +15,7 @@ function EmpListModal({message, recipientName, setMessage, recipient, setEmpList
         , [isChange]
     )
 
+    /* 부서별 직원 조회 */
     const selectDept = (dept) => {
 
         dispatch(callEmpListAPI({
@@ -24,6 +25,7 @@ function EmpListModal({message, recipientName, setMessage, recipient, setEmpList
         setIsChange(dept);
     }
 
+    /* 수신 사원 선택 */
     const selectEmp = (emp) => {
         recipient(emp.employeeName);
         setMessage({
@@ -34,12 +36,11 @@ function EmpListModal({message, recipientName, setMessage, recipient, setEmpList
         })
     }
 
+    /* 선택 취소 */
     const cancelBtnHandler = () => {
         recipient("");
         setEmpListModal(false);
     }
-
-    console.log(recipientName);
 
     return(
         <div className={EmpListMoadlCSS.mrmodal}>

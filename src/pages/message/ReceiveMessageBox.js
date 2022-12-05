@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { callReceiveMessageListAPI, callRecipientManagementAPI, callSearchReceiveMessageAPI, callReceiveMessageReadAPI } from "../../api/MessageAPICalls";
+import { callReceiveMessageListAPI, callRecipientManagementAPI, callSearchReceiveMessageAPI } from "../../api/MessageAPICalls";
 import ReceiveMessageBoxCSS from "../message/ReceiveMessageBox.module.css";
-import impoicon from "../../img/impoicon.png";
-import binicon from "../../img/binicon.png";
 import ReceiveMessageMoadl from "../../components/message/ReceiveMessageModal";
 
 function ReceiveMessageBox() {
@@ -12,14 +10,16 @@ function ReceiveMessageBox() {
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState('');
     const [searchResult, setSearchResult] = useState('');
-    const [selectMContent, setSelectMContent] = useState('');
-    const [selectMSender, setSelectMSender] = useState('');
-    const [selectMsendDate, setSelectMSendDate] = useState('');
-    const [senderNo, setSenderNo] = useState(0);
     const [messageModal, setMessageModal] = useState(false);
     const messages = useSelector(state => state.messageReducer);
     const messageList = messages.data;
-    const pageInfo = messages.pageInfo;;
+    const pageInfo = messages.pageInfo;
+    const [ receiveForm, setReceiveForm ] = useState({
+        senderNo : 0,
+        sender : '',
+        content : '',
+        sendDate : ''
+    });
 
     useEffect(
         () => {
@@ -55,25 +55,22 @@ function ReceiveMessageBox() {
         setSearchResult(`'${search}' 검색 결과입니다.`);
     }
 
-    /* 메시지 조회 */
+    /* 메시지 상세 조회 */
     const onClickMessageContent = (message) => {
 
-        dispatch(callReceiveMessageReadAPI({
-            messageNo: message.messageNo
-        }));
-
-        setSenderNo(message.sender.employeeNo);
-        setSelectMSender(message.sender.employeeName);
-        setSelectMContent(message.messageContent);
-        setSelectMSendDate(message.sendDate);
-
         setMessageModal(true);
+
+        setReceiveForm({
+            senderNo : message.sender.employeeNo,
+            sender : message.sender.employeeName,
+            content : message.messageContent,
+            sendDate : message.sendDate
+        });
 
     }
 
     /* 중요 메시지함으로 이동 */
     const moveToImpoMessageBox = (num) => {
-
 
         dispatch(callRecipientManagementAPI({
             form: {
@@ -118,10 +115,7 @@ function ReceiveMessageBox() {
         <>
             {messageModal ?
                 <ReceiveMessageMoadl
-                    selectMSenderNo={senderNo}
-                    selectMSender={selectMSender}
-                    selectMContent={selectMContent}
-                    selectMsendDate={selectMsendDate}
+                    receiveForm={receiveForm}
                     setMessageModal={setMessageModal}
                 /> : null}
             <div className={ReceiveMessageBoxCSS.box}>

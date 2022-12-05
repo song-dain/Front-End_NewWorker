@@ -11,18 +11,8 @@ function Clock() {
     return (() => clearInterval(id))
   }, []);
 
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = ('0' + (today.getMonth() + 1)).slice(-2);
-  const day = ('0' + today.getDate()).slice(-2);
-
-  const dateString = year + "년 " + month + "월 " + day + "일";
-
   return (
-    <div className={ClockCSS.clock}>
-      <p className={ ClockCSS.DateP }>
-        {dateString}
-      </p>
+    <div>
       <p className={ ClockCSS.ClockP }>{time.toLocaleTimeString('ko-KR', {
         hour12 : false,
         hour : '2-digit',

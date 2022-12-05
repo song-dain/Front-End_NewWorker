@@ -22,9 +22,10 @@ function Calendar(){
         end: "today",
     }
 
+    /* 일정 이벤트 가공 */
     const scheduleEvents = 
         Array.isArray(scheduleList) && scheduleList.map((item) => ({
-            title: item.startTime != null ? `AD | ${item.scheduleTitle}` : `${item.startTime} | ${item.scheduleTitle}`,
+            title: `${item.startTime} | ${item.scheduleTitle}`,
             start: item.startDate,
             end: item.endDate,
             id: item.calendarNo,
@@ -32,6 +33,7 @@ function Calendar(){
             textColor: '#000000'
         }));
 
+    /* 연차 이벤트 가공 */
     const dayOffEvents = 
         Array.isArray(dayOffList) && dayOffList.map((item) => ({
             title: '● ' + item.restCateTypeNo.restCateType,
@@ -69,7 +71,7 @@ function Calendar(){
         , [filter]
     )
 
-
+    /* 일정 필터 */
     const checkedItemHandler = (e) => {
         
         if(e.target.checked){
@@ -85,9 +87,8 @@ function Calendar(){
         }
     }
 
+    /* 일정 상세 조회 */
     const onClickScheduleHandler = (e) => {
-
-        console.log(e.event._def.title);
 
         if(e.event._def.title !== "연차" || e.event._def.title !== "공가" 
         || e.event._def.title !== "병가" || e.event._def.title !== "오전반차" || e.event._def.title !== "오후반차"){

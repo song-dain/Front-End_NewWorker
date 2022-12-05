@@ -1,5 +1,4 @@
 import SidebarCSS from "./Sidebar.module.css";
-import LanguageIcon from '@mui/icons-material/Language';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
