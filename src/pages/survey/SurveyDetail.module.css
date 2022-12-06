@@ -1,7 +1,7 @@
 .surveyDetail {
     width: 1470px;
     height: 969px;
-
+    margin-left: 100px;
 }
 
 .text {
@@ -26,7 +26,8 @@ table input{
 }
 
 .surTitle{
-    margin-left: 10px;
+    margin-left: 20px;
+    font-size: 30px;
 }
 
 .surName{
@@ -65,10 +66,30 @@ table input{
     height: 50px;
 }
 
+.surTbody th{
+    margin-top: 20px;
+    float: left;
+    font-size: 30px;
+}
+
 .surTfoot{
     width: 1470px;
-    height: 580px;
+    height: 510px;
     border-bottom: 1px solid black;
+    
+}
+
+.surTfoot input{
+    width: 20px;
+    height: 20px;
+    
+    
+}
+
+.surTfoot label{
+    margin-left: 20px;
+    font-size: 30px;
+    
     
 }
 
