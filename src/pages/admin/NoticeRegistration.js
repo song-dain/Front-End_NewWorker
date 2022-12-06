@@ -74,7 +74,7 @@ function NoticeRegistration() {
         }));
         alert('공지가 등록되었습니다.');
         navigate(`/Notice`, { replace: true });
-        window.location.reload();
+        // window.location.reload();
     }
 
     return (

@@ -1,0 +1,183 @@
+.surveyRegistration{
+    width: 1470px;
+    height: 100%;
+    margin-left: 100px;
+}
+
+.text {
+    font-size: 60px;
+    border-bottom: 1px solid black;
+}
+.text1 {
+    font-size: 40px;
+    border-bottom: 1px solid black;
+}
+
+
+.registrationTable{
+    width: 1300px;
+    margin: 0 auto;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}
+
+.registrationThead th{
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+.tableBox{
+    width: 1300px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.titleTr{
+    float: left;
+}
+.surveyTitle {
+    margin-left: 10px;
+    width: 1000px;
+    height: 33px;
+    border: 1px solid black;
+    
+}
+
+.registrationTbody{
+    width: 1300px;
+    margin: 0 auto;
+}
+
+.registrationTbody th{
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+.depTr{
+    float: left;
+}
+
+.dateTh{
+    float: left;
+}
+
+.fileTh{
+    border-bottom: 2px solid black;
+    height: 150px;
+}
+
+.ansTr{
+    float: left;
+}
+
+.ansTitle{
+    margin-left: 10px;
+    width: 1000px;
+    height: 33px;
+    border: 1px solid black;
+}
+
+.ansTitle1{
+    margin-top: 10px;
+    margin-left: 110px;
+    width: 1000px;
+    height: 33px;
+    border: 1px solid black;
+}
+
+.ansTitle2{
+    margin-top: 10px;
+    margin-left: 110px;
+    width: 1000px;
+    height: 33px;
+    border: 1px solid black;
+}
+
+
+.surveyDep {
+    margin-left: 15px;
+    width: 200px;
+    height: 33px;
+    border: 1px solid black;
+    
+}
+
+.surveyStartDate{
+    margin-left: 20px;
+    width: 300px;
+    height: 33px;
+    border: 1px solid black;
+}
+
+.surveyEndDate{
+    margin-left: 15px;
+    width: 300px;
+    height: 33px;
+    border: 1px solid black;
+}
+
+.surveyContent {
+    margin-left: 10px;
+    width: 1000px;
+    height: 400px;
+    border: 1px solid black;
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+
+.registrationTbody span{
+    float: left;
+}
+
+.registrationTbody span .fileBtn{
+    margin-left: 15px;
+    margin-top: 20px;
+    border: dotted;
+    height: 70px;
+    width: 1002px;
+}
+
+
+
+.fileBox{
+    width: 1300px;
+    border-bottom: 1px solid black;
+}
+
+.surveyButtonDiv{
+    display: flex;
+    justify-content: flex-end;
+    
+}
+.surveyButtonDiv1{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 150px;
+    background-color: lightgray;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    margin-right: 10px;
+}
+
+.surveyButtonDiv2{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 150px;
+    background-color: lightgray;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.surveyButtonDiv button:hover {
+    cursor: pointer;
+    color: white;
+}
