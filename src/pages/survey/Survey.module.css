@@ -15,7 +15,7 @@
     /* background-color: yellow; */
     margin-top: 10px;
     width: 1470px;
-    height: 350px;
+    height: 370px;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
 }
@@ -44,48 +44,56 @@
 .surSubBox {
     height: 350px;
     width: 1470px;
+    
 }
 
 
 
-.surFlexBox1 {
+.surFlexBox {
     width: 1240px;
-    height: 330px;
+    height: 350px;
     border-radius: 30px;
     margin: 0 auto;
     margin-top: 10px;
     display: flex;
+    
 }
 
-/* .surFlexBox1 tr{
+.surTable {
     float: left;
-    width: 400px;
-    height: 300px;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+    width: 350px;
+    height: 350px;
+    border: 1px solid black;
     border-radius: 30px;
-    margin: 0 auto;
-    margin-top: 10px;
-} */
+    
+}
+
 
 .surBox{
     float: left;
     width: 400px;
-    height: 300px;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-radius: 30px;
+    height: 80px;
     margin: 0 auto;
     margin-top: 10px;
 }
 
-.surTitle{
-    background-color: beige;
-    width: 100px;
+.surBox tr th{
+    float: left;
+    
+}
+
+thead .surTitle {
+    
+    margin-left: 15px;
+}
+
+.surDate{
+    
+    margin-left: 15px;
+}
+
+.surDep{
+    margin-left: 15px;
 }
 
 .surIngBox{
@@ -102,10 +110,13 @@
 }
 
 .surveyImg{
-    width: 300px;
+    width: 400px;
     height: 150px;
 }
 
+.surTable img{
+    width: 400px;
+}
 
 
 

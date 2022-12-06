@@ -166,9 +166,9 @@ function SurveyDetail() {
                         </thead>
                         <tbody className={SurveyDetailCSS.surTbody}>
                             <tr>
-                                <td>
+                                <th>
 
-                                    <input
+                                    {/* <input
                                         className={SurveyDetailCSS.surNo}
                                         name='surNo'
                                         placeholder='설문번호'
@@ -177,7 +177,8 @@ function SurveyDetail() {
                                         onChange={onChangeHandler}
                                         value={surveyDetail.surNo || ''}
                                         disabled
-                                    />.
+                                    />. */}
+                                    1.
                                     <input
                                         className={SurveyDetailCSS.surTitle}
                                         name='surTitle'
@@ -188,7 +189,7 @@ function SurveyDetail() {
                                         value={surveyDetail.surTitle || ''}
                                         disabled
                                     />
-                                </td>
+                                </th>
                             </tr>
                         </tbody>
                         {surveyDetail &&
@@ -198,7 +199,7 @@ function SurveyDetail() {
                                         <input id="test1" type="radio"
                                             name='ansNo'
                                             onChange={onChangeHandler} />
-                                        <label for="test1">
+                                        <label htmlFor="test1">
                                             
                                             {Array.isArray(surveyDetail.questionItem) && surveyDetail.questionItem[0].ansContent || ''}
                                         </label>
@@ -209,7 +210,7 @@ function SurveyDetail() {
                                         <input id="test2" type="radio"
                                             name='ansNo'
                                             onChange={onChangeHandler} />
-                                        <label for="test2">
+                                        <label htmlFor="test2">
                                             {/* onChange={onChangeHandler}
                                     value= */}
                                             {Array.isArray(surveyDetail.questionItem) && surveyDetail.questionItem[1].ansContent || ''}
@@ -221,7 +222,7 @@ function SurveyDetail() {
                                         <input id="test3" type="radio"
                                             name='ansNo'
                                             onChange={onChangeHandler} />
-                                        <label for="test3">
+                                        <label htmlFor="test3">
 
                                             {/* onChange={onChangeHandler}
                                     value= */}

@@ -92,9 +92,9 @@ function Sidebar() {
 
             <div className={SidebarCSS.NavlistUl}>
 
-                <div class="dropdown" className={SidebarCSS.NavlistDiv}>
+                <div  className={SidebarCSS.NavlistDiv}>
                     <input type="checkbox" id="sideMenu01"/>
-                    <label for="sideMenu01">근태관리<em></em></label>
+                    <label htmlFor="sideMenu01">근태관리<em></em></label>
                         <div>
                             <ul>
                                 <li><NavLink to="rest/regist">연차 신청</NavLink></li>
@@ -104,7 +104,7 @@ function Sidebar() {
                         </div>
                     
                     <input type="checkbox" id="sideMenu02"/>
-                    <label for="sideMenu02">전자결재<em></em></label>
+                    <label htmlFor="sideMenu02">전자결재<em></em></label>
                         <div>
                             <ul>
                                 <li><NavLink to="approval/regist">결재 작성</NavLink></li>
@@ -113,7 +113,7 @@ function Sidebar() {
                             </ul>
                         </div>
                     <input type="checkbox" id="sideMenu03"/>
-                    <label for="sideMenu03"><NavLink to="emp/employeeList">직원조회</NavLink><em></em></label>
+                    <label htmlFor="sideMenu03"><NavLink to="emp/employeeList">직원조회</NavLink><em></em></label>
                         <div>
                             <ul>
                                 <li><NavLink to="emp/employeeList">직원 조회</NavLink></li>
@@ -122,7 +122,7 @@ function Sidebar() {
                             </ul>
                         </div>
                     <input type="checkbox" id="sideMenu04"/>
-                    <label for="sideMenu04"><NavLink to="message/receive">메시지
+                    <label htmlFor="sideMenu04"><NavLink to="message/receive">메시지
                        <span className={SidebarCSS.newMessage}>{unread.unreadMessage}</span></NavLink>
                        <em></em></label>
                        <div>
@@ -135,7 +135,7 @@ function Sidebar() {
                             </ul>
                         </div>
                     <input type="checkbox" id="sideMenu05"/>
-                    <label for="sideMenu05"><NavLink to="calendar">내 캘린더</NavLink><em></em></label>
+                    <label htmlFor="sideMenu05"><NavLink to="calendar">내 캘린더</NavLink><em></em></label>
                         <div>
                             <ul>
                                 <li><NavLink to="calendar/add">새 일정 추가</NavLink></li>
@@ -143,10 +143,10 @@ function Sidebar() {
                             </ul>
                         </div>
                     <input type="checkbox" id="sideMenu06"/>
-                    <label for="sideMenu06"><NavLink to="Notice">전사공지</NavLink><em></em></label>
+                    <label htmlFor="sideMenu06"><NavLink to="Notice">전사공지</NavLink><em></em></label>
                         
                     <input type="checkbox" id="sideMenu07"/>
-                    <label for="sideMenu07"><NavLink to="Survey">설문조사</NavLink><em></em></label>
+                    <label htmlFor="sideMenu07"><NavLink to="Survey">설문조사</NavLink><em></em></label>
                         <div>
                             <ul>
                                 <li onClick={onClickSurveyInsert}>설문등록</li>
