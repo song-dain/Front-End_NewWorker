@@ -108,19 +108,14 @@ function EmployeeRegist() {
                         src={ imageUrl }
                         alt="preview"
                     />}
-                    <input
+                    <input className={ EmployeeRegistCSS.imageRegist }
                         type="file"
                         name='employeeImage'
+                        
                         accep='image/jpg,image/png,image/jpeg,image/gif'
                         onChange={ onChangeImageUpload }
                         ref={ imageInput }
                     />
-                    <button
-                        className={ EmployeeRegistCSS.employeeImageButton }
-                        onClick={ onClickImageUpload }
-                    >
-                        이미지 업로드
-                    </button>
                 </div>
             <div className={ EmployeeRegistCSS.RegistDiv }>
                 <table>

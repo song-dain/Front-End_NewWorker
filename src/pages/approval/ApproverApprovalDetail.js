@@ -61,7 +61,7 @@ function ApproverApprovalDetail() {
     return ( 
 
          approval.appLines &&           
-        <div>
+        <div className={ ApprovalDetailCSS.detail }>
             <table>
                 <tbody>
                     <tr>
