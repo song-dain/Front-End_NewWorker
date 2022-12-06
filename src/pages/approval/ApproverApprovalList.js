@@ -44,7 +44,7 @@ function ApproverApprovalList() {
 
 
     return (
-        <div>
+        <div className={ ApproverApprovalListCSS.appList }>
             <h1> 수신함 </h1>
             <p>───────────────────────────────────────────────────────────────</p>
             <div className={ ApproverApprovalListCSS.approverApprovalListDiv }>

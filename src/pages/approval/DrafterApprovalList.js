@@ -44,7 +44,7 @@ function DrafterApprovalList() {
 
 
     return (
-        <div>
+        <div className={ ApproverApprovalListCSS.appList }>
             <h1> 상신함 </h1>
             <p>───────────────────────────────────────────────────────────────</p>
             <br/>

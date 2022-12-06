@@ -77,7 +77,7 @@ function ApprovalRegist() {
 
 
     return (
-        <div>
+        <div className={ ApprovalRegistCSS.regist }>
             {
                 approverListModal ? 
                 <ApproverChoiceModal 

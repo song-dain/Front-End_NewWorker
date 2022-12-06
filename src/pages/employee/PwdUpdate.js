@@ -63,7 +63,7 @@ function PwdUpdate() {
             <br/>
             <input type="text" className={ LoginCSS.idinput } name="code" placeholder="인증번호를 입력" autoComplete='off' onChange={ onChangeHandler }/>
             <br/>
-            <input type="text" className={ LoginCSS.idinput } name="employeePwd" placeholder="새 비밀번호를 입력" autoComplete='off' onChange={ onChangeHandler }/>
+            <input type="password" className={ LoginCSS.idinput } name="employeePwd" placeholder="새 비밀번호를 입력" autoComplete='off' onChange={ onChangeHandler }/>
             <br/>
             <button className={ LoginCSS.pwdInquirybtn } onClick={ onClickPwdUpdateResultHandler }>비밀번호 변경</button>
             <br/>
