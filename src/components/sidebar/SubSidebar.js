@@ -115,11 +115,7 @@ function SubSidebar() {
                 </div>
                 <div>
 
-                    <ul>
-                        <li className={SubSidebarCSS.sideTitle1}>ㅇ근태 관리</li>
-                        <li className={SubSidebarCSS.smallTitle}><NavLink to="att/start">일일 근태 등록</NavLink></li>
-                        <li className={SubSidebarCSS.smallTitle}>월간 근태 현황</li>
-                    </ul>
+            
                     <ul>
                         <li className={SubSidebarCSS.sideTitle2}>ㅇ휴가 관리</li>
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="rest/regist">연차 신청</NavLink></li>
@@ -221,14 +217,12 @@ function SubSidebar() {
                     <li>설문조사</li>
                 </div>
                 <div className={SubSidebarCSS.midleTitle}>
-                     <li onClick={onClickSurveyInsert}>
-                        설문등록
-                    </li>
 
                 </div>
                 <div>
                     <ul>
-                        <li className={SubSidebarCSS.sideTitle1}> ㅇ설문</li>
+                        <li onClick={onClickSurveyInsert}>설문등록</li>
+                        
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="survey/ing">진행중인 설문</NavLink></li>
                     </ul>
 
