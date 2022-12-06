@@ -41,8 +41,10 @@
 }
 
 .main{
+    margin-left: 100px;
+    
     width: 1450px;
-    height: 50%;
+    
     background-color: a;
 }
 

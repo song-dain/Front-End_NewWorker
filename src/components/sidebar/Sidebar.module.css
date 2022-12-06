@@ -1,152 +1,204 @@
 .sidebar {
-    width: 250px;
+  width: 250px;
 }
 
 img {
-    margin-top: 40px;
-    width: 250px;
-    height: 20px;
-    object-fit: contain;
+  margin-top: 40px;
+  width: 250px;
+  height: 20px;
+  object-fit: contain;
 }
 
 .HeaderProfile {
-    margin: auto;
-    width: 150px;
-    height: 150px;
-    border-radius: 100px;
+  margin: auto;
+  width: 150px;
+  height: 150px;
+  border-radius: 100px;
 }
 
 .HeaderlistUl h1 {
-    text-align: center;
+  text-align: center;
 }
 
 .HeaderlistUl {
-    cursor: pointer;
-    background: #E8F8FF;
-    list-style: none;   
+  cursor: pointer;
+  background: #e8f8ff;
+  list-style: none;
 }
 
 .comName {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    font-family: 'ChosunSg';
-    font-size: 40px;
-    text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-family: "ChosunSg";
+  font-size: 40px;
+  text-align: center;
 }
 
 .ProfileDiv {
-    text-align: center;
-    margin-top: 20px;
-    background-color: #E8F8FF;
+  text-align: center;
+  margin-top: 20px;
+  background-color: #e8f8ff;
 }
 
 .profilename {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .section {
-    color: #3dabeb;
+  color: #3dabeb;
 }
 
 .HeaderHomebtn {
-    /* margin-top: 20px; */
-    text-align: center;
+  /* margin-top: 20px; */
+  text-align: center;
 }
 
 .LogoBtn {
-    border: none;
-    background: #E8F8FF;
-    font-size: x-large;
+  border: none;
+  background: #e8f8ff;
+  font-size: x-large;
 }
 
 .NavlistUl {
-    
-    background: #E8F8FF;
-    
-    list-style: none;
-    
+  background: #e8f8ff;
+
+  list-style: none;
 }
 
 .NavlistUl li {
-    line-height: 5;
-    height: auto;
-    border-bottom: 1px solid #E8F8FF;
-    text-align: center;
-}
-
-.NavlistDiv{
-    
-    margin: 0 auto;
+  line-height: 5;
+  height: auto;
+  border-bottom: 1px solid #e8f8ff;
+  text-align: center;
 }
 
 
 .NavlistUl li:hover {
-    background-color: #BAE5FE;
-    cursor: pointer;
-    
+  background-color: #bae5fe;
+  cursor: pointer;
 }
 
-.NavlistUl  a{
-    margin-left: 20px;
-}
+
 
 a {
-    text-decoration: none;    
-    color: black;
-    
+  text-decoration: none;
+  color: black;
 }
 
-a:hover, a:focus, a:active{
-    text-decoration: none;
-    font-weight: bold;
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  font-weight: bold;
 }
-
-
 
 .FooterlistUl {
-
-    background: #E8F8FF;
-    list-style: none;
-    text-align: center;
-    
+  background: #e8f8ff;
+  list-style: none;
+  text-align: center;
 }
 
 .FooterlistUl li {
-    height: auto;
-    margin-top: 50px;
-    
+  height: auto;
+  margin-top: 50px;
 }
 
 a {
-    text-decoration: none;    
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 .LogoutBtn {
-    border: none;
-    background: #E8F8FF;
-    color: gray;
-    font-size: large;
-    margin-top: 67px;
+  border: none;
+  background: #e8f8ff;
+  color: gray;
+  font-size: large;
+  margin-top: 49px;
 }
 
-.LogoutBtn:hover, .LogoutBtn:focus, .LogoutBtn:active {
-    text-decoration: none;
-    font-weight: bold;
+.LogoutBtn:hover,
+.LogoutBtn:focus,
+.LogoutBtn:active {
+  text-decoration: none;
+  font-weight: bold;
 }
 
-.footIcon{
-    
-    font-size: 20px;
+.footIcon {
+  font-size: 20px;
 }
 
 /* 안 읽은 메시지 */
 .newMessage {
-    font-size: 12px;
-    border-radius: 50%;
-    padding: 3px;
-    text-align: center;
-    margin-left: 5px;
-    color: #3dabeb;
-    font-weight: bold;
+  font-size: 12px;
+  border-radius: 50%;
+  
+  text-align: center;
+  margin-left: 5px;
+  color: #3dabeb;
+  font-weight: bold;
 }
+
+/* 드롭다운 CSS */
+
+.NavlistDiv input[id*="sideMenu"] {
+  display: none;
+}
+
+.NavlistDiv input[id*="sideMenu"] + label {
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.NavlistDiv input[id*="sideMenu"] + label em{
+  position: absolute;
+  top:50%;
+  right : 10px;
+  width: 30px;
+  height: 30px;
+  margin-top: -15px;
+  display: inline-block;
+  
+}
+
+.NavlistDiv input[id*="sideMenu"] + label + div{
+  max-height: 0;
+  transition: all .05s;
+  overflow: hidden;
+  text-align: center;
+}
+
+.NavlistDiv input[id*="sideMenu"] + label + div ul{
+  list-style:none;
+  margin: 0 auto;
+  /* display: inline-block; */
+  /* padding: 20px; */
+}
+
+.NavlistDiv input[id*="sideMenu"] + label + div li{
+  text-align: center;
+  /* display: inline-block; */
+  
+}
+
+.NavlistDiv input[id*="sideMenu"]:checked + label + div{
+  max-height: 500px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.NavlistDiv label {
+  line-height: 5;
+  height: auto;
+  border-bottom: 1px solid #e8f8ff;
+  text-align: center;
+}
+
+
+.NavlistDiv label:hover {
+  background-color: #bae5fe;
+  cursor: pointer;
+}
+
