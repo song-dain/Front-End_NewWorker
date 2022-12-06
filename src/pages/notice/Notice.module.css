@@ -1,7 +1,7 @@
 .notice {
     width: 1470px;
     height: 100%;
-    
+    margin-left: 100px;
 }
 
 .text {
@@ -11,12 +11,15 @@
 
 .tableBox {
     width: 1300px;
+    height: auto;
     margin: 0 auto;
     margin-top: 20px;
+    background-color: green;
 }
 
 .notice1 {
     width: 1300px;
+    height: auto;
     margin: 0 auto;
     border-left: none;
     border-right: none;

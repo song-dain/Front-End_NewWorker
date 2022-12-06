@@ -1,4 +1,4 @@
-import NoticeRegistrationCSS from './NoticeRegistration.module.css';
+import SurveyRegistrationCSS from './SurveyRegistration.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
@@ -98,82 +98,91 @@ function SurveyRegistration() {
         console.log("formData" , formData);
     }
     return (
-        <div >
-            <h1>설문조사</h1>
+        <div  className={SurveyRegistrationCSS.surveyRegistration}>
+            <h1  className={SurveyRegistrationCSS.text}>설문조사</h1>
 
-            <div>
-                <table>
-                    <thead>
+            <div  className={SurveyRegistrationCSS.tableBox}>
+            <h1  className={SurveyRegistrationCSS.text1}>설문등록</h1>
+                <table  className={SurveyRegistrationCSS.registrationTable}>
+                    <thead className={SurveyRegistrationCSS.registrationThead}>
                         <tr>
-                            <th>
-                                설문제목 : <input
+                            <th className={SurveyRegistrationCSS.titleTr}>
+                                설문 제목  <input
                                     name='surTitle'
                                     placeholder='제목을 입력하세요.'
-
+                                    className={SurveyRegistrationCSS.surveyTitle}
                                     onChange={onChangeHandler}
                                 /></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className={SurveyRegistrationCSS.registrationTbody}>
 
-                        <tr >
-                            <td>
-
-                                설문설명 :
-                                <input
-                                    name='surContent'
-                                    placeholder='내용을 입력하세요.'
-
-                                    onChange={onChangeHandler}
-                                />
-
-                            </td>
-
-                        </tr>
                         <tr>
-                            <td><label>부서</label></td>
-                            <td>
-                                <select name="depNo" onChange={ onChangeHandler }>
+                            <th className={SurveyRegistrationCSS.depTr}>질문 대상
+
+                                <select name="depNo" onChange={ onChangeHandler }
+                                   className={SurveyRegistrationCSS.surveyDep}
+
+                                >
                                     <option value={10}>인사팀</option>
                                     <option value={20}>총무팀</option>
                                     <option value={30}>영업팀</option>
                                     <option value={40}>IT사업팀</option>
                                 </select>
-                            </td>
+                            </th>
+                            
                         </tr>
                         <tr >
-                            <td>
+                            <th className={SurveyRegistrationCSS.dateTh}>
 
-                                설문기간 :
+                                설문기간 
                                 <input
                                     type="date"
                                     name='surStartDate'
-
+                                    className={SurveyRegistrationCSS.surveyStartDate}
 
                                     onChange={onChangeHandler}
                                 />
-                                ~
+                                &nbsp; ~
                                 <input
                                     type="date"
                                     name='surEndDate'
-
+                                    className={SurveyRegistrationCSS.surveyEndDate}
 
                                     onChange={onChangeHandler}
                                 />
 
-                            </td>
+                            </th>
+
+                        </tr>
+                        <tr >
+                            <th className={SurveyRegistrationCSS.titleTr}>
+
+                                설문 설명 
+
+                            </th>
+                                <input
+                                    name='surContent'
+                                    placeholder='내용을 입력하세요.'
+                                    className={SurveyRegistrationCSS.surveyContent}
+                                    onChange={onChangeHandler}
+                                />
 
                         </tr>
                         
                         <tr>
-                            <td>
+                            <th className={SurveyRegistrationCSS.fileTh}>
+                                <span>첨부 파일
 
                                 <button
-
+                                    
+                                    className={SurveyRegistrationCSS.fileBtn}
                                     onClick={onClickImageUpload}
                                 >
-                                    파일 첨부
+                                    클릭하여 파일 첨부
                                 </button>
+                                </span>
+                                
                                 <input
                                     style={{ display: 'none' }}
                                     type="file"
@@ -187,23 +196,24 @@ function SurveyRegistration() {
                                     src={imageUrl}
                                     alt="preview"
                                 />}
-                            </td>
+                            </th>
                         </tr>
 
                         <tr>
-                            <th>
-                                설문제목 : <input
+                            <th className={SurveyRegistrationCSS.titleTr}>
+                                설문제목  <input
                                     name='surTitle'
                                     placeholder='제목을 입력하세요.'
-
+                                    className={SurveyRegistrationCSS.surveyTitle}
                                     onChange={onChangeHandler}
                                 /></th>
                         </tr>
                         <tr>
-                            <th>
-                                설문항목 : <input
+                            <th className={SurveyRegistrationCSS.ansTr}>
+                                설문항목  <input
                                     name='ansContent1'
                                     type='text'
+                                    className={SurveyRegistrationCSS.ansTitle}
                                     placeholder='항목을 입력하세요1.'
                                     onChange={onChangeHandler}
                                 />
@@ -212,10 +222,11 @@ function SurveyRegistration() {
 
                         </tr>
                         <tr>
-                            <th>
+                            <th className={SurveyRegistrationCSS.ansTr}>
                                 <input
                                     name='ansContent2'
                                     type='text'
+                                    className={SurveyRegistrationCSS.ansTitle1}
                                     placeholder='항목을 입력하세요2.'
                                     onChange={onChangeHandler}
                                 />
@@ -223,10 +234,11 @@ function SurveyRegistration() {
 
                         </tr>
                         <tr>
-                            <th>
+                            <th className={SurveyRegistrationCSS.ansTr}>
                                 <input
                                     name='ansContent3'
                                     type='text'
+                                    className={SurveyRegistrationCSS.ansTitle2}
                                     placeholder='항목을 입력하세요3.'
                                     onChange={onChangeHandler}
                                 />
@@ -241,15 +253,15 @@ function SurveyRegistration() {
 
 
                 </table>
-                <div>
+                <div className={SurveyRegistrationCSS.surveyButtonDiv}>
                     <button
-
+                        className={SurveyRegistrationCSS.surveyButtonDiv1}
                         onClick={() => navigate(`/Survey`)}
                     >
                         목록으로
                     </button>
                     <button
-
+                        className={SurveyRegistrationCSS.surveyButtonDiv2}
                         onClick={onClickSurveyRegistrationHandler}
                     >
                         공지 등록

@@ -55,13 +55,7 @@ function Notice() {
 
     return (
 
-        // <div className={ TestCSS.test}>
-        //     Test
-
-        // <main>
-        //     <Outlet />
-        // </main>
-        // </div>
+        
         <div className={NoticeCSS.notice}>
             <h1 className={NoticeCSS.text}>전사 공지</h1>
 
