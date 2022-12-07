@@ -3,7 +3,7 @@
 }
 
 img {
-  margin-top: 40px;
+  margin-top: 20px;
   width: 250px;
   height: 20px;
   object-fit: contain;
@@ -37,6 +37,7 @@ img {
 .ProfileDiv {
   text-align: center;
   margin-top: 20px;
+  padding-bottom: 20px;
   background-color: #e8f8ff;
 }
 
@@ -70,6 +71,7 @@ img {
   height: auto;
   border-bottom: 1px solid #e8f8ff;
   text-align: center;
+  width: 100px;
 }
 
 
@@ -77,8 +79,6 @@ img {
   background-color: #bae5fe;
   cursor: pointer;
 }
-
-
 
 a {
   text-decoration: none;
@@ -139,6 +139,14 @@ a {
 }
 
 /* 드롭다운 CSS */
+
+.detailMenu {
+  background-color: #bae5fe;
+  width: 230px;
+  margin-left: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+}
 
 .NavlistDiv input[id*="sideMenu"] {
   display: none;
