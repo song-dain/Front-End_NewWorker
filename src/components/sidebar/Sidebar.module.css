@@ -145,18 +145,22 @@ a {
   width: 230px;
   margin-left: 10px;
   margin-top: 5px;
-  border-radius: 5px;
+  border-radius: 20px;
 }
 
 .NavlistDiv input[id*="sideMenu"] {
   display: none;
 }
 
+
 .NavlistDiv input[id*="sideMenu"] + label {
   display: block;
   text-align: center;
   cursor: pointer;
   position: relative;
+  border-radius: 20px;
+  margin: 0 auto;
+  width: 230px;
 }
 
 .NavlistDiv input[id*="sideMenu"] + label em{
