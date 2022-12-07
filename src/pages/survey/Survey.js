@@ -32,7 +32,7 @@ function Survey() {
   let interval;
   let activeIndex = 1;
 
-  $(document).ready(function () {
+  $(document).on("ready", function () {
     interval = setInterval(changeActiveIndex, 2500);
     $(".listButtonItem").on("click", function () {
       // list button의 색상 변경
@@ -91,12 +91,7 @@ function Survey() {
                 </a>
               </div>
             </div>
-            <div className={SurveyCSS.listbutton}>
-              <span className={SurveyCSS.listButtonItem}></span>
-              <span className={SurveyCSS.listButtonItem}></span>
-              <span className={SurveyCSS.listButtonItem}></span>
-              <span className={SurveyCSS.listButtonItem}></span>
-            </div>
+            
           </div>
         </div>
 
@@ -109,13 +104,13 @@ function Survey() {
               {Array.isArray(surveyList) &&
                 surveyList.map((surveyList) => (
                   <table
-                  className={SurveyCSS.surTable}
+                    className={SurveyCSS.surTable}
                     key={surveyList.surNo}
                     onClick={() => onClickTableTr(surveyList.surNo)}
                   >
-                    
+
                     <thead className={SurveyCSS.surBox}
-                        
+
                     >
                       <tr>
                         <th className={SurveyCSS.surIngBox}>진행중</th>
@@ -148,52 +143,6 @@ function Survey() {
                     </tbody>
                   </table>
                 ))}
-              {/* <table>
-
-                                <thead className={SurveyCSS.surFlexBox1}>
-                                    {
-                                        Array.isArray(surveyList) && surveyList.map(
-                                            (surveyList) => (
-                                                <tr
-                                                    key={surveyList.surNo}
-                                                    onClick={() => onClickTableTr(surveyList.surNo)}
-                                                >
-
-                                                    <tbody className={SurveyCSS.surBox}>
-
-                                                        <tr>
-                                                            <th className={SurveyCSS.surIngBox}>진행중</th>
-
-                                                        </tr>
-                                                        <tr>
-
-                                                            <th className={SurveyCSS.surTitle}>{surveyList.surTitle}</th>
-                                                        </tr>
-                                                        <tr>
-
-                                                            <th >{surveyList.surStartDate} ~ {surveyList.surEndDate}</th>
-                                                        </tr>
-                                                        <th>
-                                                            <tr>{surveyList.dep.depName}</tr>
-
-                                                        </th>
-                                                        <tr>
-                                                            <th>
-
-                                                                <img className={SurveyCSS.surveyImg}
-                                                                    src={surveyList.surveyImageUrl} alt="썸네일" />
-                                                            </th>
-
-                                                        </tr>
-
-
-                                                    </tbody>
-                                                </tr>
-                                            )
-                                        )
-                                    }
-                                </thead>
-                            </table> */}
             </div>
           </div>
         </div>

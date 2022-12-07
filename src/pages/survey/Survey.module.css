@@ -147,6 +147,7 @@ thead .surTitle {
     height: 500px;
 }
 
+
 .banner>div:nth-child(1) {
     background-image: url('../../../public/static/images/설문조사.png');
 }

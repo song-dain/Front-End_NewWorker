@@ -80,7 +80,7 @@ function SurveyDetail() {
 
     //삭제하기
     const onClickSurveyDeleteHandler = () => {
-        // console.log('[noticeDetail 공지사항 번호] : ', form.notNo);
+
         dispatch(callSurveyDeleteAPI({
             surNo: params.surNo
         }));
@@ -88,7 +88,7 @@ function SurveyDetail() {
         alert("설문이 삭제되었습니다.")
 
         navigate(`/Survey`, { replace: true });
-        // window.location.reload();
+        window.location.reload();
     }
 
     return (
@@ -200,7 +200,7 @@ function SurveyDetail() {
                                             name='ansNo'
                                             onChange={onChangeHandler} />
                                         <label htmlFor="test1">
-                                            
+
                                             {Array.isArray(surveyDetail.questionItem) && surveyDetail.questionItem[0].ansContent || ''}
                                         </label>
                                     </td>
