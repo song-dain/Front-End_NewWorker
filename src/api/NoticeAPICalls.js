@@ -3,7 +3,7 @@ import { GET_NOTICE, GET_NOTICES, POST_NOTICE, PUT_NOTICE, DELETE_NOTICE } from 
 //조회하기
 export const callNoticeAPI = ({notNo, currentPage}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/notice/noticeList`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/notice/noticeList/${notNo}?page=${currentPage}`;
 
     return async (dispatch, getState) => {
 

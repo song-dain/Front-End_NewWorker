@@ -36,6 +36,7 @@
 }
 
 .pagingBtn{
+    
     margin: 5px;
     border-radius: 50px;
     background-color: white;
@@ -43,6 +44,7 @@
 }
 
 .pagingBtn1{
+    
     margin: 5px;
     width: 25px;
     height: 25px;
@@ -63,6 +65,7 @@
 }
 
 .pagingDiv{
+    
     height: 50px;
     width: 50px;
     

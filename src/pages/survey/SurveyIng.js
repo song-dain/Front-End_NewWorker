@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { callSurveyAPI } from '../../api/SurveyAPICalls';
 
+
 function SurveyIng() {
 
     const surveys = useSelector(state => state.surveyReducer);
@@ -19,6 +20,14 @@ function SurveyIng() {
         navigate(`/surveyDetail/${surNo}`, { replace: true });
     }
 
+    /* 페이징 버튼 */
+
+    const pageNumber = [];
+    if (pageInfo) {
+        for (let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
+            pageNumber.push(i);
+        }
+    }
 
 
     useEffect(
@@ -82,10 +91,46 @@ function SurveyIng() {
                                             </th>
                                         </tr>
                                     </thead>
-                                    
+
                                 </table>
                             ))}
                     </div>
+                </div>
+                {/* 페이징버튼 */}
+                <div style={{ listStyleType: "none", display: "flex", justifyContent: "center", marginTop: "50px" }}>
+                    {
+                        Array.isArray(surveyList) &&
+                        <button
+                            onClick={() => setCurrentPage(currentPage - 1)}
+                            disabled={currentPage === 1}
+                            className={SurveyIngCSS.pagingBtn}
+                        >
+                            &lt;
+                        </button>
+                    }
+                    {
+                        pageNumber.map((num) => (
+                            <li key={num} onClick={() => setCurrentPage(num)}>
+                                <button
+                                    style={currentPage === num ? { backgroundColor: 'lightgray' } : null}
+                                    className={SurveyIngCSS.pagingBtn1}
+                                >
+                                    {num}
+                                </button>
+                            </li>
+                        ))
+                    }
+                    {
+                        Array.isArray(surveyList) &&
+                        <button
+                            onClick={() => setCurrentPage(currentPage + 1)}
+                            disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
+                            className={SurveyIngCSS.pagingBtn}
+
+                        >
+                            &gt;
+                        </button>
+                    }
                 </div>
             </div>
         </div>

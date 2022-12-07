@@ -32,20 +32,20 @@
 }
 
 .surSubBox {
-    height: 350px;
+    
     width: 1470px;
 }
 
 .surFlexBox {
     width: 1240px;
-    height: 1000px;
+    /* height: 1000px; */
     border-radius: 30px;
     margin: 0 auto;
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
 }
 
 .surFlexBox{
@@ -157,3 +157,38 @@ thead .surTitle {
     
 }
 
+.pagingBtn{
+    
+    margin: 5px;
+    border-radius: 50px;
+    background-color: white;
+    font-weight: bold;
+}
+
+.pagingBtn1{
+    
+    margin: 5px;
+    width: 25px;
+    height: 25px;
+    border-radius: 7px;
+    background-color: lightgray;
+    /* font-weight: bold; */
+}
+
+.pagingBtn1:hover{
+    cursor: pointer;
+    background-color: burlywood;
+    color: white;
+}
+
+.pagingBtn:hover{
+    cursor: pointer;
+    
+}
+
+.pagingDiv{
+    
+    height: 50px;
+    width: 50px;
+    
+}

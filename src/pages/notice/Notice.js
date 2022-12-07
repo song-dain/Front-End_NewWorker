@@ -13,18 +13,20 @@ function Notice() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const params = useParams();
-    const [currentPage, setCurrentPage] = useState(1);
     const notices = useSelector(state => state.noticeReducer);
     const noticeList = notices.data;
-    const pageInfo = notices.pageInfo;
-
+    
     /* 페이징 버튼 */
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageInfo = notices.pageInfo;
     const pageNumber = [];
     if (pageInfo) {
         for (let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
             pageNumber.push(i);
         }
     }
+
+    
 
     useEffect(
         () => {
@@ -48,14 +50,14 @@ function Notice() {
     const isLogin = window.localStorage.getItem('accessToken');
     let decoded = null;
 
-    if(isLogin) {
+    if (isLogin) {
         const temp = decodeJwt(isLogin);
         decoded = temp.auth[0];
     }
 
     return (
 
-        
+
         <div className={NoticeCSS.notice}>
             <h1 className={NoticeCSS.text}>전사 공지</h1>
 
@@ -73,7 +75,7 @@ function Notice() {
                         <col width="50%" />
                         <col width="10%" />
                         <col width="20%" />
-                        
+
                     </colgroup>
                     <thead>
                         <tr className={NoticeCSS.notice_tr}>
@@ -81,7 +83,7 @@ function Notice() {
                             <th className={NoticeCSS.notice_td2}>제목</th>
                             <th className={NoticeCSS.notice_td3}>작성자</th>
                             <th className={NoticeCSS.notice_td4}>작성일</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
@@ -97,7 +99,7 @@ function Notice() {
                                         <th>{noticeList.notTitle}</th>
                                         <th>{noticeList.employee.employeeName}</th>
                                         <th>{noticeList.notDate}</th>
-                                        
+
                                     </tr>
                                 )
                             )
@@ -110,7 +112,7 @@ function Notice() {
             </div>
 
             {/* 페이징버튼 */}
-            <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
+            <div style={{ listStyleType: "none", display: "flex", justifyContent: "center", marginTop: "50px"}}>
                 {
                     Array.isArray(noticeList) &&
                     <button
@@ -139,6 +141,7 @@ function Notice() {
                         onClick={() => setCurrentPage(currentPage + 1)}
                         disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
                         className={NoticeCSS.pagingBtn}
+                        
                     >
                         &gt;
                     </button>
