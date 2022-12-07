@@ -115,7 +115,11 @@ function SubSidebar() {
                 </div>
                 <div>
 
-            
+                    <ul>
+                        <li className={SubSidebarCSS.sideTitle1}>ㅇ근태 관리</li>
+                        <li className={SubSidebarCSS.smallTitle}><NavLink to="att/start">일일 근태 등록</NavLink></li>
+                        <li className={SubSidebarCSS.smallTitle}>월간 근태 현황</li>
+                    </ul>
                     <ul>
                         <li className={SubSidebarCSS.sideTitle2}>ㅇ휴가 관리</li>
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="rest/regist">연차 신청</NavLink></li>
@@ -217,38 +221,21 @@ function SubSidebar() {
                     <li>설문조사</li>
                 </div>
                 <div className={SubSidebarCSS.midleTitle}>
+                     <li onClick={onClickSurveyInsert}>
+                        설문등록
+                    </li>
 
                 </div>
                 <div>
                     <ul>
-                        <li onClick={onClickSurveyInsert}>설문등록</li>
-                        
+                        <li className={SubSidebarCSS.sideTitle1}> ㅇ설문</li>
                         <li className={SubSidebarCSS.smallTitle}><NavLink to="survey/ing">진행중인 설문</NavLink></li>
                     </ul>
 
                 </div>
 
             </div>
-            {/* 7.직원 관리 부분 / 관리자 로그인 시
-            <div className={SubSidebarCSS.divBox} id="divBox7">
-
-                <div className={SubSidebarCSS.mui}>
-                    <li>
-                        <CoPresentIcon className={SubSidebarCSS.sideIcon} color="action" fontSize="large" />
-                    </li>
-                    <li>직원관리</li>
-                </div>
-                <div className={SubSidebarCSS.smallBox}>
-
-                    <ul>
-                        <li className={SubSidebarCSS.smallTitle}>직원 조회</li>
-                        <li className={SubSidebarCSS.smallTitle}>직원 등록</li>
-
-                    </ul>
-
-                </div>
-
-            </div> */}
+            
 
         </div>
     );
