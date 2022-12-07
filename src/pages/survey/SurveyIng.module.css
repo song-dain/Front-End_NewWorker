@@ -1,6 +1,7 @@
 .survey {
     width: 1453px;
     height: 969px;
+    margin-left: 100px;
 }
 
 .text {
@@ -15,7 +16,7 @@
     height: 70px;
     margin: 0 auto;
     border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
 }
 
 .surButton {
@@ -35,15 +36,16 @@
     width: 1470px;
 }
 
-.surFlexBox1 {
+.surFlexBox {
     width: 1240px;
-    height: 330px;
+    height: 1000px;
     border-radius: 30px;
     margin: 0 auto;
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    overflow-x: scroll;
 }
 
 .surFlexBox{
@@ -76,6 +78,20 @@
     
 }
 
+thead .surTitle {
+    
+    margin-left: 15px;
+}
+
+.surDate{
+    
+    margin-left: 15px;
+}
+
+.surDep{
+    margin-left: 15px;
+}
+
 .pagingBtn{
     margin: 5px;
     border-radius: 50px;
@@ -89,7 +105,7 @@
     height: 25px;
     border-radius: 7px;
     background-color: lightgray;
-    /* font-weight: bold; */
+    
 }
 
 .pagingBtn1:hover{
@@ -102,3 +118,42 @@
     cursor: pointer;
     
 }
+
+.surBox tr th{
+    float: left;
+    
+}
+
+thead .surTitle {
+    
+    margin-left: 15px;
+}
+
+.surDate{
+    
+    margin-left: 15px;
+}
+
+.surDep{
+    margin-left: 15px;
+}
+
+.surIngBox{
+    border: none;
+    margin-left: 15px;
+    margin-top: 10px;
+    width: 70px;
+    height: 30px;
+    background-color: #BAE5FE;
+    color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    
+}
+
+.surveyImg{
+    width: 350px;
+    height: 150px;
+    
+}
+

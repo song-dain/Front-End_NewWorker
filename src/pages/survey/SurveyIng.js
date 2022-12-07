@@ -19,13 +19,7 @@ function SurveyIng() {
         navigate(`/surveyDetail/${surNo}`, { replace: true });
     }
 
-    /* 페이징 버튼 */
-    const pageNumber = [];
-    if (pageInfo) {
-        for (let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
-            pageNumber.push(i);
-        }
-    }
+
 
     useEffect(
         () => {
@@ -51,71 +45,49 @@ function SurveyIng() {
                 </div>
                 <div className={SurveyIngCSS.surSubBox}>
                     <div className={SurveyIngCSS.surFlexBox}>
-                        <table>
-                            <thead className={SurveyIngCSS.surFlexBox1}>
-                                {
-                                    Array.isArray(surveyList) && surveyList.map(
-                                        (surveyList) => (
-                                            <tr
-                                                key={surveyList.surNo}
-                                                onClick={() => onClickTableTr(surveyList.surNo)}
-                                            >
-                                                <tbody className={SurveyIngCSS.surBox}>
-                                                    <td className={SurveyIngCSS.surIngBox}>진행중</td>
-                                                    <tr className={SurveyIngCSS.surTitle}>{surveyList.surTitle}</tr>
-                                                    <tr >{surveyList.surStartDate} ~ {surveyList.surEndDate}</tr>
-                                                    <tr>{surveyList.dep.depName}</tr>
-                                                    <td>
-                                                        <img src={surveyList.surveyImageUrl} alt="썸네일" />
-                                                    </td>
-                                                </tbody>
-                                            </tr>
-                                        )
-                                    )
-                                }
-                            </thead>
-                        </table>
+                        {Array.isArray(surveyList) &&
+                            surveyList.map((surveyList) => (
+                                <table
+                                    className={SurveyIngCSS.surTable}
+                                    key={surveyList.surNo}
+                                    onClick={() => onClickTableTr(surveyList.surNo)}
+                                >
+
+                                    <thead className={SurveyIngCSS.surBox}
+
+                                    >
+                                        <tr>
+                                            <th className={SurveyIngCSS.surIngBox}>진행중</th>
+                                        </tr>
+                                        <tr>
+                                            <th className={SurveyIngCSS.surTitle}>
+                                                {surveyList.surTitle}
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th className={SurveyIngCSS.surDate}>
+                                                {surveyList.surStartDate} ~ {surveyList.surEndDate}
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th className={SurveyIngCSS.surDep}> {surveyList.dep.depName}</th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <img
+                                                    className={SurveyIngCSS.surveyImg}
+                                                    src={surveyList.surveyImageUrl}
+                                                    alt="썸네일"
+                                                />
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    
+                                </table>
+                            ))}
                     </div>
                 </div>
-
-                {/* 페이징버튼 */}
-                <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
-                    {
-                        Array.isArray(surveyList) &&
-                        <button
-                            onClick={() => setCurrentPage(currentPage - 1)}
-                            disabled={currentPage === 1}
-                            className={SurveyIngCSS.pagingBtn}
-                        >
-                            &lt;
-                        </button>
-                    }
-                    {
-                        pageNumber.map((num) => (
-                            <li key={num} onClick={() => setCurrentPage(num)}>
-                                <button
-                                    style={currentPage === num ? { backgroundColor: 'lightgray' } : null}
-                                    className={SurveyIngCSS.pagingBtn1}
-                                >
-                                    {num}
-                                </button>
-                            </li>
-                        ))
-                    }
-                    {
-                        Array.isArray(surveyList) &&
-                        <button
-                            onClick={() => setCurrentPage(currentPage + 1)}
-                            disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
-                            className={SurveyIngCSS.pagingBtn}
-                        >
-                            &gt;
-                        </button>
-                    }
-                </div>
             </div>
-
-
         </div>
     );
 }
