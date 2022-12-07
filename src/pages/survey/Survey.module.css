@@ -15,7 +15,7 @@
     /* background-color: yellow; */
     margin-top: 10px;
     width: 1470px;
-    height: 370px;
+    height: 380px;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
 }
@@ -51,12 +51,12 @@
 
 .surFlexBox {
     width: 1240px;
-    height: 350px;
+    /* height: 350px; */
     border-radius: 30px;
     margin: 0 auto;
     margin-top: 10px;
     display: flex;
-    
+    overflow-y: scroll;
 }
 
 .surTable {
