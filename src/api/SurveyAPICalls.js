@@ -2,7 +2,7 @@ import { GET_SURVEY, GET_SURVEYS, POST_SURVEY, PUT_SURVEY, POST_SURVEYSUBMIT, DE
 
 export const callSurveyAPI = ({surNo, currentPage}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/survey/surveyList`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/survey/surveyList/${surNo}?page=${currentPage}`;
 
     return async (dispatch, getState) => {
 
