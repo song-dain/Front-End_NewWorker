@@ -41,27 +41,30 @@
 }
 
 .main{
-    margin-left: 100px;
     
-    width: 1450px;
+    width: 1653px;
     
-    background-color: a;
 }
 
 .unreadMessage {
-    background-color: #E8F8FF;
+    background-color: #e8f8ff;
     text-align: center;
     padding-top: 15px;
     padding-bottom: 15px;
 }
 
 .unreadMessage:hover {
-    background-color: #BAE5FE;
+    background-color: #c2e9ff;
     cursor: pointer;
 }
 
 .unreadNum {
-    color: #3dabeb;
+    color: #9eafff;
+}
+
+.container {
+    margin-left: 50px;
+    width: 1560px;
 }
 
 .calendartitle {

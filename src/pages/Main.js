@@ -78,17 +78,19 @@ function Main() {
                 className={MainCSS.unreadMessage}
                 onClick={ () => onClickUnreadMessage() }
            >읽지 않은 메시지가 <span className={MainCSS.unreadNum}>{unread.unreadMessage}</span> 건 있습니다.</div>
-            <Clock className={MainCSS.clock}/>
-            <span className={MainCSS.calendartitle}>{today} 일정</span>
-            <FullCalendar 
-                className="fullcalendar"
-                defaultView="dayGridPlugin" 
-                headerToolbar={header}
-                locale='ko'
-                plugins={[ dayGridPlugin, timeGridPlugin, listPlugin  ]}
-                height='850px'
-                events={events}
-                />
+           <div className={MainCSS.container}>
+                <Clock className={MainCSS.clock}/>
+                <span className={MainCSS.calendartitle}>{today} 일정</span>
+                <FullCalendar 
+                    className="fullcalendar"
+                    defaultView="dayGridPlugin" 
+                    headerToolbar={header}
+                    locale='ko'
+                    plugins={[ dayGridPlugin, timeGridPlugin, listPlugin  ]}
+                    height='830px'
+                    events={events}
+                    />
+            </div>
         </div>
         
     );
