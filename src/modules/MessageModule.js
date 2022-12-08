@@ -25,6 +25,8 @@ export const GET_UNREAD_MESSAGE = 'message/GET_UNREAD_MESSAGE';
 
 export const PATCH_SEND_CALCEL = 'message/PATCH_SEND_CALCEL';
 
+export const PATCH_MESSAGE_READ = 'message/PATCH_MESSAGE_READ';
+
 const actions = createActions({
     [GET_EMPLOYEE]: () => {},
     [POST_SEND_MESSAGE]: () => {},
@@ -47,7 +49,9 @@ const actions = createActions({
 
     [GET_UNREAD_MESSAGE]: () => {},
 
-    [PATCH_SEND_CALCEL]: () => {}
+    [PATCH_SEND_CALCEL]: () => {},
+
+    [PATCH_MESSAGE_READ]: () => {}
 });
 
 const messageReducer = handleActions({
@@ -102,6 +106,9 @@ const messageReducer = handleActions({
     },
 
     [PATCH_SEND_CALCEL] : (state, { payload }) => {
+        return payload;
+    },
+    [PATCH_MESSAGE_READ] : (state, { payload }) => {
         return payload;
     }
     },
