@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { callSendMessageAPI } from "../../api/MessageAPICalls";
 import ReceiveMessageMoadlCSS from "./ReceiveMessageModal.module.css";
+import { callMessageReadAPI } from "../../api/MessageAPICalls";
 
 function ReceiveMessageMoadl({receiveForm, setMessageModal}){
 
@@ -14,6 +15,14 @@ function ReceiveMessageMoadl({receiveForm, setMessageModal}){
         }
     });
     const [copyStatus, setCopyStatus] = useState('텍스트 복사');
+
+    useEffect(
+        () => {
+            dispatch(callMessageReadAPI({
+                messageNo: receiveForm.messageNo
+            }));
+        }, []
+    )
 
     /* 메시지 내용 복사하기 */
     const doCopy = () => {

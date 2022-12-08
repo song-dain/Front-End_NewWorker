@@ -15,6 +15,7 @@ function ReceiveMessageBox() {
     const messageList = messages.data;
     const pageInfo = messages.pageInfo;
     const [ receiveForm, setReceiveForm ] = useState({
+        messageNo : 0,
         senderNo : 0,
         sender : '',
         content : '',
@@ -60,13 +61,15 @@ function ReceiveMessageBox() {
 
         setMessageModal(true);
 
+        console.log(message.messageNo);
+
         setReceiveForm({
+            messageNo : message.messageNo,
             senderNo : message.sender.employeeNo,
             sender : message.sender.employeeName,
             content : message.messageContent,
             sendDate : message.sendDate
         });
-
     }
 
     /* 중요 메시지함으로 이동 */
