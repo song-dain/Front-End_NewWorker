@@ -64,7 +64,7 @@ function ApproverApprovalList() {
                         {
                             Array.isArray(approvalList) && approvalList.map(
                                 (approval) => ( 
-                                    <tr
+                                    <tr className={ ApproverApprovalListCSS.ApprovalTr }
                                         key={ approval.appNo }
                                         onClick={() => onClickApproverApprovalDetail(approval.appNo)}
                                     >
@@ -76,6 +76,7 @@ function ApproverApprovalList() {
                                         >{ approval.appStatus }</td>
                                     </tr>
                                     )
+                                    
                             )
                         }
                     </tbody>

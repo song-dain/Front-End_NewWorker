@@ -11,7 +11,7 @@ function ApproverApprovalDetail() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const approval = useSelector(state => state.approvalReducer);
-
+    const employee = useSelector(state => state.employeeReducer);
 
     const params = useParams();
     const appNo = params.appNo
@@ -30,12 +30,10 @@ function ApproverApprovalDetail() {
     , []
     );
 
+    // 승인 상태가 null 이며, 결재활성화여부가 'Y'인 배열의 appLineNo를 서버에 전송
+    const index = approval.appLines?.findIndex(idx => idx.acceptActivate == 'Y' && idx.acceptStatus == null);
 
     const onClickAccChangeHandler = () => {
-
-        // 승인 상태가 null 이며, 결재활성화여부가 'Y'인 배열의 appLineNo를 서버에 전송
-        const index = approval.appLines.findIndex(idx => idx.acceptActivate == 'Y' && idx.acceptStatus == null);
-        console.log(index);
 
         dispatch(callAcceptChangeAPI({ 
             appLineNo : approval.appLines[index].appLineNo,
@@ -45,10 +43,10 @@ function ApproverApprovalDetail() {
 
     }
 
+
+
     const onClickNotAccChangeHandler = () => {
 
-        const index = approval.appLines.findIndex(idx => idx.acceptActivate == 'Y' && idx.acceptStatus == null);
-        console.log(index);
 
         dispatch(callNotAcceptChangeAPI({
             appLineNo : approval.appLines[index].appLineNo,
@@ -114,8 +112,8 @@ function ApproverApprovalDetail() {
             </table>
             <br/>
             <div>
-                { (approval.appStatus == "대기") && <button onClick={ onClickAccChangeHandler } className={ ApprovalDetailCSS.returnBtn }>승인</button>}
-                { (approval.appStatus == "대기" || approval.appStatus == "진행중") && <button onClick={ onClickNotAccChangeHandler } className={ ApprovalDetailCSS.deleteBtn }>반려</button>}
+                { ((approval.appStatus == "대기" || approval.appStatus == "진행중") && approval.appLines[index].employee.employeeNo == employee.employeeNo) && <button onClick={ onClickAccChangeHandler } className={ ApprovalDetailCSS.returnBtn }>승인</button>}
+                { ((approval.appStatus == "대기" || approval.appStatus == "진행중") && approval.appLines[index].employee.employeeNo == employee.employeeNo) && <button onClick={ onClickNotAccChangeHandler } className={ ApprovalDetailCSS.deleteBtn }>반려</button>}
                 <button onClick={ () => { navigate('/approval/approver') } } className={ ApprovalDetailCSS.cancleBtn }>돌아가기</button>
             </div>
                 
