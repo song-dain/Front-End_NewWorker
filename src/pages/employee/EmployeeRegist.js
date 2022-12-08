@@ -115,7 +115,7 @@ function EmployeeRegist() {
                         accep='image/jpg,image/png,image/jpeg,image/gif'
                         onChange={ onChangeImageUpload }
                         ref={ imageInput }
-                    />
+                    />              
                 </div>
             <div className={ EmployeeRegistCSS.RegistDiv }>
                 <table>
