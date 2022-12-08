@@ -81,7 +81,8 @@ function ScheduleDetailModal({clickEventId, setScheduleDetailModal}){
         }));
 
         window.alert('일정이 수정되었습니다.');
-        window.location.reload();
+        setModifyMode(false)
+        // window.location.reload();
     }
 
     /* 일정 삭제 */
@@ -90,7 +91,8 @@ function ScheduleDetailModal({clickEventId, setScheduleDetailModal}){
         dispatch(callDeleteScheduleAPI({ scheduleNo : clickEventId }));
 
         window.alert('일정이 삭제되었습니다.');
-        window.location.reload();
+        setScheduleDetailModal(false)
+        // window.location.reload();
     }
 
     console.log(update);

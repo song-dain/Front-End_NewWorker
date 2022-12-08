@@ -103,10 +103,10 @@ function BinMessageBox(){
                     sendMessageDelete :'PD'
                 }
             }));
-
-            alert("메시지가 영구 삭제되었습니다.");
-            window.location.reload();
         }
+
+        alert("메시지가 영구 삭제되었습니다.");
+        window.location.reload();
     }
 
     /* 페이징 버튼 */

@@ -143,7 +143,7 @@ function SendMessageBox(){
                                             style={ messages.messageStatus == 'read' ? { color : '#B3B3B3' } : messages.messageStatus === 'send' ? { color : '#5EBFFD' } : { color : 'red' } }>
                                         { messages.messageStatus == 'read' ? '읽음' : messages.messageStatus == 'send' ? '전송' : '취소' }</td>
                                         <td className={SendMessageBoxCSS.sender}>
-                                        {(messages.sender.employeeName + " " + messages.sender.position.positionName)}</td>
+                                        {(messages.recipient.employeeName + " " + messages.recipient.position.positionName)}</td>
                                         <td
                                             className={SendMessageBoxCSS.content}
                                             onClick={ () => onClickMessageContent(messages) }
