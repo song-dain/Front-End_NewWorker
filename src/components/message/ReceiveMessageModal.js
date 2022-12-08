@@ -64,6 +64,7 @@ function ReceiveMessageMoadl({receiveForm, setMessageModal}){
             return;
         }
 
+        window.alert('답장이 전송되었습니다.')
         dispatch(callSendMessageAPI({form : reply}))
         window.location.reload();
     }

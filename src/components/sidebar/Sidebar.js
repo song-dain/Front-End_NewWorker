@@ -9,6 +9,7 @@ import { callUnreadMessageAPI } from "../../api/MessageAPICalls";
 import { callEmployeeInfoAPI } from "../../api/EmployeeAPICalls";
 import profileImg from "../../img/profileImg.png";
 import SubSidebarCSS from "./SubSidebar.module.css";
+import logo from '../../img/logo.png';
 
 
 function Sidebar() {
@@ -57,7 +58,7 @@ function Sidebar() {
                 <div className={SidebarCSS.HeaderlistUl}>
                     <div>
 
-                        <img src="static/images/logo.png" alt="로고" 
+                        <img src={logo} alt="로고" 
                              onClick={ () => navigate('/', { replace : true }) }
                         />
 
