@@ -36,6 +36,8 @@ Rest API 기반의 Spring Boot, React Web Service Project
 
 **프레임워크** : Spring framework, React
 
+---
+
 ### 💻 주요 기능 및 담당
 
 **정혜연**
