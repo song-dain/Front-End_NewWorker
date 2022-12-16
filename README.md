@@ -1,47 +1,62 @@
-# **NEWORKER-GROUPWARE-PROJECT**
+### 🖥 New Worker
 
-안녕하세요! '그룹웨어 개발/연구' 프로젝트를 맡은 코딩스파이크팀 입니다.
+Rest API 기반의 Spring Boot, React Web Service Project
 
-## **📌 프로젝트 소개**
+✔ **Front-End**
 
-그룹웨어의 주요 기능만을 추려, 5분이면 누구나 적응이 가능한 라이트 그룹웨어를 연구 및 개발하였습니다. 
+백엔드 서버에 구현된 Rest API를 호출하여 화면을 구현하였습니다. 상태 관리는 Redux, 비동기 처리를 위해 미들웨어 ReduxThunk를 사용하였습니다.
 
-## **✔ Coding Spike 팀원 소개**
+---
 
-- 정혜연
-- 송다인
-- 이정현
-- 박상연
+### 💻 프로젝트 소개
 
-## **✔ 프로젝트 추진 배경**
+협업은 빠르게 업무는 손쉽게!
 
-기존 그룹웨어는 큰 규모의 기업 위주로 과도하게 많은 기능들을 탑재하고 있어 사용자들이 쉽게 적응하기 힘들고, 사용하지 않는 일부 기능들은  방치되어 있는데, 본 프로젝트는 사용하지 않는 기능을 줄이면 UI도 보다 단순해져 적응이 쉬워지지 않을까? 라는 생각에서 시작되었습니다. 기존 그룹웨어의 주요한 기능만을 추려, 넓은 범위의 기업을이 사용할 수 있는 라이트한 그룹웨어를 개발하게 되었습니다.
+그룹웨어를 사용함에 있어 우리 회사에서는 필요로 하지 않는 복잡한 기능들이 오히려 업무 운영에 혼동을 주고 있나요?
 
-## **✔ 프로젝트 주요 기능**
+그럴 때는 New Worker입니다.
 
-- 로그인/로그아웃
-- 비밀번호 찾기/변경
-- 사원 등록, 조회, 수정, 퇴사 처리
-- 연차 신청, 조회, 수정, 취소
-- 전자 결재 작성, 상신함/수신함 조회, 결재
-- 쪽지 전송, 전송 취소, 이동, 삭제
-- 공지 등록, 조회, 수정, 삭제
-- 설문 등록, 조회 수정, 삭제
+복잡하고 부차적인 요소 대신 핵심적인 기능만 추리고 모아 직관적이고 효율적인 프로세스로, 그룹웨어로서의 기본에 충실하여 별다른 적응 기간을 필요로 하지 않습니다.
 
-## **✔ 프로젝트 개발 환경**
+---
 
-**운영체제 :** Windows10,11 Mac OS
+### 💻 개발 환경
 
-**개발도구 :** SpringToolSuite4, VS Code, Oracle SQL Developer
+**개발도구 :** STS4, VS Code, Oracle SQL Developer
 
-**DMMS :** Oracle
+**DBMS :** Oracle, Redis
 
-**Server :** Apache Tomcat 
+**Server :** Apache Tomcat
 
-**언어 :** Java, HTML, CSS3, JavaScript
+**언어 :** Java, HTML, CSS3, JavaScript
 
-**협업툴 :** GitHub, DA#, Figma, Whimsical, Slack, Notion
+**협업툴 :** GitHub, DA#, Figma, Whimsical, Slack, Notion
 
-**API :** FullCalendar
+**API :** FullCalendar, CKeditor
 
-**프레임워크** : Spring framework, React
+**프레임워크** : Spring framework, React
+
+### 💻 주요 기능 및 담당
+
+**정혜연**
+
+- 로그인 · 로그아웃
+- 비밀번호 찾기 · 변경
+- 사원 등록
+- 전자 결재
+
+**송다인**
+
+- 메인
+- 메시지
+- 캘린더
+
+**박상연**
+
+- 사원관리
+- 연차
+
+**이정현**
+
+- 설문조사
+- 공지사항
